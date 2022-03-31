@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 # Stay / Put
 ---
 ## Intro
@@ -17,4 +14,3 @@ To check out the app, [click here!](https://stockbox1.herokuapp.com/).
 
 ## Next Steps
 - Complete icebox items.....
->>>>>>> 538c11fa5ea049a986d526b5525856606660a9a0
