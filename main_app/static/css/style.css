@@ -1,0 +1,33 @@
+/*-- Base --*/
+body{
+    background-color: rgb(166, 232, 248);
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main{
+    flex: 1 0 auto;
+}
+
+/* Header */
+
+#navbarNav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Footer */
+nav.fixed-bottom{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 0;
+}
+
+.navbar-text{
+    text-align: right;
+    font-size: 15px;
+    padding-right: 20px;
+}
