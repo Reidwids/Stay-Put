@@ -10,7 +10,7 @@
 
 ## Technologies Used
 
-This project uses Python, Django, HTML, CSS, JavaScript, Bootstrap5
+This project uses Python, Django, HTML, CSS, JavaScript, Bootstrap5, the english alphabet
 
 ## Getting Started
 
