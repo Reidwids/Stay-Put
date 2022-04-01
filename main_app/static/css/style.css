@@ -47,3 +47,8 @@ nav.fixed-bottom{
 
 /*-- Home --*/
 
+/* Search */
+.minmax{
+    display: flex!important;
+    flex-direction: row;
+}

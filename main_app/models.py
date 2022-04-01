@@ -9,6 +9,25 @@ BuildingTypes = (
     ('H', 'House')
 )
 
+Provinces = (
+    ('Ontario', 'Ontario'),
+    ('Prince Edward Island', 'Prince Edward Island'),
+    ('Nova Scotia', 'Nova Scotia'),
+    ('New Brunswick', 'New Brunswick'),
+    ('Newfoundland and Labrador', 'Newfoundland and Labrador'),
+    ('Quebec', 'Quebec'),
+    ('Winnipeg', 'Winnipeg'),
+    ('Saskatchewan', 'Saskatchewan'),
+    ('Alberta', 'Alberta'),
+    ('British Columbia', 'British Columbia'),
+    ('Yukon', 'Yukon'),
+    ('Northwest Territories', 'Northwest Territories'),
+    ('Nunavut', 'Nunavut'),
+)
+Parking = (
+    ('Y', 'Yes'),
+    ('N', 'No'),
+)
 
 class User(models.Model):
     firstName = models.CharField(max_length=100)
@@ -22,15 +41,15 @@ class User(models.Model):
 
 
 class RealEstate(models.Model):
-    country = models.CharField(max_length=20)
+    province = models.CharField(max_length=50, choices=Provinces, default=Provinces[0])
     city = models.CharField(max_length=20)
     address = models.TextField(max_length=250)
     postalCode = models.CharField(max_length=7)
     price = models.IntegerField()
-    buildingType = models.CharField(max_length=1, choices=BuildingTypes, default=BuildingTypes[0][0])
+    buildingType = models.CharField(max_length=1, choices=BuildingTypes, default=None, blank=True, null=True)
     bedrooms = models.IntegerField()
     bathrooms = models.IntegerField()
-    parkingSpots = models.IntegerField()
+    parking = models.CharField(max_length=1, choices=Parking, default=None, blank=True, null=True)
     sqft = models.IntegerField()
     listingDate = models.DateField('Listing Date')
     realtor = models.IntegerField()
