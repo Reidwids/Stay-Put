@@ -12,11 +12,24 @@ main{
 
 /* Header */
 
-#navbarNav{
+.navbar-nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
+
+#nav-items, #nav-admin{
+    text-align: center;
+}
+
+@media(min-width: 992px){
+    #nav-items, #nav-admin{
+        display: flex;
+        flex-wrap: wrap;
+    } 
+}
+
 
 /* Footer */
 nav.fixed-bottom{
