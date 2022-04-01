@@ -53,6 +53,3 @@
     4.4 Implement bookmark system
         4.4.1 - Navbar has "Bookmarked listings"
         4.4.2 - leads to page of saved properties
-
-
-    

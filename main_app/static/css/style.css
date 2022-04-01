@@ -45,6 +45,13 @@ nav.fixed-bottom{
     padding-right: 20px;
 }
 
+/*-- Home --*/
+
+/* Search */
+.minmax{
+    display: flex!important;
+    flex-direction: row;
+}
 
 /* for about */
 header{
