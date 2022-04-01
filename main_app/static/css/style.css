@@ -52,3 +52,21 @@ nav.fixed-bottom{
     display: flex!important;
     flex-direction: row;
 }
+
+/* for about */
+header{
+    display: block;
+    text-align: center;
+}
+header>h6{
+    text-align: left;
+}
+#info{
+    display: block;
+    text-align: center;
+}
+#about-realtors{
+    margin-bottom: 3rem;
+}
+
+/* end about */
