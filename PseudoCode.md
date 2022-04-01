@@ -47,6 +47,7 @@
         4.4.1 - Create listing option on navbar
         4.4.2 - Provides agent with form for submitting listing for approval
         4.4.3 - Listing is sent to backend, where "isPublished must receive admin approval
+    4.5 - Seperate tab for sold properties
 
     If time
     4.4 Implement bookmark system
