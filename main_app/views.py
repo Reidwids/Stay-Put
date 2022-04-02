@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect
-from .models import Profile, RealEstate
+from .models import Profile, RealEstate, Photo
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+import uuid
+import boto3
+S3_BASE_URL = 'https://s3.ca-central-1.amazonaws.com'
+BUCKET = 'stay-put'
 
 # Create your views here.
 def home(request):
@@ -26,7 +30,6 @@ def signup(request):
 
 def profile(request):
     if Profile.objects.filter(user=request.user):
-        print("hello")
         profile = Profile.objects.get(user=request.user)
     else:
         profile = Profile.objects.filter(user=request.user)
@@ -85,4 +88,35 @@ def search(request):
     print(listings)
     return render(request, 'search.html', {'listings': listings})
 
+def create_listing(request):
+    return render(request, 'listing/create_listing.html')
 
+def submit_listing(request):
+    photo_files = request.FILES.getlist('images', None)
+    for photo_file in photo_files:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            # build the full url string
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            # we can assign to cat_id or cat (if you have a cat object)
+            photo = Photo(url=url, real_estate_id = request.user.id)
+            photo.save()
+        except:
+            print('An error occurred uploading file to S3')
+    
+    
+    return redirect('profile')
+    
+    
+
+def listing_detail(request):
+    print(request)
+
+def listing_update(request):
+    print(request)
+
+def listing_delete(request):
+    print(request)

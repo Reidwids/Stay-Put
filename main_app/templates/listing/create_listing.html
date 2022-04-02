@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form method='post' action="{% url 'submit_listing' %}">
+    {% csrf_token %}
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label class="form-label"> Images: </label>
+            <input type="file" name="images" multiple class="form-control-file">
+        </div>
+    </div>
+    <button type='submit' class="btn mvpButt">Submit</button>
+</form>
+
+{% endblock content %} 

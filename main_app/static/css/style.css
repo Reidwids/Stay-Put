@@ -35,6 +35,9 @@ main{
     } 
 }
 
+.navbar-text{
+    text-decoration: none;
+}
 
 /* Footer */
 nav.fixed-bottom{
