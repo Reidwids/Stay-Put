@@ -42,8 +42,8 @@ class Profile(models.Model):
     firstName = models.CharField(max_length=100)
     lastName = models.CharField(max_length=100)
     image = models.CharField(default=None, blank=True, null=True, max_length=2000)
-    licenseNumber = models.IntegerField()
-    phoneNumber = models.IntegerField()
+    licenseNumber = models.CharField(max_length=12)
+    phoneNumber = models.CharField(max_length=12)
     email = models.EmailField()
     isAgent = models.BooleanField(default = True)
     isAdmin = models.BooleanField(default = False)
@@ -69,7 +69,7 @@ class RealEstate(models.Model):
     sqft = models.IntegerField()
     listingDate = models.DateField('Listing Date')
     closingDate = models.DateField('Closing Date')
-    realtor = models.IntegerField()
+    realtor = models.ForeignKey(Profile, on_delete=models.CASCADE)
     
 class Photo(models.Model):
     url = models.CharField(max_length=200)

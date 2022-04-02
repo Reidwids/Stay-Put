@@ -5,6 +5,7 @@
 <h1>Your Profile</h1>
 
 {% if profile %}
+
 <a href="{% url 'profile_update' user.id %}"> Update Your Profile</a>
 <p>FirstName: {{profile.firstName}}</p>
 <p>LastName: {{profile.lastName}}</p>
