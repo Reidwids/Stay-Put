@@ -40,3 +40,5 @@ class ProfileUpdate(UpdateView):
     model = Profile
     fields = ['firstName', 'lastName', 'image', 'licenseNumber', 'phoneNumber', 'email']
     success_url = '/accounts/profile'
+def about(request):
+    return render(request,'about.html')

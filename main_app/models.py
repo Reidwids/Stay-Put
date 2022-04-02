@@ -17,6 +17,27 @@ class Profile(models.Model):
         on_delete=models.CASCADE,
         primary_key=True,
     )
+Provinces = (
+    ('Ontario', 'Ontario'),
+    ('Prince Edward Island', 'Prince Edward Island'),
+    ('Nova Scotia', 'Nova Scotia'),
+    ('New Brunswick', 'New Brunswick'),
+    ('Newfoundland and Labrador', 'Newfoundland and Labrador'),
+    ('Quebec', 'Quebec'),
+    ('Winnipeg', 'Winnipeg'),
+    ('Saskatchewan', 'Saskatchewan'),
+    ('Alberta', 'Alberta'),
+    ('British Columbia', 'British Columbia'),
+    ('Yukon', 'Yukon'),
+    ('Northwest Territories', 'Northwest Territories'),
+    ('Nunavut', 'Nunavut'),
+)
+Parking = (
+    ('Y', 'Yes'),
+    ('N', 'No'),
+)
+
+class User(models.Model):
     firstName = models.CharField(max_length=100)
     lastName = models.CharField(max_length=100)
     image = models.CharField(default=None, blank=True, null=True, max_length=2000)
@@ -33,8 +54,24 @@ class Profile(models.Model):
         name = f"{self.firstName} {self.lastName}" 
         return name
 
+
 class RealEstate(models.Model):
-    city = models.CharField(max_length=30)
+    province = models.CharField(max_length=50, choices=Provinces, default=Provinces[0])
+    city = models.CharField(max_length=20)
     address = models.TextField(max_length=250)
-    PRICE = models.IntegerField()
-    buildingType = models.CharField(max_length=1, choices=BuildingTypes, default=BuildingTypes[0][0])
+    postalCode = models.CharField(max_length=7)
+    price = models.IntegerField()
+    buildingType = models.CharField(max_length=1, choices=BuildingTypes, default=None, blank=True, null=True)
+    bedrooms = models.IntegerField()
+    bathrooms = models.IntegerField()
+    parking = models.CharField(max_length=1, choices=Parking, default=None, blank=True, null=True)
+    sqft = models.IntegerField()
+    listingDate = models.DateField('Listing Date')
+    realtor = models.IntegerField()
+    
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    real_estate = models.ForeignKey(RealEstate, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for real_estate_id: {self.real_estate_id} @{self.url}"
