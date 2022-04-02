@@ -35,6 +35,9 @@ def profile(request):
 def detail(request):
     return render(request,'agent/detail.html')
 
+def loggedin(request):
+    return render(request,'agent/loggedin.html')
+
 class ProfileCreate(CreateView):
     model = Profile
     fields = ['firstName', 'lastName', 'image', 'licenseNumber', 'phoneNumber', 'email']
