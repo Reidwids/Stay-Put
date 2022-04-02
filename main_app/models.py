@@ -1,4 +1,6 @@
+from xmlrpc.client import DateTime
 from django.db import models
+import datetime
 from django.urls import reverse
 from django.contrib.auth.models import User
 
@@ -56,17 +58,18 @@ class User(models.Model):
 
 
 class RealEstate(models.Model):
-    province = models.CharField(max_length=50, choices=Provinces, default=Provinces[0])
+    province = models.CharField(max_length=50, choices=Provinces, default=Provinces[0][0])
     city = models.CharField(max_length=20)
     address = models.TextField(max_length=250)
     postalCode = models.CharField(max_length=7)
     price = models.IntegerField()
-    buildingType = models.CharField(max_length=1, choices=BuildingTypes, default=None, blank=True, null=True)
+    buildingType = models.CharField(max_length=1, choices=BuildingTypes, default=BuildingTypes[0][0])
     bedrooms = models.IntegerField()
     bathrooms = models.IntegerField()
-    parking = models.CharField(max_length=1, choices=Parking, default=None, blank=True, null=True)
+    parking = models.CharField(max_length=1, choices=Parking, default=Parking[0][0])
     sqft = models.IntegerField()
     listingDate = models.DateField('Listing Date')
+    closingDate = models.DateField('Closing Date')
     realtor = models.IntegerField()
     
 class Photo(models.Model):
