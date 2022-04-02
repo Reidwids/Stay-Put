@@ -32,6 +32,9 @@ def profile(request):
         profile = Profile.objects.filter(user=request.user)
     return render(request, 'agent/profile.html', {'profile': profile})
 
+def detail(request):
+    return render(request,'agent/detail.html')
+
 class ProfileCreate(CreateView):
     model = Profile
     fields = ['firstName', 'lastName', 'image', 'licenseNumber', 'phoneNumber', 'email']
