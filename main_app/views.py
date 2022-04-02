@@ -25,13 +25,17 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 def profile(request):
-    profile = Profile.objects.get(user=request.user)
-    # print(profile.firstName)
+    if Profile.objects.filter(user=request.user):
+        print("hello")
+        profile = Profile.objects.get(user=request.user)
+    else:
+        profile = Profile.objects.filter(user=request.user)
     return render(request, 'agent/profile.html', {'profile': profile})
 
 class ProfileCreate(CreateView):
     model = Profile
     fields = ['firstName', 'lastName', 'image', 'licenseNumber', 'phoneNumber', 'email']
+    success_url = '/accounts/profile'
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -40,5 +44,6 @@ class ProfileUpdate(UpdateView):
     model = Profile
     fields = ['firstName', 'lastName', 'image', 'licenseNumber', 'phoneNumber', 'email']
     success_url = '/accounts/profile'
+
 def about(request):
     return render(request,'about.html')
