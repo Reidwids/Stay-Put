@@ -13,14 +13,14 @@
             <a href="home.html"> Home</a>
           </li>
           <li class="breadcrumb-item active">Agent ID</li>
-          <li class="breadcrumb-item active">Logged In</li>
+          <li class="breadcrumb-item active">My Profile</li>
         </ol>
       </nav>
     </div>
   </section>
 <hr>
 
-  <section id="about" class="py-4">
+  <section id="loggedin" class="py-4">
     <div class="container">
       <div class="row">
         <div class="col-md-8">
@@ -46,7 +46,12 @@
               src="https://st.depositphotos.com/1269204/1219/i/600/depositphotos_12196477-stock-photo-smiling-men-isolated-on-the.jpg"
               alt="agent X"
             />
-            <a href="editprofile.html" class="btn btn-primary btn-block">EDIT PROFILE</a>
+            <a href="{% url 'edit' %}" class="btn btn-primary btn-block">EDIT PROFILE</a>
+          </div>
+        </br>
+        <!-- THIS IS THE ADD LISTING BUTTON -->
+          <div class="text-center">
+            <a href="addListing.html" class="p-3 btn btn-primary btn-block">ADD LISTING</a>
           </div>
         </div>
       </div>
