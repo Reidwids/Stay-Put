@@ -8,5 +8,6 @@ urlpatterns = [
     path('accounts/profile/<int:pk>/update/', views.ProfileUpdate.as_view(), name='profile_update'),
     path('about/',views.about, name='about'),
     path('search/', views.search, name='search'),
-    path("agent/detail/", views.detail, name='detail')
+    path("agent/detail/", views.detail, name='detail'),
+    path("agent/loggedin/", views.loggedin, name='loggedin')
 ]
