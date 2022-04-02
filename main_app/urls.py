@@ -10,5 +10,6 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path("agent/detail/", views.detail, name='detail'),
     path("agent/loggedin/", views.loggedin, name='loggedin'),
-    path("agent/edit/", views.edit, name='edit')
+    path("agent/edit/", views.edit, name='edit'),
+    path("listing/detail/", views.listingDetail, name='listingDetail')
 ]
