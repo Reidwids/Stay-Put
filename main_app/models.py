@@ -69,7 +69,7 @@ class RealEstate(models.Model):
     sqft = models.IntegerField()
     listingDate = models.DateField('Listing Date')
     closingDate = models.DateField('Closing Date')
-    realtor = models.IntegerField()
+    realtor = models.ForeignKey(Profile, on_delete=models.CASCADE)
     
 class Photo(models.Model):
     url = models.CharField(max_length=200)
