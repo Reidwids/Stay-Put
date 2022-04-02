@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Your Profile</h1>
+
+{% if profile %}
+<a href="{% url 'profile_update' user.id %}"> Update Your Profile</a>
+<p>FirstName: {{profile.firstName}}</p>
+<p>LastName: {{profile.lastName}}</p>
+<p>LicenseNumber: {{profile.licenseNumber}}</p>
+<p>PhoneNumber: {{profile.phoneNumber}}</p>
+<p>Email: {{profile.email}}</p>
+<img width="100px" height="100px" src="{{profile.image}}" />
+
+
+
+
+{% else %}
+
+<a href="{% url 'profile_create' %}"> Creat Your Profile</a>
+
+{% endif %}
+
+
+
+{% endblock %}
