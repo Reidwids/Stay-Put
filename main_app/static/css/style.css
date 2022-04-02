@@ -1,3 +1,8 @@
+/* Variables */
+*{
+    --main-butt: rgb(159, 218, 233);
+}
+
 /*-- Base --*/
 body{
     background-color: rgb(166, 232, 248);
@@ -69,4 +74,12 @@ header>h6{
     margin-bottom: 3rem;
 }
 
-/* end about */
+/* Button styling */
+
+.mvpButt{
+    border: 1px solid grey!important;
+}
+.mvpButt:hover{
+    border: 1px solid grey!important;
+    background-color: var(--main-butt);
+}

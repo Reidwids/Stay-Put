@@ -5,14 +5,13 @@
 
 <h5 id="home_subtitle">Start your search now!</h5>
 
-{% comment %} {% url 'search' %} {% endcomment %}
-<form method='post' action="">
+<form method='post' action="{% url 'search' %}">
     {% csrf_token %}
     <div class="row">
         <div class="form-group col-md-4">
             <label class="form-label"> Province: </label>
             <select name="province" class="form-select">
-                <option selected>--</option>
+                <option selected></option>
                 <option value="Ontario">Ontario</option>
                 <option value="Quebec">Quebec</option>
                 <option value="Prince Edward Island">Prince Edward Island</option>
@@ -48,11 +47,11 @@
         <div class="form-group col-md-2">
             <label class="form-label"> Building Type: </label>
             <select name="buildingType" class="form-select">
-                <option selected>--</option>
-                <option value="Condo">Condo</option>
-                <option value="Townhouse">Townhouse</option>
-                <option value="Semi-Detached">Semi-Detached</option>
-                <option value="House">House</option>   
+                <option selected></option>
+                <option value="C">Condo</option>
+                <option value="T">Townhouse</option>
+                <option value="S">Semi-Detached</option>
+                <option value="H">House</option>   
             </select>
         </div>
         <div class="form-group col-md-1">
@@ -66,22 +65,26 @@
         <div class="form-group col-md-1">
             <label class="form-label"> Parking: </label>
             <select name="parking" class="form-select">
-                <option selected>--</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
+                <option selected></option>
+                <option value="Y">Yes</option>
+                <option value="N">No</option>
             </select>
         </div>
     </div>
     <div class="row">
-        <label class="form-label"> Sqft: </label>
         <div class="form-group col-md-2">
+            <label class="form-label"> Sqft: </label>
             <div class='minmax'>
                 <input type="number" name="min_sqft" class="form-control" placeholder="Min"/>
                 <input type="number" name="max_sqft" class="form-control" placeholder="Max"/>
             </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="form-label"> Realtor: </label>
+            <input type="text" name="realtor" class="form-control" placeholder="ex. Jane Doe"/>
         </div> 
     </div>
-    <input type='submit' class='btn' value='Search'>
+    <button type='submit' class="btn mvpButt">Search</button>
 </form>
 
 <script>
