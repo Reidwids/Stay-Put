@@ -84,4 +84,16 @@
     <input type='submit' class='btn' value='Search'>
 </form>
 
+<script>
+    let dateEl = document.getElementById('id_date');
+    M.Datepicker.init(dateEl, {
+        format: 'yyyy-mm-dd',
+        defaultDate: new Date(),
+        setDefaultDate: true,
+        autoclose: true,
+    })
+    let typeEl = document.getElementById('id_type');
+    M.FormSelect.init(typeEl);
+    </script>
+
 {% endblock %}
