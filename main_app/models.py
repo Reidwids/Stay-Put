@@ -13,12 +13,6 @@ BuildingTypes = (
     ('H', 'House')
 )
 
-class Profile(models.Model):
-    user = models.OneToOneField(
-        User,
-        on_delete=models.CASCADE,
-        primary_key=True,
-    )
 Provinces = (
     ('Ontario', 'Ontario'),
     ('Prince Edward Island', 'Prince Edward Island'),
@@ -39,7 +33,12 @@ Parking = (
     ('N', 'No'),
 )
 
-class User(models.Model):
+class Profile(models.Model):
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
     firstName = models.CharField(max_length=100)
     lastName = models.CharField(max_length=100)
     image = models.CharField(default=None, blank=True, null=True, max_length=2000)
