@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect
-from .models import Profile, RealEstate
+from .models import Profile, RealEstate, Photo
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from datetime import date
+import uuid
+import boto3
+S3_BASE_URL = 'https://s3.ca-central-1.amazonaws.com'
+BUCKET = 'stay-put'
 
 # Create your views here.
 def home(request):
@@ -26,7 +31,6 @@ def signup(request):
 
 def profile(request):
     if Profile.objects.filter(user=request.user):
-        print("hello")
         profile = Profile.objects.get(user=request.user)
     else:
         profile = Profile.objects.filter(user=request.user)
@@ -82,16 +86,66 @@ def search(request):
         listings = listings.filter(parking=request.POST['parking'])
     if request.POST['min_sqft']:
         listings = listings.filter(sqft__gt=request.POST['min_sqft'])
-    if request.POST['max_sqft']:
-        listings = listings.filter(sqft__lt=request.POST['max_sqft'])
         
     # if request.POST['realtor']:
     #     listings = listings.filter(price__gt=request.POST['realtor'])
     # if request.POST['listing_date']:
-    #     listings = listings.filter(sqft__gt=request.POST['min_sqft'])
+    #     listings = listings.filter(sqft__gt=request.POST['listing_date'])
     # if request.POST['closing_date']:
-    #     listings = listings.filter(sqft__lt=request.POST['max_sqft'])
+    #     listings = listings.filter(sqft__lt=request.POST['closing_date'])
     print(listings)
     return render(request, 'search.html', {'listings': listings})
 
+def create_listing(request):
+    return render(request, 'listing/create_listing.html')
 
+def submit_listing(request):
+    today = date.today()
+    date_format = today.strftime("%Y-%m-%d")
+
+    new_listing = RealEstate(
+        province = request.POST['province'],
+        city = request.POST['city'],
+        address = request.POST['address'],
+        postalCode = request.POST['postalCode'],
+        price = request.POST['price'],
+        buildingType = request.POST['buildingType'],
+        bedrooms = request.POST['bedrooms'],
+        bathrooms = request.POST['bathrooms'],
+        parking = request.POST['parking'],
+        sqft = request.POST['sqft'],
+        listingDate = date_format,
+        closingDate = request.POST['closingDate'],
+        realtor_id = request.user.id,
+        description = request.POST['description'],
+    )
+    new_listing.save()
+    photo_files = request.FILES.getlist['images', None]
+    print(photo_files)
+    for photo_file in photo_files:
+        print(photo_file)
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            # build the full url string
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            # we can assign to cat_id or cat (if you have a cat object)
+            photo = Photo(url=url, real_estate_id = new_listing.id)
+            photo.save()
+            print(photo)
+        except:
+            print('An error occurred uploading file to S3')
+    return render(request, 'agent/profile.html')
+    
+    
+
+def listing_detail(request):
+    print(request)
+
+def listing_update(request):
+    print(request)
+
+def listing_delete(request):
+    print(request)

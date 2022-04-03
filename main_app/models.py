@@ -28,7 +28,7 @@ Provinces = (
     ('Northwest Territories', 'Northwest Territories'),
     ('Nunavut', 'Nunavut'),
 )
-Parking = (
+y_n = (
     ('Y', 'Yes'),
     ('N', 'No'),
 )
@@ -65,11 +65,13 @@ class RealEstate(models.Model):
     buildingType = models.CharField(max_length=1, choices=BuildingTypes, default=BuildingTypes[0][0])
     bedrooms = models.IntegerField()
     bathrooms = models.IntegerField()
-    parking = models.CharField(max_length=1, choices=Parking, default=Parking[0][0])
+    parking = models.CharField(max_length=1, choices=y_n, default=y_n[0][0])
     sqft = models.IntegerField()
     listingDate = models.DateField('Listing Date')
     closingDate = models.DateField('Closing Date')
-    realtor = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    realtor = models.ForeignKey(User, on_delete=models.CASCADE)
+    description = models.CharField(max_length=2500)
+    isPublished = models.CharField(max_length=1, choices=y_n, default=y_n[1][0])
     
 class Photo(models.Model):
     url = models.CharField(max_length=200)

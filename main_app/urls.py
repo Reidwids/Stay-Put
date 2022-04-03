@@ -9,7 +9,14 @@ urlpatterns = [
     path('about/',views.about, name='about'),
     path('search/', views.search, name='search'),
     path("agent/detail/", views.detail, name='detail'),
+
+    path('listing/create/', views.create_listing, name='create_listing'),
+    path('listing/submit/', views.submit_listing, name='submit_listing'),
+    path('listing/<int:listing_id>/', views.listing_detail, name='listing_detail'),
+    path('listing/<int:listing_id>/update/', views.listing_update, name='listing_update'),
+    path('listing/<int:listing_id>/delete/', views.listing_delete, name='listing_delete'),
+
     path("agent/loggedin/", views.loggedin, name='loggedin'),
     path("agent/edit/", views.edit, name='edit'),
-    path("listing/detail/", views.listingDetail, name='listingDetail')
+    path("listing/detail/", views.listingDetail, name='listingDetail'),
 ]

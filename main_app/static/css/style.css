@@ -35,6 +35,9 @@ main{
     } 
 }
 
+.navbar-text{
+    text-decoration: none;
+}
 
 /* Footer */
 nav.fixed-bottom{
@@ -60,6 +63,11 @@ margin: .7rem 0 3rem 0;
     display: flex!important;
     flex-direction: row;
 }
+
+.form-floating > .bi-calendar-date + .datepicker_input + label {
+    padding-left: 3.5rem;
+    z-index: 3;
+  }
 
 
 /* for about */
