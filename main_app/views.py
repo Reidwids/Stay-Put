@@ -62,7 +62,9 @@ class ProfileUpdate(UpdateView):
     success_url = '/accounts/profile'
 
 def about(request):
-    return render(request,'about.html')
+    realtors = Profile.objects.all()
+    realtor_length= len(realtors)
+    return render(request,'about.html',{'realtors': realtors[:7], 'length': realtor_length})
 
 def search(request):
     listings = RealEstate.objects.all()

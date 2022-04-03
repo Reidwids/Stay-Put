@@ -78,12 +78,17 @@ header{
 header>h6{
     text-align: left;
 }
+.card-about{
+    min-height: 100%;
+}
 #info{
     display: block;
     text-align: center;
 }
 #about-realtors{
     margin-bottom: 3rem;
+    /* padding:1rem; */
+    gap:1rem;
 }
 
 /* Button styling */
