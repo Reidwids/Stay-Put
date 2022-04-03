@@ -63,8 +63,7 @@ class ProfileUpdate(UpdateView):
 
 def about(request):
     realtors = Profile.objects.all()
-    realtor_length= len(realtors)
-    return render(request,'about.html',{'realtors': realtors[:7], 'length': realtor_length})
+    return render(request,'about.html',{'realtors': realtors[:6]})
 
 def search(request):
     listings = RealEstate.objects.all()
