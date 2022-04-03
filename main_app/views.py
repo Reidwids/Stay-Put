@@ -120,7 +120,7 @@ def submit_listing(request):
         description = request.POST['description'],
     )
     new_listing.save()
-    photo_files = request.FILES.getlist['images', None]
+    photo_files = request.FILES.getlist('images', None)
     print(photo_files)
     for photo_file in photo_files:
         print(photo_file)
