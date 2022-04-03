@@ -16,4 +16,7 @@ urlpatterns = [
     path('listing/<int:listing_id>/update/', views.listing_update, name='listing_update'),
     path('listing/<int:listing_id>/delete/', views.listing_delete, name='listing_delete'),
 
+    path("agent/loggedin/", views.loggedin, name='loggedin'),
+    path("agent/edit/", views.edit, name='edit'),
+    path("listing/detail/", views.listingDetail, name='listingDetail'),
 ]

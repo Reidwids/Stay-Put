@@ -4,7 +4,12 @@
     <h2> ABOUT STAY/PUT REAL ESTATE</h1> 
     <p> Lorem ipsum dolor sit amet consectetur.</p>
     <hr>
-    <h6> Home/About</h6>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">About</li>
+        </ol>
+      </nav>
     <hr>
 </header>
 
@@ -26,13 +31,13 @@
 <div class='container' id='about-realtors'>
     <div class="row">
         <div class="col-md-4">
-            <a href =''>
+            <a href="{% url 'detail' %}" >
                 <div class="card card-about">
-                    <img class="card-img-top" src="https://imgs.search.brave.com/9RjWucgsL4QpS78conJvu2nsnFuOeC6KIfak6rHTI-o/rs:fit:814:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5Y/T0FNMkFIYWc4MjN3/MzFEMXhnMXFBSGFF/VSZwaWQ9QXBp">
+                    <img class="card-img-top" src="https://st.depositphotos.com/1269204/1219/i/600/depositphotos_12196477-stock-photo-smiling-men-isolated-on-the.jpg">
                     <div class="card-body">
-                        <h6 >Name: {{agent.name}}</h6>
-                        <h6 >Phone number: {{agent.phone_number}}</h6>
-                        <h6 >Email: {{agent.email}}</h6>
+                        <h6 >Name: Agent X {{agent.name}}</h6>
+                        <h6 >Phone number: 514-947-9823 {{agent.phone_number}}</h6>
+                        <h6 >Email: agentX@agencyX.com {{agent.email}}</h6>
                     </div>
                 </div>
             </a>
