@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Search Results</h1>
-{% for listing in listings %}
-<div class="card card-about">
-    <img class="card-img-top" src="{{listing.image}}">
-    <div class="card-body">
-        <div>Address: {{listing.address}}, {{listing.city}}</div>
-        <div>
-            <div>sqft: {{listing.sqft}}</div>
-            <div>Bedrooms: {{listing.bedrooms}}</div>
-            <div>Bathrooms: {{listing.bathrooms}}</div>
-            <div>sqft: {{listing.sqft}}</div>
+{% for listing in listing_with_photo %}
+    <div class="card card-about">
+        <img class="card-img-top" src="{{listing.1}}">
+        <div class="card-body">
+            <div>Address: {{listing.0.address}}, {{listing.0.city}}</div>
+            <div>
+                <div>sqft: {{listing.0.sqft}}</div>
+                <div>Bedrooms: {{listing.0.bedrooms}}</div>
+                <div>Bathrooms: {{listing.0.bathrooms}}</div>
+                <div>sqft: {{listing.0.sqft}}</div>
+            </div>
+            <div>Listing Date: {{listing.0.listingDate}}</div>
+            <div>Closing Date: {{listing.0.closingDate}}</div>
         </div>
-        <div>Listing Date: {{listing.listingDate}}</div>
-        <div>Closing Date: {{listing.closingDate}}</div>
     </div>
-</div>
 {% endfor %}
 {% endblock content %}

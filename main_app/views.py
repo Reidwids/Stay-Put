@@ -6,7 +6,7 @@ from django.contrib.auth import login
 from datetime import date
 import uuid
 import boto3
-S3_BASE_URL = 'https://s3.ca-central-1.amazonaws.com'
+S3_BASE_URL = 's3.ca-central-1.amazonaws.com'
 BUCKET = 'stay-put'
 
 # Create your views here.
@@ -86,15 +86,19 @@ def search(request):
         listings = listings.filter(parking=request.POST['parking'])
     if request.POST['min_sqft']:
         listings = listings.filter(sqft__gt=request.POST['min_sqft'])
-        
+    
     # if request.POST['realtor']:
     #     listings = listings.filter(price__gt=request.POST['realtor'])
     # if request.POST['listing_date']:
     #     listings = listings.filter(sqft__gt=request.POST['listing_date'])
     # if request.POST['closing_date']:
     #     listings = listings.filter(sqft__lt=request.POST['closing_date'])
-    print(listings)
-    return render(request, 'search.html', {'listings': listings})
+    listing_with_photo = []
+    for listing in listings:
+        listing_with_photo.append([listing, Photo.objects.filter(real_estate=listing.id)[0].url])
+    for listing in listing_with_photo:
+        print(listing[1])
+    return render(request, 'search.html', {'listing_with_photo': listing_with_photo})
 
 def create_listing(request):
     return render(request, 'listing/create_listing.html')
@@ -121,7 +125,6 @@ def submit_listing(request):
     )
     new_listing.save()
     photo_files = request.FILES.getlist('images', None)
-    print(photo_files)
     for photo_file in photo_files:
         print(photo_file)
         s3 = boto3.client('s3')
@@ -130,7 +133,7 @@ def submit_listing(request):
         try:
             s3.upload_fileobj(photo_file, BUCKET, key)
             # build the full url string
-            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            url = f"https://{BUCKET}.{S3_BASE_URL}/{key}"
             # we can assign to cat_id or cat (if you have a cat object)
             photo = Photo(url=url, real_estate_id = new_listing.id)
             photo.save()
