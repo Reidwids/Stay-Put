@@ -51,12 +51,16 @@ nav.fixed-bottom{
 }
 
 /*-- Home --*/
+#search-button{
+margin: .7rem 0 3rem 0;
+}
 
 /* Search */
 .minmax{
     display: flex!important;
     flex-direction: row;
 }
+
 
 /* for about */
 header{
