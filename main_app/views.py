@@ -111,9 +111,10 @@ def submit_listing(request):
         description = request.POST['description'],
     )
     new_listing.save()
-    
-    photo_files = request.FILES.getlist('images', None)
+    photo_files = request.FILES.getlist['images', None]
+    print(photo_files)
     for photo_file in photo_files:
+        print(photo_file)
         s3 = boto3.client('s3')
         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
         # just in case something goes wrong
@@ -124,6 +125,7 @@ def submit_listing(request):
             # we can assign to cat_id or cat (if you have a cat object)
             photo = Photo(url=url, real_estate_id = new_listing.id)
             photo.save()
+            print(photo)
         except:
             print('An error occurred uploading file to S3')
     return render(request, 'agent/profile.html')
