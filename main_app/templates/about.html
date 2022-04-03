@@ -4,7 +4,12 @@
     <h2> ABOUT STAY/PUT REAL ESTATE</h1> 
     <p> Lorem ipsum dolor sit amet consectetur.</p>
     <hr>
-    <h6> Home/About</h6>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">About</li>
+        </ol>
+      </nav>
     <hr>
 </header>
 
