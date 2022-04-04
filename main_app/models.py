@@ -41,7 +41,6 @@ class Profile(models.Model):
     )
     firstName = models.CharField(max_length=100)
     lastName = models.CharField(max_length=100)
-    image = models.CharField(default=None, blank=True, null=True, max_length=2000)
     licenseNumber = models.CharField(max_length=12)
     phoneNumber = models.CharField(max_length=12)
     email = models.EmailField()
@@ -73,9 +72,16 @@ class RealEstate(models.Model):
     description = models.CharField(max_length=2500)
     isPublished = models.CharField(max_length=1, choices=y_n, default=y_n[1][0])
     
-class Photo(models.Model):
+class ListingPhoto(models.Model):
     url = models.CharField(max_length=200)
     real_estate = models.ForeignKey(RealEstate, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for real_estate_id: {self.real_estate_id} @{self.url}"
+
+class ProfilePhoto(models.Model):
+    url = models.CharField(max_length=200)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Photo for real_estate_id: {self.real_estate_id} @{self.url}"
