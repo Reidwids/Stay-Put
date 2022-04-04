@@ -27,6 +27,7 @@
     <h3>WE WORK WITH THE BEST</h3>
 </div>
 
+{% if realtors %}
 <div class='container' id='about-realtors'>
     <div class="row">
     {% for realtor in realtors %}
@@ -46,6 +47,7 @@
     {% endfor %}
     </div>
 </div>
+{% endif %}
 
 
 {% endblock %}
