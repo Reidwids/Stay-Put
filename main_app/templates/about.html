@@ -32,17 +32,26 @@
     <div class="row">
     {% for realtor in realtors %}
         <div class="col-md-4">
-            <a href="{% url 'detail' realtor.user_id %}" > 
+
                 <!-- will update links -->
                 <div class="card card-about">
-                    <img class="card-img-top" src="{{realtor.image}}">
-                    <div class="card-body">
-                        <h6 >Name:{{realtor}}</h6>
-                        <h6 >Phone number:{{realtor.phoneNumber}}</h6>
-                        <h6 >Email:{{realtor.email}}</h6>
+                    <div class='row'>
+                        <img class="card-img-top col-6" src="{{realtor.image}}">
+                        <div  class='col-6'>
+                            <h4 class='card-header-tabs'>{{realtor}}</h6>
+                            <br>
+                            <h7> Broker with Stay/Put</h7>
+                        </div>
+
+
+                    </div>
+
+                    <div class="card-body card-body-about">
+                        <h5 ><span class="material-icons md-18">phone</span> {{realtor.phoneNumber}}</h6>
+                        <h5 ><span class="material-icons">email</span> {{realtor.email}}</h6>
+                        <a class='stretched-link' href="{% url 'detail' realtor.user_id %}">Contact Me</a>
                     </div>
                 </div>
-            </a>
         </div>
     {% endfor %}
     </div>

@@ -80,6 +80,16 @@ header>h6{
 }
 .card-about{
     min-height: 100%;
+    padding:.5rem;
+}
+.card-about>div>img{
+    width: 10rem;
+    max-height: 7rem;
+    object-fit:cover;
+}
+.card-body-about{
+    justify-content: space-between;
+    margin-bottom: 0;
 }
 #info{
     display: block;
@@ -87,8 +97,13 @@ header>h6{
 }
 #about-realtors{
     margin-bottom: 3rem;
-    /* padding:1rem; */
-    gap:1rem;
+    padding:0rem;
+    
+}
+#about-realtors>div>div{
+    padding: 1rem;
+    /* display: flex; */
+    justify-content:space-evenly;
 }
 
 /* Button styling */
