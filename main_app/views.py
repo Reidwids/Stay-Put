@@ -44,11 +44,7 @@ def loggedin(request):
     return render(request,'agent/loggedin.html')
 
 def edit(request):
-    return render(request,'agent/edit.html')
-
-def listing_detail(request, listing_id):
-    listing = RealEstate.objects.get(listing_id)
-    return render(request,'listing/detail.html', {'listing': listing})
+    return render(request,'agent/edit.html') 
 
 class ProfileCreate(CreateView):
     model = Profile
@@ -143,12 +139,15 @@ def submit_listing(request):
             print(photo)
         except:
             print('An error occurred uploading file to S3')
-    return render(request, 'agent/profile.html')
+    return redirect("/accounts/profile/")
     
     
-
-def listing_detail(request):
-    print(request)
+def listing_detail(request, listing_id):
+    listing = RealEstate.objects.get(id=listing_id)
+    listing.buildingType = listing.get_buildingType_display()
+    listing.parking = listing.get_parking_display()
+    agent = Profile.objects.get(user_id=listing.realtor_id)
+    return render(request,'listing/detail.html', {'listing': listing, 'agent': agent})
 
 def listing_update(request):
     print(request)

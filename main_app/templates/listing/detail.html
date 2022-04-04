@@ -4,7 +4,7 @@
   <div class="row text-center">
     <div class="col-md-12">
       <h1 class="display-6">{{listing.address}}</h1>
-      <p class="lead">Toronto, Ontario, M5J 2R8</p>
+      <p class="lead">{{listing.city}}, {{listing.province}}, {{listing.postalCode}} </p>
     </div>
   </div>
 </div>
@@ -19,7 +19,7 @@
           <a href="{% url 'home' %}">Home</a>
         </li>
         <li class="breadcrumb-item active">Listings</li>
-        <li class="breadcrumb-item active">2440 Bay street</li>
+        <li class="breadcrumb-item active">{{listing.address}}</li>
       </ol>
     </nav>
   </div>
@@ -120,19 +120,19 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item text-secondary">
                 Asking Price:
-                <span class="float-right">$490,000</span>
+                <span class="float-right">{{listing.price}}</span>
               </li>
               <li class="list-group-item text-secondary">
                 Bedrooms:
-                <span class="float-right">3</span>
+                <span class="float-right">{{listing.bedrooms}}</span>
               </li>
               <li class="list-group-item text-secondary">
                 Bathrooms:
-                <span class="float-right">2</span>
+                <span class="float-right">{{listing.bathrooms}}</span>
               </li>
               <li class="list-group-item text-secondary">
-                Garage:
-                <span class="float-right">2 </span>
+                Parking:
+                <span class="float-right">{{listing.parking}} </span>
               </li>
             </ul>
           </div>
@@ -140,19 +140,19 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item text-secondary">
                 Square Feet:
-                <span class="float-right">3200</span>
+                <span class="float-right">{{listing.sqft}}</span>
               </li>
               <li class="list-group-item text-secondary">
-                Lot Size:
-                <span class="float-right">2.5 Acres </span>
+                Building Type:
+                <span class="float-right">{{listing.buildingType}} </span>
               </li>
               <li class="list-group-item text-secondary">
                 Listing Date:
-                <span class="float-right">8/30/2018</span>
+                <span class="float-right">{{listing.listingDate}}</span>
               </li>
               <li class="list-group-item text-secondary">
                 Realtor:
-                <span class="float-right">Agent X </span>
+                <span class="float-right">{{agent}} </span>
               </li>
             </ul>
           </div>
@@ -161,11 +161,7 @@
         <!-- Description -->
         <div class="row mb-5">
           <div class="col-md-12">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
-            recusandae esse reiciendis officia omnis non rerum dicta cupiditate
-            nostrum molestias deserunt aut minus inventore animi atque,
-            consequuntur ad fugit. Possimus culpa blanditiis repellendus ipsa
-            similique ullam, natus error dolor harum.
+            {{listing.description}}
           </div>
         </div>
       </div>
@@ -173,22 +169,22 @@
         <div class="card mb-3">
           <img
             class="card-img-top"
-            src="https://st.depositphotos.com/1269204/1219/i/600/depositphotos_12196477-stock-photo-smiling-men-isolated-on-the.jpg"
+            src="{{agent.image}}"
             alt=""
           />
           <div class="card-body">
             <h5 class="card-title">Property Realtor</h5>
             <h6>
               Name:
-              <p>Agent X {{agent.name}}</p>
+              <p>{{agent}}</p>
             </h6>
             <h6>
               Phone number:
-              <p>514-947-9823 {{agent.phone_number}}</p>
+              <p>{{agent.phoneNumber}}</p>
             </h6>
             <h6>
               Email:
-              <p>agentX@agencyX.com {{agent.email}}</p>
+              <p>{{agent.email}}</p>
             </h6>
           </div>
         </div>
@@ -200,7 +196,7 @@
 
 <!-- https://maps.google.com/maps?q= { (address)(ex:2444 Bay street,Toronto,On) }=UTF8&iwloc=&output=embed -->
 <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" 
-  src="https://maps.google.com/maps?q=2444 Bay Street,Toronto,ON=&output=embed" 
+  src="https://maps.google.com/maps?q={{listing.address}},{{listing.city}},{{listing.province}}=&output=embed" 
   frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style>
   <a href="https://www.embedgooglemap.net">google maps html</a>
   <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></div>
