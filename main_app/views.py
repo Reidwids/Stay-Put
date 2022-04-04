@@ -36,8 +36,9 @@ def profile(request):
         profile = Profile.objects.filter(user=request.user)
     return render(request, 'agent/profile.html', {'profile': profile})
 
-def detail(request):
-    return render(request,'agent/detail.html')
+def detail(request,user_id):
+    agent=Profile.objects.get(user_id=user_id)
+    return render(request,'agent/detail.html',{'agent':agent})
 
 def loggedin(request):
     return render(request,'agent/loggedin.html')
@@ -62,7 +63,8 @@ class ProfileUpdate(UpdateView):
     success_url = '/accounts/profile'
 
 def about(request):
-    return render(request,'about.html')
+    realtors = Profile.objects.all()
+    return render(request,'about.html',{'realtors': realtors[:6]})
 
 def search(request):
     listings = RealEstate.objects.all()
