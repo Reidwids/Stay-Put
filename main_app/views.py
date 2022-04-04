@@ -46,8 +46,9 @@ def loggedin(request):
 def edit(request):
     return render(request,'agent/edit.html')
 
-def listingDetail(request):
-    return render(request,'listing/detail.html')
+def listing_detail(request, listing_id):
+    listing = RealEstate.objects.get(listing_id)
+    return render(request,'listing/detail.html', {'listing': listing})
 
 class ProfileCreate(CreateView):
     model = Profile
