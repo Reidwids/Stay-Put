@@ -1,7 +1,6 @@
 from asyncio.windows_events import NULL
 from django.shortcuts import render, redirect
 from .models import Profile, RealEstate, ListingPhoto, ProfilePhoto
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from datetime import date
@@ -31,12 +30,12 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 def profile(request):
-    profile = Profile.objects.get(user=request.user)
-    if profile:
+    try:
+        profile = Profile.objects.get(user=request.user)
         photo_url = ProfilePhoto.objects.get(profile=request.user.id).url
         print(photo_url)
         return render(request, 'agent/profile.html', {'profile': profile, 'photo_url': photo_url})
-    else:
+    except:
         return render(request, 'agent/create_profile.html')
 
 def profile_submit(request):
@@ -71,7 +70,49 @@ def profile_submit(request):
         photo = ProfilePhoto(url='https://stay-put.s3.ca-central-1.amazonaws.com/af7588.jpg', profile_id = new_profile.user_id)
         photo.save()
         photo_url = photo.url
-    return redirect('profile', {'profile': new_profile,  'photo_url': photo_url})
+    # return redirect('profile', {'profile': new_profile,  'photo_url': photo_url})
+    return render(request, 'agent/profile.html', {'profile': new_profile,  'photo_url': photo_url})
+
+def profile_update(request):
+    profile = Profile.objects.get(user=request.user)
+    photo_url = ProfilePhoto.objects.get(profile=request.user.id).url
+    return render(request, 'agent/update_profile.html', {'profile': profile, 'photo_url': photo_url})
+
+def submit_profile_update(request):
+    profile = Profile.objects.filter(user=request.user)
+    profile.update(firstName = request.POST['firstName'])
+    profile.update(lastName = request.POST['lastName'])
+    profile.update(licenseNumber = request.POST['licenseNumber'])
+    profile.update(phoneNumber = request.POST['phoneNumber'])
+    profile.update(email = request.POST['email'])
+    photo_file = request.FILES.get('image', None)
+    old_key = ProfilePhoto.objects.get(profile = request.user.id).url
+    old_key = old_key.replace(f"https://{BUCKET}.{S3_BASE_URL}/","")
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        # just in case something goes wrong
+        
+        if old_key != 'af7588.jpg':
+            s3.delete_object(Bucket = BUCKET, Key = old_key)
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            # build the full url string
+            url = f"https://{BUCKET}.{S3_BASE_URL}/{key}"
+            # we can assign to cat_id or cat (if you have a cat object)
+            profile = ProfilePhoto.objects.filter(profile = request.user.id)
+            profile.update(url=url)
+        except:
+            print('An error occurred uploading file to S3')
+    return redirect('profile')
+
+def profile_delete(request):
+    Profile.objects.filter(user=request.user).delete()
+    return redirect('profile')
+
+def user_delete(request):
+    pass
+    
 
 def detail(request,user_id):
     agent=Profile.objects.get(user_id=user_id)
@@ -87,11 +128,6 @@ def listing_detail(request, listing_id):
     listing = RealEstate.objects.get(listing_id)
     return render(request,'listing/detail.html', {'listing': listing})
 
-class ProfileUpdate(UpdateView):
-    model = Profile
-    fields = ['firstName', 'lastName', 'image', 'licenseNumber', 'phoneNumber', 'email']
-    success_url = '/accounts/profile'
-
 def about(request):
     realtors = Profile.objects.all()
     return render(request,'about.html',{'realtors': realtors[:6]})
@@ -102,8 +138,8 @@ def search(request):
         listings = listings.filter(province=request.POST['province'])
     if request.POST['city']:
         listings = listings.filter(city=request.POST['city'])
-    if request.POST['postalCode']:
-        listings = listings.filter(postalCode=request.POST['postalCode'])
+    # if request.POST['postalCode']:
+    #     listings = listings.filter(postalCode=request.POST['postalCode'])
     if request.POST['min_price']:
         listings = listings.filter(price__gt=request.POST['min_price'])
     if request.POST['max_price']:
