@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <header>
-  <h2> ABOUT agent.name</h1> 
+  <h2> ABOUT {{agent}}</h1> 
 </header>
 <hr>
   <!-- Breadcrumb -->
@@ -39,14 +39,16 @@
           <div class="card">
             <img
               class="card-img-top"
-              src="https://st.depositphotos.com/1269204/1219/i/600/depositphotos_12196477-stock-photo-smiling-men-isolated-on-the.jpg"
-              alt="agent X"
+              src="{{agent.image}}"
+              alt="{{agent}}"
             />
             <div class="card-body">
-              <h6>Name: {{agent.name}}</h6>
-              <h6>Phone number: {{agent.phone_number}}</h6>
+              <h6>Name: {{agent}}</h6>
+              <h6>Phone number: {{agent.phoneNumber}}</h6>
               <h6>Email: {{agent.email}}</h6>
+              <h6>License: {{agent.licenseNumber}}</h6>
               <a class = 'btn mvpButt' href="mailto:{{agent.email}}?subject=Real estate inquirey">Send Email</a>
+              <a class = 'btn mvpButt' href="tel:{{agent.phoneNumber}}">Call {{agent}}</a>
             </div>
           </div>
         </div>

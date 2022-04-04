@@ -31,7 +31,7 @@
     <div class="row">
     {% for realtor in realtors %}
         <div class="col-md-4">
-            <a href="{% url 'detail' %}" > 
+            <a href="{% url 'detail' realtor.user_id %}" > 
                 <!-- will update links -->
                 <div class="card card-about">
                     <img class="card-img-top" src="{{realtor.image}}">
@@ -39,6 +39,7 @@
                         <h6 >Name:{{realtor}}</h6>
                         <h6 >Phone number:{{realtor.phoneNumber}}</h6>
                         <h6 >Email:{{realtor.email}}</h6>
+                        <h6> id: {{realtor.user_id}}</h6>
                     </div>
                 </div>
             </a>
