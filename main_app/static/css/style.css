@@ -56,6 +56,7 @@ nav.fixed-bottom{
     font-size: 15px;
     padding-right: 20px;
 }
+
 /*-- Home --*/
 #home_title{
     margin-top: 30px;
@@ -77,6 +78,10 @@ nav.fixed-bottom{
 .searchButt{
     margin-top: 30px;
     width: 200px;
+
+/*-- Home, create listing button --*/
+.margin-button{
+margin: .7rem 0 3rem 0;
 }
 /* Search */
 #searchResultsTitle{
@@ -171,6 +176,16 @@ header>h6{
 }
 .card-about{
     min-height: 100%;
+    padding:.5rem;
+}
+.card-about>div>img{
+    width: 10rem;
+    max-height: 7rem;
+    object-fit:cover;
+}
+.card-body-about{
+    justify-content: space-between;
+    margin-bottom: 0;
 }
 #info{
     display: block;
@@ -178,8 +193,13 @@ header>h6{
 }
 #about-realtors{
     margin-bottom: 3rem;
-    /* padding:1rem; */
-    gap:1rem;
+    padding:0rem;
+    
+}
+#about-realtors>div>div{
+    padding: 1rem;
+    /* display: flex; */
+    justify-content:space-evenly;
 }
 
 /* Button styling */

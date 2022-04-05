@@ -225,8 +225,12 @@ def listing_update(request, listing_id):
     photo_urls = ListingPhoto.objects.filter(real_estate_id=request.user.id)
     for photo_url in photo_urls:
         photo_url = photo_url.url
-        
+
     return render(request, 'listing/update_listing.html', {'listing': listing, 'photo_urls': photo_urls})
+
+def listing_featured(request):
+    listings=RealEstate.objects.all()
+    return render(request,'listing/featured.html',{'listings': listings})
 
 def listing_update_submit(request, listing_id):
     print('the id is below')
