@@ -1,7 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> e2d5fd6 (fix realtor profile photo is not showing up bug)
+=======
+>>>>>>> 6c2795b (profile and update_profile styling completed)
 from django.shortcuts import render, redirect
 from .models import Profile, RealEstate, ListingPhoto, ProfilePhoto
 from django.contrib.auth.forms import UserCreationForm
