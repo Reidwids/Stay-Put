@@ -42,14 +42,16 @@
                             <br>
                             <h7> Broker with Stay/Put</h7>
                         </div>
-
-
                     </div>
-
                     <div class="card-body card-body-about">
                         <h5 ><span class="material-icons md-18">phone</span> {{realtor.phoneNumber}}</h6>
                         <h5 ><span class="material-icons">email</span> {{realtor.email}}</h6>
                         <a class='stretched-link' href="{% url 'detail' realtor.user_id %}">Contact Me</a>
+                    <img class="card-img-top" src="{{realtor.profilePhoto.url}}">
+                    <div class="card-body">
+                        <h6 >Name:{{realtor}}</h6>
+                        <h6 >Phone number:{{realtor.phoneNumber}}</h6>
+                        <h6 >Email:{{realtor.email}}</h6>
                     </div>
                 </div>
         </div>
