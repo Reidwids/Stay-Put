@@ -18,10 +18,10 @@
         <div class="row mb-4">  
           <div class="col-md-2">
             <a
-              href="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+              href="{{photo_urls.0.url}}"
             >
               <img
-                src="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+                src="{{photo_urls.0.url}}"
                 alt=""
                 class="img-fluid img-thumbnail"
               />
@@ -30,10 +30,10 @@
           <!-- Thumbnail 2 -->
           <div class="col-md-2">
             <a
-              href="http://www.thewowstyle.com/wp-content/uploads/2015/06/interior2.jpg"
+              href="{{photo_urls.1.url}}"
             >
               <img
-                src="http://www.thewowstyle.com/wp-content/uploads/2015/06/interior2.jpg"
+                src="{{photo_urls.1.url}}"
                 alt=""
                 class="img-fluid img-thumbnail"
               />
@@ -42,10 +42,10 @@
           <!-- Thumbnail 3 -->
           <div class="col-md-2">
             <a
-              href="http://www.thewowstyle.com/wp-content/uploads/2015/06/home-interiors-fine-design-4-on-home-interior-designs.jpg"
+              href="{{photo_urls.2.url}}"
             >
               <img
-                src="http://www.thewowstyle.com/wp-content/uploads/2015/06/home-interiors-fine-design-4-on-home-interior-designs.jpg"
+                src="{{photo_urls.2.url}}"
                 alt=""
                 class="img-fluid img-thumbnail"
               />
@@ -54,10 +54,10 @@
           <!-- Thumbnail 4 -->
           <div class="col-md-2">
             <a
-              href="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+              href="{{photo_urls.3.url}}"
             >
               <img
-                src="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+                src="{{photo_urls.3.url}}"
                 alt=""
                 class="img-fluid img-thumbnail"
               />
@@ -66,10 +66,10 @@
           <!-- Thumbnail 5 -->
           <div class="col-md-2">
             <a
-              href="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+              href="{{photo_urls.4.url}}"
             >
               <img
-                src="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+                src="{{photo_urls.4.url}}"
                 alt=""
                 class="img-fluid img-thumbnail"
               />
@@ -78,10 +78,10 @@
           <!-- Thumbnail 6 -->
           <div class="col-md-2">
             <a
-              href="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+              href="{{photo_urls.5.url}}"
             >
               <img
-                src="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+                src="{{photo_urls.5.url}}"
                 alt=""
                 class="img-fluid img-thumbnail"
               />
@@ -193,13 +193,13 @@
             <li class="list-group-item text-secondary">
                 <div class="form-group col-md-6">
                     <label class="form-label"> Closing Date: </label>
-                    <input type="date" id='datepicker' name="closingDate" value={{listing.closingDate|slugify}} class="form-control" required/>
+                    <input type="date" id='datepicker' name="closingDate" value="{{listing.closingDate|slugify}}" class="form-control" required/>
                 </div> 
             </li>
             <li class="list-group-item text-secondary">
                 <div class="form-group col-md-6">
                     <label class="form-label"> Agent: </label>
-                    Agent Name Here
+                    {{agent}}
                 </div> 
             </li>
           </ul>
@@ -208,7 +208,7 @@
       <input type='submit' class="btn mvpButt"></input>  
       <div class="form-group col-md-12">
             <label class="form-label"> Description: </label>
-            <textarea type="textarea" name="description" rows="6" class="form-control" value="{{listing.description}}" required/></textarea>
+            <textarea type="textarea" name="description" rows="6" class="form-control" required/>{{listing.description}}</textarea>
         </div>
         
 </form>

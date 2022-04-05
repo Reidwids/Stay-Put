@@ -214,7 +214,7 @@ def submit_listing(request):
     else: 
         photo = ListingPhoto(url='https://stay-put.s3.ca-central-1.amazonaws.com/49fe05.jpg', real_estate_id = new_listing.id)
         photo.save()
-    return render(request, 'agent/profile.html')
+    return redirect('/accounts/profile/')
     
 def listing_detail(request, listing_id):
     listing = RealEstate.objects.get(id=listing_id)
@@ -222,15 +222,15 @@ def listing_detail(request, listing_id):
     listing.parking = listing.get_parking_display()
     agent = Profile.objects.get(user_id=listing.realtor_id)
     agent.image = ProfilePhoto.objects.get(profile_id=agent.user_id)
-    return render(request,'listing/detail.html', {'listing': listing, 'agent': agent})
+    photo_urls = ListingPhoto.objects.filter(real_estate_id=listing.id)
+    return render(request,'listing/detail.html', {'listing': listing, 'agent': agent, 'photo_urls': photo_urls})
 
 def listing_update(request, listing_id):
     listing = RealEstate.objects.get(id=listing_id)
-    photo_urls = ListingPhoto.objects.filter(real_estate_id=request.user.id)
-    for photo_url in photo_urls:
-        photo_url = photo_url.url
 
-    return render(request, 'listing/update_listing.html', {'listing': listing, 'photo_urls': photo_urls})
+    photo_urls = ListingPhoto.objects.filter(real_estate_id=listing.id)
+    agent = Profile.objects.get(user_id=listing.realtor_id)
+    return render(request, 'listing/update_listing.html', {'listing': listing, 'agent': agent, 'photo_urls': photo_urls})
 
 def listing_featured(request):
     listings=RealEstate.objects.all()
