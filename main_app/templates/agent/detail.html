@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <header>
+  <br>
   <h2> ABOUT {{agent}}</h1> 
 </header>
 <hr>
@@ -59,6 +60,7 @@
   </section>
 <hr>
 
+
 <!-- Agent's listings title -->
 
 <div class="row text-center">
@@ -68,275 +70,54 @@
   </div>
 </div>
 
+
+
   <!-- Listings -->
   <section id="listings" class="py-4">
     <div class="container">
       <div class="row">
 
+        <!-- Listing I -->
+        <!-- ############################ -->
+  {% for listing in listings %}
         <!-- Listing 1 -->
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card listing-preview">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" alt="">
+            <img class="card-img-top" src="{{ listing.photo_url }}" style="width:100%;height:300px;">
             <div class="card-img-overlay">
               <h5>
-                <span class="p-2 bg-primary text-white">$550,000</span>
+                <span class="p-2 bg-primary text-white">${{listing.price}}</span>
               </h5>
             </div>
             <div class="card-body">
               <div class="listing-heading text-center">
-                <h4 class="text-primary">45 Drivewood Circle</h4>
+                <h4 class="text-primary">{{listing.address}}</h4>
                 <p>
-                   Norwood MA, 02062</p>
+                  {{listing.city}}, {{listing.province}}, {{listing.postalCode}}</p>
               </div>
               <hr>
               <div class="row py-2 text-secondary">
-                <div class="col-6">Sqft: 3200</div>
-                <div class="col-6">
-                   Garage: 2</div>
+                <div class="col-6">Square Feet: {{listing.sqft}}</div>
+                <div class="col-6">Parking: 
+                  {{listing.parking}}</div>
               </div>
               <div class="row py-2 text-secondary">
-                <div class="col-6">
-                   Bedrooms: 3</div>
-                <div class="col-6">
-                  Bathrooms: 2</div>
+                <div class="col-6">Bedrooms: 
+                  {{listing.bedrooms}}</div>
+                <div class="col-6">Bathrooms: 
+                  {{listing.bathrooms}}</div>
               </div>
               <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-12">
-                                    <!-- CAN DELETE THIS NO NEED TO HAVE AGENT NAME ON AGENT PROPERTIES PAGE -->
-
-                  Agent X</div>
-              </div>
               <div class="row text-secondary pb-2">
                 <div class="col-6">
-                   2 days ago</div>
+                   Added on: {{listing.listingDate}}</div>
               </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">More Info</a>
-            </div>
-          </div>
         </div>
-
-        <!-- Listing 2 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" alt="">
-            <div class="card-img-overlay">
-              <h5>
-                <span class="p-2 bg-primary text-white">$550,000</span>
-              </h5>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">18 Jefferson Lane</h4>
-                <p>
-                   Woburn MA, 01801</p>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                   Sqft: 3200</div>
-                <div class="col-6">
-                   Garage: 1</div>
-              </div>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                   Bedrooms: 4</div>
-                <div class="col-6">
-                  Bathrooms: 2.5</div>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                                    <!-- CAN DELETE THIS NO NEED TO HAVE AGENT NAME ON AGENT PROPERTIES PAGE -->
-
-                  Agent X</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                   5 days ago</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">More Info</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Listing 3 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" alt="">
-            <div class="card-img-overlay">
-              <h5>
-                <span class="p-2 bg-primary text-white">$550,000</span>
-              </h5>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">187 Woodrow Street</h4>
-                <p>
-                   Salem MA, 01915</p>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                   Sqft: 3107</div>
-                <div class="col-6">
-                   Garage: 0</div>
-              </div>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                   Bedrooms: 4</div>
-                <div class="col-6">
-                  Bathrooms: 3</div>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                                    <!-- CAN DELETE THIS NO NEED TO HAVE AGENT NAME ON AGENT PROPERTIES PAGE -->
-
-                   Agent X</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                   5 days ago</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">More Info</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Listing 4 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" alt="">
-            <div class="card-img-overlay">
-              <h5>
-                <span class="p-2 bg-primary text-white">$550,000</span>
-              </h5>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">28 Gifford Street</h4>
-                <p>
-                   Bedford NH, 03103</p>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                   Sqft: 2927</div>
-                <div class="col-6">
-                   Garage: 2</div>
-              </div>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                   Bedrooms: 4</div>
-                <div class="col-6">
-                  Bathrooms: 2</div>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-              <!-- CAN DELETE THIS NO NEED TO HAVE AGENT NAME ON AGENT PROPERTIES PAGE -->
-
-                   Agent X</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                   5 days ago</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">More Info</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Listing 5 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" alt="">
-            <div class="card-img-overlay">
-              <h5>
-                <span class="p-2 bg-primary text-white">$550,000</span>
-              </h5>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">12 United Road</h4>
-                <p>
-                   South Hampton NH, 03827</p>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                   Sqft: 2207</div>
-                <div class="col-6">
-                   Garage: 1</div>
-              </div>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                   Bedrooms: 3</div>
-                <div class="col-6">
-                  Bathrooms: 1.5</div>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <!-- CAN DELETE THIS NO NEED TO HAVE AGENT NAME ON AGENT PROPERTIES PAGE -->
-                  Agent X</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                   5 days ago</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">More Info</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Listing 6 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" alt="">
-            <div class="card-img-overlay">
-              <h5>
-                <span class="p-2 bg-primary text-white">$550,000</span>
-              </h5>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">33 Essex Circle</h4>
-                <p>
-                   Lexington MA, 01731</p>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                   Sqft: 4145</div>
-                <div class="col-6">
-                   Garage: 1</div>
-              </div>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                   Bedrooms: 5</div>
-                <div class="col-6">
-                  Bathrooms: 3.5</div>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  Agent X</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                   5 days ago</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">More Info</a>
-            </div>
-          </div>
+      </div>
+      <a href="{% url 'listing_detail' listing.id %}" class="btn btn-primary btn-block col-md-12 ">More Info</a>
+    </div>
+  {% endfor %}
+        
         </div>
 
       </div>

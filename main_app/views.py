@@ -111,11 +111,14 @@ def profile_delete(request):
 def user_delete(request):
     pass
     
-
 def detail(request,user_id):
     agent=Profile.objects.get(user_id=user_id)
     agent.image = ProfilePhoto.objects.get(profile_id=agent.user_id)
-    return render(request,'agent/detail.html',{'agent':agent})
+    listings = RealEstate.objects.filter(realtor_id=agent.user_id)
+    for listing in listings:
+        photo_urls = ListingPhoto.objects.filter(real_estate_id=listing.id)
+        listing.photo_url = photo_urls[0].url
+    return render(request,'agent/detail.html',{'agent':agent, 'listings': listings})
 
 def loggedin(request):
     return render(request,'agent/loggedin.html')
@@ -201,6 +204,7 @@ def submit_listing(request):
                 s3.upload_fileobj(photo_file, BUCKET, key)
                 # build the full url string
                 url = f"https://{BUCKET}.{S3_BASE_URL}/{key}"
+                print(url)
                 # we can assign to cat_id or cat (if you have a cat object)
                 photo = ListingPhoto(url=url, real_estate_id = new_listing.id)
                 photo.save()

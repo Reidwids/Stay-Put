@@ -1,15 +1,15 @@
 /* Variables */
-*{
-    --main-butt: rgb(159, 218, 233);
+* {
+  --main-butt: rgb(159, 218, 233);
 
 }
 
 /*-- Base --*/
-body{
-    background-color: rgb(166, 232, 248);
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+body {
+  background-color: rgb(166, 232, 248);
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 main{
@@ -19,23 +19,26 @@ main{
 
 /* Header */
 
-.navbar-nav{
+.navbar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+#nav-items,
+#nav-admin {
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  #nav-items,
+  #nav-admin {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+    flex-wrap: wrap;
+  }
 }
 
-#nav-items, #nav-admin{
-    text-align: center;
-}
-
-@media(min-width: 992px){
-    #nav-items, #nav-admin{
-        display: flex;
-        flex-wrap: wrap;
-    } 
-}
 #mainIcon{
     width: 30px;
   }
@@ -44,20 +47,21 @@ main{
 }
 
 /* Footer */
-nav.fixed-bottom{
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    padding: 0;
+nav.fixed-bottom {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 0;
 }
 
-.navbar-text{
-    text-align: right;
-    font-size: 15px;
-    padding-right: 20px;
+.navbar-text {
+  text-align: right;
+  font-size: 15px;
+  padding-right: 20px;
 }
 
 /*-- Home --*/
+
 #home_title{
     margin-top: 30px;
     text-align: center;
@@ -167,39 +171,26 @@ margin: .7rem 0 3rem 0;
     flex-wrap: wrap;
 }
 /* for about */
-header{
-    display: block;
-    text-align: center;
+header {
+  display: block;
+  text-align: center;
 }
-header>h6{
-    text-align: left;
+header > h6 {
+  text-align: left;
 }
-.card-about{
-    min-height: 100%;
-    padding:.5rem;
+
+.card-about {
+  min-height: 100%;
+
 }
-.card-about>div>img{
-    width: 10rem;
-    max-height: 7rem;
-    object-fit:cover;
+#info {
+  display: block;
+  text-align: center;
 }
-.card-body-about{
-    justify-content: space-between;
-    margin-bottom: 0;
-}
-#info{
-    display: block;
-    text-align: center;
-}
-#about-realtors{
-    margin-bottom: 3rem;
-    padding:0rem;
-    
-}
-#about-realtors>div>div{
-    padding: 1rem;
-    /* display: flex; */
-    justify-content:space-evenly;
+#about-realtors {
+  margin-bottom: 3rem;
+  /* padding:1rem; */
+  gap: 1rem;
 }
 
 /* Button styling */
