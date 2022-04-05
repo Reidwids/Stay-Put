@@ -33,32 +33,28 @@
       <div class="col-md-9">
         <!-- Home Main Image -->
         <img
-          src="https://fthmb.tqn.com/YypDz-gy6qx2bPk9-IgtHiaKmHA=/1500x997/filters:fill(auto,1)/choosinghomeexteriorbestcolors-56e0148e5f9b5854a9f6d1ba.jpg"
+          src="{{photo_urls.0.url}}"
           alt=""
-          class="img-main img-fluid mb-3"
+          class="img-main img-fluid mb-3 bigger"
         />
         <!-- Thumbnails -->
 
         <!-- Thumbnail 1 -->
         <div class="row mb-5 thumbs">
           <div class="col-md-2">
-            <a
-              href="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
-            >
+            <a>
               <img
-                src="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+                src="{{photo_urls.0.url}}"
                 alt=""
-                class="img-fluid"
+                class="img-fluid smaller"
               />
             </a>
           </div>
           <!-- Thumbnail 2 -->
           <div class="col-md-2">
-            <a
-              href="http://www.thewowstyle.com/wp-content/uploads/2015/06/interior2.jpg"
-            >
+            <a>
               <img
-                src="http://www.thewowstyle.com/wp-content/uploads/2015/06/interior2.jpg"
+                src="{{photo_urls.1.url}}"
                 alt=""
                 class="img-fluid"
               />
@@ -66,11 +62,9 @@
           </div>
           <!-- Thumbnail 3 -->
           <div class="col-md-2">
-            <a
-              href="http://www.thewowstyle.com/wp-content/uploads/2015/06/home-interiors-fine-design-4-on-home-interior-designs.jpg"
-            >
+            <a>
               <img
-                src="http://www.thewowstyle.com/wp-content/uploads/2015/06/home-interiors-fine-design-4-on-home-interior-designs.jpg"
+                src="{{photo_urls.2.url}}"
                 alt=""
                 class="img-fluid"
               />
@@ -78,11 +72,9 @@
           </div>
           <!-- Thumbnail 4 -->
           <div class="col-md-2">
-            <a
-              href="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
-            >
+            <a>
               <img
-                src="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+                src="{{photo_urls.3.url}}"
                 alt=""
                 class="img-fluid"
               />
@@ -90,11 +82,9 @@
           </div>
           <!-- Thumbnail 5 -->
           <div class="col-md-2">
-            <a
-              href="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
-            >
+            <a>
               <img
-                src="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+                src="{{photo_urls.4.url}}"
                 alt=""
                 class="img-fluid"
               />
@@ -102,11 +92,9 @@
           </div>
           <!-- Thumbnail 6 -->
           <div class="col-md-2">
-            <a
-              href="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
-            >
+            <a>
               <img
-                src="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+                src="{{photo_urls.5.url}}"
                 alt=""
                 class="img-fluid"
               />
@@ -152,7 +140,7 @@
               </li>
               <li class="list-group-item text-secondary">
                 Realtor:
-                <span class="float-right">{{agent}} </span>
+                <a href="{% url 'detail' agent.user_id %}" class="float-right">{{agent}} </a>
               </li>
             </ul>
           </div>
