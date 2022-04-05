@@ -193,7 +193,7 @@
             <li class="list-group-item text-secondary">
                 <div class="form-group col-md-6">
                     <label class="form-label"> Closing Date: </label>
-                    <input type="date" id='datepicker' name="closingDate" value="{{listing.closingDate}}" class="form-control" required/>
+                    <input type="date" id='datepicker' name="closingDate" value={{listing.closingDate|slugify}} class="form-control" required/>
                 </div> 
             </li>
             <li class="list-group-item text-secondary">
@@ -205,11 +205,12 @@
           </ul>
         </div>
       </div>
-      <input type='submit' class="btn mvpButt"></input>
-        <div class="form-group col-md-12">
+      <input type='submit' class="btn mvpButt"></input>  
+      <div class="form-group col-md-12">
             <label class="form-label"> Description: </label>
             <textarea type="textarea" name="description" rows="6" class="form-control" value="{{listing.description}}" required/></textarea>
         </div>
+        
 </form>
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
