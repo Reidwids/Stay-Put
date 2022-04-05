@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- ########################## -->
+<!-- Listing -->
+<section id="listing" class="py-4">
+    <div class="container">
+      <a href="{% url 'home' %}" class="btn btn-light mb-4">Back To Listings</a>   
+    </div>
+</section>
+
+<a href="{% url 'listing_delete' listing.id %}"><button class="btn mvpButt">Delete Listing</button></a>
+<form method='post' enctype="multipart/form-data" action="{% url 'listing_update_submit' listing.id%}" class="needs-validation" novalidate>
+    {% csrf_token %}
+
+    <!-- Thumbnail 1 -->
+    <br class="col-md">
+        <div class="row mb-4">  
+          <div class="col-md-2">
+            <a
+              href="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+            >
+              <img
+                src="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+                alt=""
+                class="img-fluid img-thumbnail"
+              />
+            </a>
+          </div>
+          <!-- Thumbnail 2 -->
+          <div class="col-md-2">
+            <a
+              href="http://www.thewowstyle.com/wp-content/uploads/2015/06/interior2.jpg"
+            >
+              <img
+                src="http://www.thewowstyle.com/wp-content/uploads/2015/06/interior2.jpg"
+                alt=""
+                class="img-fluid img-thumbnail"
+              />
+            </a>
+          </div>
+          <!-- Thumbnail 3 -->
+          <div class="col-md-2">
+            <a
+              href="http://www.thewowstyle.com/wp-content/uploads/2015/06/home-interiors-fine-design-4-on-home-interior-designs.jpg"
+            >
+              <img
+                src="http://www.thewowstyle.com/wp-content/uploads/2015/06/home-interiors-fine-design-4-on-home-interior-designs.jpg"
+                alt=""
+                class="img-fluid img-thumbnail"
+              />
+            </a>
+          </div>
+          <!-- Thumbnail 4 -->
+          <div class="col-md-2">
+            <a
+              href="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+            >
+              <img
+                src="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+                alt=""
+                class="img-fluid img-thumbnail"
+              />
+            </a>
+          </div>
+          <!-- Thumbnail 5 -->
+          <div class="col-md-2">
+            <a
+              href="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+            >
+              <img
+                src="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+                alt=""
+                class="img-fluid img-thumbnail"
+              />
+            </a>
+          </div>
+          <!-- Thumbnail 6 -->
+          <div class="col-md-2">
+            <a
+              href="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+            >
+              <img
+                src="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+                alt=""
+                class="img-fluid img-thumbnail"
+              />
+            </a>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label class="form-label"> Images: </label>
+                <input type="file" name="images" multiple class="form-control">
+            </div>
+        </div>
+        <br> 
+        </div>      
+    </div>
+    
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label class="form-label"> Address: </label>
+            <input type="text" name="address" class="form-control" value="{{listing.address}}" required/>
+        </div>
+        
+        <div class="form-group col-md-3">
+            <label class="form-label"> City: </label>
+            <input type="text" name="city" class="form-control" value="{{listing.city}}" required/>
+        </div>
+        <div class="form-group col-md-3">
+            <label class="form-label"> Province: </label>
+            <select name="province" class="form-select" required>
+                <option {% if 'Ontario' in listing.province %}selected{% endif %} value="Ontario">Ontario</option>
+                <option {% if 'Quebec' in listing.province %}selected{% endif %} value="Quebec">Quebec</option>
+                <option {% if 'Prince Edward Island' in listing.province %}selected{% endif %} value="Prince Edward Island">Prince Edward Island</option>
+                <option {% if 'Nova Scotia' in listing.province %}selected{% endif %} value="Nova Scotia">Nova Scotia</option>
+                <option {% if 'New Brunswick' in listing.province %}selected{% endif %} value="New Brunswick">New Brunswick</option>
+                <option {% if 'Newfoundland and Labrador' in listing.province %}selected{% endif %} value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                <option {% if 'Winnipeg' in listing.province %}selected{% endif %} value="Winnipeg">Winnipeg</option>
+                <option {% if 'Saskatchewan' in listing.province %}selected{% endif %} value="Saskatchewan">Saskatchewan</option>
+                <option {% if 'Alberta' in listing.province %}selected{% endif %} value="Alberta">Alberta</option>
+                <option {% if 'British Columbia' in listing.province %}selected{% endif %} value="British Columbia">British Columbia</option>
+                <option {% if 'Yukon' in listing.province %}selected{% endif %} value="Yukon">Yukon</option>
+                <option {% if 'Northwest Territories' in listing.province %}selected{% endif %} value="Northwest Territories">Northwest Territories</option>
+                <option {% if 'Nunavut' in listing.province %}selected{% endif %} value="Nunavut">Nunavut</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3">
+            <label class="form-label"> Postal Code: </label>
+            <input type="text" name="postalCode" class="form-control" value="{{listing.postalCode}}" placeholder="ex. A1A 1A1" required/>
+        </div>
+        
+    </div>
+<br>
+     <!-- Fields -->
+     <label class="form-label"> Property Details: </label>
+
+     <div class="row mb-5">
+        <div class="col-md-6">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item text-secondary">
+                <div class="form-group col-md-6">
+                    <label class="form-label"> Price: </label>
+                    <input type="number" name="price" value="{{listing.price}}" class="form-control" required/>
+                </div> 
+              <!-- <span class="float-right">$490,000</span> -->
+            </li>
+            <li class="list-group-item text-secondary">
+                <div class="form-group col-md-6">
+                    <label class="form-label"> Bedrooms: </label>
+                    <input type="number" name="bedrooms" value="{{listing.bedrooms}}" class="form-control" required/>
+                </div>
+            </li>
+            <li class="list-group-item text-secondary">
+                <div class="form-group col-md-6">
+                    <label class="form-label"> Bathrooms: </label>
+                    <input type="number" name="bathrooms" value="{{listing.bathrooms}}" class="form-control" required/>
+                </div>
+            </li>
+            <li class="list-group-item text-secondary">
+                <div class="form-group col-md-6">
+                    <label class="form-label"> Parking: </label>
+                    <select name="parking" class="form-select" required>
+                        <option {% if 'Y' in listing.parking %}selected{% endif %} value="Y">Yes</option>
+                        <option {% if 'N' in listing.parking %}selected{% endif %} value="N">No</option>
+                    </select>
+                </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-6">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item text-secondary">
+                <div class="form-group col-md-6">
+                    <label class="form-label"> Sqft: </label>
+                    <input type="number" name="sqft" value="{{listing.sqft}}" class="form-control" required/>
+                </div>
+            </li>
+            <li class="list-group-item text-secondary">
+                <div class="form-group col-md-6">
+                    <label class="form-label"> Building Type: </label>
+                    <select name="buildingType" class="form-select" required>
+                        <option {% if 'C' in listing.buildingType %}selected{% endif %} value="C">Condo</option>
+                        <option {% if 'T' in listing.buildingType %}selected{% endif %} value="T">Townhouse</option>
+                        <option {% if 'S' in listing.buildingType %}selected{% endif %} value="S">Semi-Detached</option>
+                        <option {% if 'H' in listing.buildingType %}selected{% endif %} value="H">House</option>   
+                    </select>
+                </div>
+            </li>
+            <li class="list-group-item text-secondary">
+                <div class="form-group col-md-6">
+                    <label class="form-label"> Closing Date: </label>
+                    <input type="date" id='datepicker' name="closingDate" value="{{listing.closingDate}}" class="form-control" required/>
+                </div> 
+            </li>
+            <li class="list-group-item text-secondary">
+                <div class="form-group col-md-6">
+                    <label class="form-label"> Agent: </label>
+                    Agent Name Here
+                </div> 
+            </li>
+          </ul>
+        </div>
+      </div>
+      <input type='submit' class="btn mvpButt"></input>
+        <div class="form-group col-md-12">
+            <label class="form-label"> Description: </label>
+            <textarea type="textarea" name="description" rows="6" class="form-control" value="{{listing.description}}" required/></textarea>
+        </div>
+</form>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+    </script>
+{% endblock content %} 

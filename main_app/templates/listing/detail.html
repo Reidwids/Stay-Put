@@ -167,7 +167,7 @@
       </div>
       <div class="col-md-3">
         <div class="card mb-3">
-          <img class="card-img-top" src="{{agent.image}}" alt="" />
+          <img class="card-img-top" src="{{agent.image.url}}" alt="" />
           <div class="card-body">
             <h5 class="card-title">Property Realtor</h5>
             <h6>
@@ -188,7 +188,9 @@
     </div>
   </div>
 </section>
-
+<a href="{% url 'listing_update' listing.id %}"
+  ><button class="btn mvpButt">Update Listing</button></a
+>
 <!-- https://maps.google.com/maps?q= { (address)(ex:2444 Bay street,Toronto,On) }=UTF8&iwloc=&output=embed -->
 
 <div class="mapouter">
