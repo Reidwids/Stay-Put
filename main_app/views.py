@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect
 from .models import Profile, RealEstate, ListingPhoto, ProfilePhoto
 from django.contrib.auth.forms import UserCreationForm
