@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> e2d5fd6 (fix realtor profile photo is not showing up bug)
-=======
->>>>>>> 6c2795b (profile and update_profile styling completed)
 from django.shortcuts import render, redirect
 from .models import Profile, RealEstate, ListingPhoto, ProfilePhoto
 from django.contrib.auth.forms import UserCreationForm
@@ -237,8 +230,12 @@ def listing_update(request, listing_id):
     photo_urls = ListingPhoto.objects.filter(real_estate_id=request.user.id)
     for photo_url in photo_urls:
         photo_url = photo_url.url
-        
+
     return render(request, 'listing/update_listing.html', {'listing': listing, 'photo_urls': photo_urls})
+
+def listing_featured(request):
+    listings=RealEstate.objects.all()
+    return render(request,'listing/featured.html',{'listings': listings})
 
 def listing_update_submit(request, listing_id):
     print('the id is below')
