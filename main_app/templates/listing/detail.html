@@ -4,7 +4,9 @@
   <div class="row text-center">
     <div class="col-md-12">
       <h1 class="display-6">{{listing.address}}</h1>
-      <p class="lead">{{listing.city}}, {{listing.province}}, {{listing.postalCode}} </p>
+      <p class="lead">
+        {{listing.city}}, {{listing.province}}, {{listing.postalCode}}
+      </p>
     </div>
   </div>
 </div>
@@ -45,6 +47,7 @@
             <a>
               <img
                 src="{{photo_urls.0.url}}"
+
                 alt=""
                 class="img-fluid smaller"
               />
@@ -148,18 +151,12 @@
 
         <!-- Description -->
         <div class="row mb-5">
-          <div class="col-md-12">
-            {{listing.description}}
-          </div>
+          <div class="col-md-12">{{listing.description}}</div>
         </div>
       </div>
       <div class="col-md-3">
         <div class="card mb-3">
-          <img
-            class="card-img-top"
-            src="{{agent.image.url}}"
-            alt=""
-          />
+          <img class="card-img-top" src="{{agent.image.url}}" alt="" />
           <div class="card-body">
             <h5 class="card-title">Property Realtor</h5>
             <h6>
@@ -180,7 +177,9 @@
     </div>
   </div>
 </section>
-<a href="{% url 'listing_update' listing.id %}"><button class="btn mvpButt">Update Listing</button></a>
+<a href="{% url 'listing_update' listing.id %}"
+  ><button class="btn mvpButt">Update Listing</button></a
+>
 <!-- https://maps.google.com/maps?q= { (address)(ex:2444 Bay street,Toronto,On) }=UTF8&iwloc=&output=embed -->
 
 <div class="mapouter">
@@ -189,7 +188,7 @@
       width="600"
       height="500"
       id="gmap_canvas"
-      src="https://maps.google.com/maps?q={{listing.address}},{{listing.city}},{{listing.province}}=&output=embed" 
+      src="https://maps.google.com/maps?q={{listing.address}},{{listing.city}},{{listing.province}}=&output=embed"
       frameborder="0"
       scrolling="no"
       marginheight="0"

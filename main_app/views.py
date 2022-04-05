@@ -32,7 +32,6 @@ def profile(request):
     try:
         profile = Profile.objects.get(user=request.user)
         photo_url = ProfilePhoto.objects.get(profile=request.user.id).url
-        print(photo_url)
         return render(request, 'agent/profile.html', {'profile': profile, 'photo_url': photo_url})
     except:
         return render(request, 'agent/create_profile.html')
@@ -112,7 +111,6 @@ def profile_delete(request):
 def user_delete(request):
     pass
     
-
 def detail(request,user_id):
     agent=Profile.objects.get(user_id=user_id)
     agent.image = ProfilePhoto.objects.get(profile_id=agent.user_id)
@@ -206,6 +204,7 @@ def submit_listing(request):
                 s3.upload_fileobj(photo_file, BUCKET, key)
                 # build the full url string
                 url = f"https://{BUCKET}.{S3_BASE_URL}/{key}"
+                print(url)
                 # we can assign to cat_id or cat (if you have a cat object)
                 photo = ListingPhoto(url=url, real_estate_id = new_listing.id)
                 photo.save()
@@ -228,9 +227,14 @@ def listing_detail(request, listing_id):
 
 def listing_update(request, listing_id):
     listing = RealEstate.objects.get(id=listing_id)
+
     photo_urls = ListingPhoto.objects.filter(real_estate_id=listing.id)
     agent = Profile.objects.get(user_id=listing.realtor_id)
     return render(request, 'listing/update_listing.html', {'listing': listing, 'agent': agent, 'photo_urls': photo_urls})
+
+def listing_featured(request):
+    listings=RealEstate.objects.all()
+    return render(request,'listing/featured.html',{'listings': listings})
 
 def listing_update_submit(request, listing_id):
     print('the id is below')
