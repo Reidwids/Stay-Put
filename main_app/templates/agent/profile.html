@@ -74,133 +74,28 @@
     <div class="container">
       <div class="row">
 
+        {% for listing in listings %}
         <!-- Listing 1 -->
         <div class="col-md-6 col-lg-4 mb-4">
+          <a class="stretched-link" href="{% url 'listing_update' listing.id %}" >
           <div class="card listing-preview">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" alt="">
+            <img class="card-img-top" src="{{ listing.photo_url }}" style="width:100%;height:300px;">
             <div class="card-img-overlay">
               <h5>
-                <span class="p-2 bg-primary text-white">ID 431431{{ property.id }}</span>
+                <span class="p-2 bg-primary text-white">ID: {{ listing.id }}</span>
               </h5>
             </div>
             <div class="card-body">
               <div class="listing-heading text-center">
-                <h4 class="text-primary">45 Drivewood Circle</h4>
+                <h4 class="text-primary">{{listing.address}}</h4>
                 <p>
-                   Norwood MA, 02062</p>
+                  {{listing.city}}, {{listing.province}}, {{listing.postalCode}}</p>
               </div>
-              <hr>
-              <a href="editlisting.html" class="btn btn-primary btn-block">EDIT LISTING</a>
             </div>
           </div>
+        </a>
         </div>
-
-        <!-- Listing 2 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" alt="">
-            <div class="card-img-overlay">
-              <h5>
-                <span class="p-2 bg-primary text-white">ID 431243{{ property.id }}</span>
-              </h5>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">18 Jefferson Lane</h4>
-                <p>
-                   Woburn MA, 01801</p>
-              </div>
-              <hr>
-              <a href="editlisting.html" class="btn btn-primary btn-block">EDIT LISTING</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Listing 3 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" alt="">
-            <div class="card-img-overlay">
-              <h5>
-                <span class="p-2 bg-primary text-white">ID 423443{{ property.id }}</span>
-              </h5>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">187 Woodrow Street</h4>
-                <p>
-                   Salem MA, 01915</p>
-              </div>
-            
-              <hr>
-              <a href="editlisting.html" class="btn btn-primary btn-block">EDIT LISTING</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Listing 4 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" alt="">
-            <div class="card-img-overlay">
-              <h5>
-                <span class="p-2 bg-primary text-white">ID 424322{{ property.id }}</span>
-              </h5>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">28 Gifford Street</h4>
-                <p>
-                   Bedford NH, 03103</p>
-              </div>
-              <hr>
-              <a href="editlisting.html" class="btn btn-primary btn-block">EDIT LISTING</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Listing 5 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" alt="">
-            <div class="card-img-overlay">
-              <h5>
-                <span class="p-2 bg-primary text-white">ID 423433{{ property.id }}</span>
-              </h5>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">12 United Road</h4>
-                <p>
-                   South Hampton NH, 03827</p>
-              </div>
-              
-              <hr>
-              <a href="editlisting.html" class="btn btn-primary btn-block">EDIT LISTING</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Listing 6 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" alt="">
-            <div class="card-img-overlay">
-              <h5>
-                <span class="p-2 bg-primary text-white">ID 423411{{ property.id }}</span>
-              </h5>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">33 Essex Circle</h4>
-                <p>
-                   Lexington MA, 01731</p>
-              </div>
-              <hr>
-              <a href="editlisting.html" class="btn btn-primary btn-block">More Info</a>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
 
       </div>
 
@@ -224,7 +119,10 @@
             </li>
           </ul>
         </div>
+        
       </div>
+      <br>
+        <br>
     </div>
 
   </section>
