@@ -35,7 +35,7 @@
             <a href="{% url 'detail' realtor.user_id %}" > 
                 <!-- will update links -->
                 <div class="card card-about">
-                    <img class="card-img-top" src="{{realtor.image}}">
+                    <img class="card-img-top" src="{{realtor.profilePhoto.url}}">
                     <div class="card-body">
                         <h6 >Name:{{realtor}}</h6>
                         <h6 >Phone number:{{realtor.phoneNumber}}</h6>
