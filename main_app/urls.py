@@ -16,6 +16,8 @@ urlpatterns = [
     path('listing/submit/', views.submit_listing, name='submit_listing'),
     path('listing/<int:listing_id>/detail/', views.listing_detail, name='listing_detail'),
     path('listing/<int:listing_id>/update/', views.listing_update, name='listing_update'),
+    path('listing/<int:listing_id>/submit_update/', views.listing_update_submit, name='listing_update_submit'),
+
     path('listing/<int:listing_id>/delete/', views.listing_delete, name='listing_delete'),
 
     path("agent/loggedin/", views.loggedin, name='loggedin'),

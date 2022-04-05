@@ -9,8 +9,8 @@
     </div>
 </section>
 
-
-<form method='post' enctype="multipart/form-data" action="{% url 'submit_listing' %}" class="needs-validation" novalidate>
+<a href="{% url 'listing_delete' listing.id %}"><button class="btn mvpButt">Delete Listing</button></a>
+<form method='post' enctype="multipart/form-data" action="{% url 'listing_update_submit' listing.id%}" class="needs-validation" novalidate>
     {% csrf_token %}
 
     <!-- Thumbnail 1 -->
@@ -102,35 +102,34 @@
     <div class="row">
         <div class="form-group col-md-3">
             <label class="form-label"> Address: </label>
-            <input type="text" name="address" class="form-control" placeholder="ex. 123 Main St." required/>
+            <input type="text" name="address" class="form-control" value="{{listing.address}}" required/>
         </div>
         
         <div class="form-group col-md-3">
             <label class="form-label"> City: </label>
-            <input type="text" name="city" class="form-control" placeholder="ex. Toronto" required/>
+            <input type="text" name="city" class="form-control" value="{{listing.city}}" required/>
         </div>
         <div class="form-group col-md-3">
             <label class="form-label"> Province: </label>
             <select name="province" class="form-select" required>
-                <option selected disabled hidden></option>
-                <option value="Ontario">Ontario</option>
-                <option value="Quebec">Quebec</option>
-                <option value="Prince Edward Island">Prince Edward Island</option>
-                <option value="Nova Scotia">Nova Scotia</option>
-                <option value="New Brunswick">New Brunswick</option>
-                <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
-                <option value="Winnipeg">Winnipeg</option>
-                <option value="Saskatchewan">Saskatchewan</option>
-                <option value="Alberta">Alberta</option>
-                <option value="British Columbia">British Columbia</option>
-                <option value="Yukon">Yukon</option>
-                <option value="Northwest Territories">Northwest Territories</option>
-                <option value="Nunavut">Nunavut</option>
+                <option {% if 'Ontario' in listing.province %}selected{% endif %} value="Ontario">Ontario</option>
+                <option {% if 'Quebec' in listing.province %}selected{% endif %} value="Quebec">Quebec</option>
+                <option {% if 'Prince Edward Island' in listing.province %}selected{% endif %} value="Prince Edward Island">Prince Edward Island</option>
+                <option {% if 'Nova Scotia' in listing.province %}selected{% endif %} value="Nova Scotia">Nova Scotia</option>
+                <option {% if 'New Brunswick' in listing.province %}selected{% endif %} value="New Brunswick">New Brunswick</option>
+                <option {% if 'Newfoundland and Labrador' in listing.province %}selected{% endif %} value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                <option {% if 'Winnipeg' in listing.province %}selected{% endif %} value="Winnipeg">Winnipeg</option>
+                <option {% if 'Saskatchewan' in listing.province %}selected{% endif %} value="Saskatchewan">Saskatchewan</option>
+                <option {% if 'Alberta' in listing.province %}selected{% endif %} value="Alberta">Alberta</option>
+                <option {% if 'British Columbia' in listing.province %}selected{% endif %} value="British Columbia">British Columbia</option>
+                <option {% if 'Yukon' in listing.province %}selected{% endif %} value="Yukon">Yukon</option>
+                <option {% if 'Northwest Territories' in listing.province %}selected{% endif %} value="Northwest Territories">Northwest Territories</option>
+                <option {% if 'Nunavut' in listing.province %}selected{% endif %} value="Nunavut">Nunavut</option>
             </select>
         </div>
         <div class="form-group col-md-3">
             <label class="form-label"> Postal Code: </label>
-            <input type="text" name="postalCode" class="form-control" placeholder="ex. A1A 1A1" required/>
+            <input type="text" name="postalCode" class="form-control" value="{{listing.postalCode}}" placeholder="ex. A1A 1A1" required/>
         </div>
         
     </div>
@@ -144,29 +143,28 @@
             <li class="list-group-item text-secondary">
                 <div class="form-group col-md-6">
                     <label class="form-label"> Price: </label>
-                    <input type="number" name="price" class="form-control" required/>
+                    <input type="number" name="price" value="{{listing.price}}" class="form-control" required/>
                 </div> 
               <!-- <span class="float-right">$490,000</span> -->
             </li>
             <li class="list-group-item text-secondary">
                 <div class="form-group col-md-6">
                     <label class="form-label"> Bedrooms: </label>
-                    <input type="number" name="bedrooms" class="form-control" required/>
+                    <input type="number" name="bedrooms" value="{{listing.bedrooms}}" class="form-control" required/>
                 </div>
             </li>
             <li class="list-group-item text-secondary">
                 <div class="form-group col-md-6">
                     <label class="form-label"> Bathrooms: </label>
-                    <input type="number" name="bathrooms" class="form-control" required/>
+                    <input type="number" name="bathrooms" value="{{listing.bathrooms}}" class="form-control" required/>
                 </div>
             </li>
             <li class="list-group-item text-secondary">
                 <div class="form-group col-md-6">
                     <label class="form-label"> Parking: </label>
                     <select name="parking" class="form-select" required>
-                        <option selected disabled hidden></option>
-                        <option value="Y">Yes</option>
-                        <option value="N">No</option>
+                        <option {% if 'Y' in listing.parking %}selected{% endif %} value="Y">Yes</option>
+                        <option {% if 'N' in listing.parking %}selected{% endif %} value="N">No</option>
                     </select>
                 </div>
             </li>
@@ -178,25 +176,24 @@
             <li class="list-group-item text-secondary">
                 <div class="form-group col-md-6">
                     <label class="form-label"> Sqft: </label>
-                    <input type="number" name="sqft" class="form-control" required/>
+                    <input type="number" name="sqft" value="{{listing.sqft}}" class="form-control" required/>
                 </div>
             </li>
             <li class="list-group-item text-secondary">
                 <div class="form-group col-md-6">
                     <label class="form-label"> Building Type: </label>
                     <select name="buildingType" class="form-select" required>
-                        <option selected disabled hidden></option>
-                        <option value="C">Condo</option>
-                        <option value="T">Townhouse</option>
-                        <option value="S">Semi-Detached</option>
-                        <option value="H">House</option>   
+                        <option {% if 'C' in listing.buildingType %}selected{% endif %} value="C">Condo</option>
+                        <option {% if 'T' in listing.buildingType %}selected{% endif %} value="T">Townhouse</option>
+                        <option {% if 'S' in listing.buildingType %}selected{% endif %} value="S">Semi-Detached</option>
+                        <option {% if 'H' in listing.buildingType %}selected{% endif %} value="H">House</option>   
                     </select>
                 </div>
             </li>
             <li class="list-group-item text-secondary">
                 <div class="form-group col-md-6">
                     <label class="form-label"> Closing Date: </label>
-                    <input type="date" name="closingDate" class="form-control" required/>
+                    <input type="date" id='datepicker' name="closingDate" value="{{listing.closingDate}}" class="form-control" required/>
                 </div> 
             </li>
             <li class="list-group-item text-secondary">
@@ -208,13 +205,11 @@
           </ul>
         </div>
       </div>
-    
+      <input type='submit' class="btn mvpButt"></input>
         <div class="form-group col-md-12">
             <label class="form-label"> Description: </label>
-            <textarea type="textarea" name="description" rows="6" class="form-control" placeholder="Max 2500 chars" required/></textarea>
+            <textarea type="textarea" name="description" rows="6" class="form-control" value="{{listing.description}}" required/></textarea>
         </div>
-        <br>
-    <input type='submit' class="btn mvpButt btn-primary btn-block"></input>
 </form>
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields

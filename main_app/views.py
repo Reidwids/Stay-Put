@@ -210,7 +210,6 @@ def submit_listing(request):
         photo.save()
     return render(request, 'agent/profile.html')
     
-    
 def listing_detail(request, listing_id):
     listing = RealEstate.objects.get(id=listing_id)
     listing.buildingType = listing.get_buildingType_display()
@@ -219,8 +218,16 @@ def listing_detail(request, listing_id):
     return render(request,'listing/detail.html', {'listing': listing, 'agent': agent})
 
 def listing_update(request, listing_id):
-    pass
+    listing = RealEstate.objects.get(id=listing_id)
+    photo_urls = ListingPhoto.objects.filter(real_estate_id=request.user.id)
+    for photo_url in photo_urls:
+        photo_url = photo_url.url
+        
+    return render(request, 'listing/update_listing.html', {'listing': listing, 'photo_urls': photo_urls})
+
 def listing_update_submit(request, listing_id):
+    print('the id is below')
+    print(listing_id)
     listing = RealEstate.objects.filter(id=listing_id)
     listing.update(province = request.POST['province'])
     listing.update(city = request.POST['city'])
@@ -238,7 +245,8 @@ def listing_update_submit(request, listing_id):
     photo_files = request.FILES.getlist('images', None)
     if photo_files:
         for i, photo_file in enumerate(photo_files):
-            old_keys = ListingPhoto.objects.filter(profile = listing.id)
+            old_keys = ListingPhoto.objects.filter(real_estate = listing_id)
+            ##check following line if old_key can replace old_keys[i] 
             old_key = old_keys[i].url.replace(f"https://{BUCKET}.{S3_BASE_URL}/","")
             s3 = boto3.client('s3')
             key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
@@ -255,6 +263,14 @@ def listing_update_submit(request, listing_id):
                 profile.update(url=url)
             except:
                 print('An error occurred uploading file to S3')
+    # redirect('listing_detail', listing_id)**************************************
 
-def listing_delete(request):
-    print(request)
+def listing_delete(request, listing_id):
+    old_keys = ListingPhoto.objects.filter(real_estate = listing_id)
+    for old_key in old_keys:
+        old_key = old_key.url.replace(f"https://{BUCKET}.{S3_BASE_URL}/","")
+        s3 = boto3.client('s3')        
+        if old_key != '49fe05.jpg':
+            s3.delete_object(Bucket = BUCKET, Key = old_key)
+    RealEstate.objects.filter(id=listing_id).delete()
+    return redirect('profile')
