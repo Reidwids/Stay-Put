@@ -53,8 +53,8 @@ nav.fixed-bottom{
     padding-right: 20px;
 }
 
-/*-- Home --*/
-#search-button{
+/*-- Home, create listing button --*/
+.margin-button{
 margin: .7rem 0 3rem 0;
 }
 

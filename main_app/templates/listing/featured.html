@@ -1,0 +1,34 @@
+{% extends 'base.html' %} {% block content %}
+<header>
+    <h2> FEATURED LISTINGS</h1> 
+    <p> Lorem ipsum dolor sit amet consectetur.</p>
+    <hr>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">featured listings</li>
+        </ol>
+      </nav>
+    <hr>
+</header>
+
+{% for listing in listings %}
+    <div class="card col-6>
+        <img class="card-img-top" src="{{listing.image}}">
+        <div class="card-body">
+            <div class="card-body">
+                <h5 class="card-title text-truncate">{{listing.address}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted text-truncate">{{listing.city}}, {{listing.0.province}}</h6>
+                <div>
+                    <div class="card-text text-truncate">sqft: {{listing.sqft}}</div>
+                    <div class="card-text text-truncate">Bedrooms: {{listing.bedrooms}}</div>
+                    <div class="card-text text-truncate">Bathrooms: {{listing.bathrooms}}</div>
+                    <div class="card-text text-truncate">sqft: {{listing.sqft}}</div>
+                </div>
+                <div class="card-text text-truncate">Listing Date: {{listing.listingDate}}</div>
+                <div class="card-text text-truncate">Closing Date: {{listing.closingDate}}</div>
+            </div>
+        </div>
+    <div>
+{% endfor %}
+{% endblock %}
