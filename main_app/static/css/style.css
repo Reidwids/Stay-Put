@@ -82,6 +82,10 @@ header>h6{
     min-height: 100%;
     padding:.5rem;
 }
+.card-headline{
+    display: flex;
+    justify-content: space-between;
+}
 .card-about>div>img{
     width: 10rem;
     max-height: 7rem;
@@ -100,7 +104,7 @@ header>h6{
     padding:0rem;
     
 }
-#about-realtors>div>div{
+.about-profile-border{
     padding: 1rem;
     /* display: flex; */
     justify-content:space-evenly;
