@@ -1,102 +1,103 @@
 /* Variables */
-*{
-    --main-butt: rgb(159, 218, 233);
+* {
+  --main-butt: rgb(159, 218, 233);
 }
 
 /*-- Base --*/
-body{
-    background-color: rgb(166, 232, 248);
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+body {
+  background-color: rgb(166, 232, 248);
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
-main{
-    flex: 1 0 auto;
+main {
+  flex: 1 0 auto;
 }
 
 /* Header */
 
-.navbar-nav{
+.navbar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+#nav-items,
+#nav-admin {
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  #nav-items,
+  #nav-admin {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+    flex-wrap: wrap;
+  }
 }
 
-#nav-items, #nav-admin{
-    text-align: center;
-}
-
-@media(min-width: 992px){
-    #nav-items, #nav-admin{
-        display: flex;
-        flex-wrap: wrap;
-    } 
-}
-
-.navbar-text{
-    text-decoration: none;
+.navbar-text {
+  text-decoration: none;
 }
 
 /* Footer */
-nav.fixed-bottom{
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    padding: 0;
+nav.fixed-bottom {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 0;
 }
 
-.navbar-text{
-    text-align: right;
-    font-size: 15px;
-    padding-right: 20px;
+.navbar-text {
+  text-align: right;
+  font-size: 15px;
+  padding-right: 20px;
 }
 
 /*-- Home --*/
-#search-button{
-margin: .7rem 0 3rem 0;
+#search-button {
+  margin: 0.7rem 0 3rem 0;
 }
 
 /* Search */
-.minmax{
-    display: flex!important;
-    flex-direction: row;
+.minmax {
+  display: flex !important;
+  flex-direction: row;
 }
 
 .form-floating > .bi-calendar-date + .datepicker_input + label {
-    padding-left: 3.5rem;
-    z-index: 3;
-  }
-
+  padding-left: 3.5rem;
+  z-index: 3;
+}
 
 /* for about */
-header{
-    display: block;
-    text-align: center;
+header {
+  display: block;
+  text-align: center;
 }
-header>h6{
-    text-align: left;
+header > h6 {
+  text-align: left;
 }
-.card-about{
-    min-height: 100%;
+.card-about {
+  min-height: 100%;
 }
-#info{
-    display: block;
-    text-align: center;
+#info {
+  display: block;
+  text-align: center;
 }
-#about-realtors{
-    margin-bottom: 3rem;
-    /* padding:1rem; */
-    gap:1rem;
+#about-realtors {
+  margin-bottom: 3rem;
+  /* padding:1rem; */
+  gap: 1rem;
 }
 
 /* Button styling */
 
-.mvpButt{
-    border: 1px solid grey!important;
+.mvpButt {
+  border: 1px solid grey !important;
 }
-.mvpButt:hover{
-    border: 1px solid grey!important;
-    background-color: var(--main-butt);
+.mvpButt:hover {
+  border: 1px solid grey !important;
+  background-color: var(--main-butt);
 }

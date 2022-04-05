@@ -4,7 +4,9 @@
   <div class="row text-center">
     <div class="col-md-12">
       <h1 class="display-6">{{listing.address}}</h1>
-      <p class="lead">{{listing.city}}, {{listing.province}}, {{listing.postalCode}} </p>
+      <p class="lead">
+        {{listing.city}}, {{listing.province}}, {{listing.postalCode}}
+      </p>
     </div>
   </div>
 </div>
@@ -43,10 +45,10 @@
         <div class="row mb-5 thumbs">
           <div class="col-md-2">
             <a
-              href="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+              href="http://www.thewowstyle.com/wp-content/uploads/2015/06/interior2.jpg"
             >
               <img
-                src="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
+                src="http://www.thewowstyle.com/wp-content/uploads/2015/06/interior2.jpg"
                 alt=""
                 class="img-fluid"
               />
@@ -160,18 +162,12 @@
 
         <!-- Description -->
         <div class="row mb-5">
-          <div class="col-md-12">
-            {{listing.description}}
-          </div>
+          <div class="col-md-12">{{listing.description}}</div>
         </div>
       </div>
       <div class="col-md-3">
         <div class="card mb-3">
-          <img
-            class="card-img-top"
-            src="{{agent.image}}"
-            alt=""
-          />
+          <img class="card-img-top" src="{{agent.image}}" alt="" />
           <div class="card-body">
             <h5 class="card-title">Property Realtor</h5>
             <h6>
@@ -201,7 +197,7 @@
       width="600"
       height="500"
       id="gmap_canvas"
-      src="https://maps.google.com/maps?q={{listing.address}},{{listing.city}},{{listing.province}}=&output=embed" 
+      src="https://maps.google.com/maps?q={{listing.address}},{{listing.city}},{{listing.province}}=&output=embed"
       frameborder="0"
       scrolling="no"
       marginheight="0"
