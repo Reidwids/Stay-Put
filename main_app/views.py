@@ -115,6 +115,7 @@ def user_delete(request):
 
 def detail(request,user_id):
     agent=Profile.objects.get(user_id=user_id)
+    agent.image = ProfilePhoto.objects.get(profile_id=agent.user_id)
     return render(request,'agent/detail.html',{'agent':agent})
 
 def loggedin(request):
@@ -125,6 +126,8 @@ def edit(request):
 
 def about(request):
     realtors = Profile.objects.all()
+    for realtor in realtors:
+        realtor.profilePhoto = ProfilePhoto.objects.get(profile_id=realtor.user_id)
     return render(request,'about.html',{'realtors': realtors[:6]})
 
 def search(request):
@@ -216,6 +219,7 @@ def listing_detail(request, listing_id):
     listing.buildingType = listing.get_buildingType_display()
     listing.parking = listing.get_parking_display()
     agent = Profile.objects.get(user_id=listing.realtor_id)
+    agent.image = ProfilePhoto.objects.get(profile_id=agent.user_id)
     return render(request,'listing/detail.html', {'listing': listing, 'agent': agent})
 
 def listing_update(request):
