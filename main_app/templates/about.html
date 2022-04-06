@@ -31,20 +31,22 @@
 <div class='container' id='about-realtors'>
     <div class="row">
     {% for realtor in realtors %}
-        <div class="col-md-4 about-profile-border">
+        <div class="col-md-6 about-profile-border">
                 <div class="card card-about shadow">
                     <div class='row card-headline'>
                         <img class="card-img-top col-sm-6 card-about-img" src="{{realtor.profilePhoto.url}}">
                         <div  class='col-sm-6'>
-                            <h4 class='card-header-tabs'>{{realtor}}</h6>
+                            <h4 class='card-header-tabs '>{{realtor}}</h6>
                             <br>
-                            <h7 class='contact-card-text'> Broker with Stay/Put</h7>
+                            <p class='card-about-text'>Real Estate Broker</p>
+                            <p><img id="mainIcon" src="../../static/images/mainimg.png"/>Stay / Put ™</p>
                         </div>
                     </div>
+                    <hr>
                     <div class="card-body card-body-about">
-                        <h5 class='contact-card-text'><span class="material-icons md-18">phone</span> {{realtor.phoneNumber}}</h6>
-                        <h5 class='contact-card-text'><span class="material-icons md-18">email</span> {{realtor.email}}</h6>
-                        <a class='stretched-link' href="{% url 'detail' realtor.user_id %}">Contact Me</a>
+                        <h5 class='card-about-text'><span class="material-icons md-18">phone</span> {{realtor.phoneNumber}}</h6>
+                        <h5 class='card-about-text'><span class="material-icons md-18">email</span> {{realtor.email}}</h6>
+                        <a class='stretched-link card-about-text' href="{% url 'detail' realtor.user_id %}">Contact Me</a>
                     </div>
                 </div>
         </div>

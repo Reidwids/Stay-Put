@@ -188,13 +188,26 @@ header {
     /* display: flex; */
     justify-content:space-evenly;
 }
-header > h6 {
-  text-align: left;
+.card-headline{
+    /* padding:.5rem; */
+    display: flex;
+    justify-content: space-between;
 }
-
+.card-about-img{
+    width: 10rem;
+    height: 7rem;
+    object-fit:cover;
+}
 .card-about {
   min-height: 100%;
+  padding:.5rem;
 
+}
+.card-about-text{
+    font-size: 1.1rem;
+}
+.card-about-text>p{
+    font-size: .8rem;
 }
 #info {
   display: block;
