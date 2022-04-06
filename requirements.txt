@@ -34,7 +34,6 @@ psutil==5.9.0
 psycopg2-binary==2.9.3
 pure-eval==0.2.2
 Pygments==2.11.2
-python-dateutil==1.5
 python-dotenv==0.20.0
 pyzmq==22.3.0
 requests==2.27.1
