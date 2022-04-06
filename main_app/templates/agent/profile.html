@@ -28,12 +28,11 @@
     <div class="col-md-8">
       <div class="card-body">
         <!-- <h3 class="card-title">My Profile</h3> -->
-        <h6>My Name: {{profile.firstName}}</h6>
-        <h6>My Last Name: {{profile.lastName}}</h6>
+        <h5>My Name: {{profile.firstName}}</h5>
+        <h5>My Last Name: {{profile.lastName}}</h5>
         <h6>My License Number: {{profile.licenseNumber}}</h6>
         <h6>My Phone Number: {{profile.phoneNumber}}</h6>
         <h6>My Email: {{profile.email}}</h6>
-
         <a
           class="btn mvpButt btn-primary btn-block col-md-3"
           href="{% url 'profile_update' %}"
