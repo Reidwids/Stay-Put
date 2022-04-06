@@ -75,18 +75,17 @@ header{
     display: block;
     text-align: center;
 }
-header>h6{
-    text-align: left;
-}
+
 .card-about{
     min-height: 100%;
     padding:.5rem;
 }
 .card-headline{
+    padding:.5rem;
     display: flex;
     justify-content: space-between;
 }
-.card-about>div>img{
+.card-about-img{
     width: 10rem;
     max-height: 7rem;
     object-fit:cover;
@@ -95,7 +94,7 @@ header>h6{
     justify-content: space-between;
     margin-bottom: 0;
 }
-#info{
+#info-about{
     display: block;
     text-align: center;
 }
@@ -103,6 +102,14 @@ header>h6{
     margin-bottom: 3rem;
     padding:0rem;
     
+}
+.about-icon{
+    height:1.5rem;
+    width: 1.5rem;
+}
+.card-about-name{
+    margin:0 auto;
+    right: 3rem;
 }
 .about-profile-border{
     padding: 1rem;
