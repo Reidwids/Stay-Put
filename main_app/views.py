@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Profile, RealEstate, ListingPhoto, ProfilePhoto
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required 
 from django.contrib.auth import login
 from datetime import date
 import uuid
@@ -28,8 +29,9 @@ def signup(request):
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
+
+@login_required
 def profile(request):
-    
     try:
         profile = Profile.objects.get(user=request.user)
         photo_url = ProfilePhoto.objects.get(profile=request.user.id).url
@@ -42,6 +44,7 @@ def profile(request):
     except:
         return render(request, 'agent/create_profile.html')
 
+@login_required
 def profile_submit(request):
     new_profile = Profile(
         firstName = request.POST['firstName'],
@@ -77,11 +80,13 @@ def profile_submit(request):
     # return redirect('profile', {'profile': new_profile,  'photo_url': photo_url})
     return render(request, 'agent/profile.html', {'profile': new_profile,  'photo_url': photo_url})
 
+@login_required
 def profile_update(request):
     profile = Profile.objects.get(user=request.user)
     photo_url = ProfilePhoto.objects.get(profile=request.user.id).url
     return render(request, 'agent/update_profile.html', {'profile': profile, 'photo_url': photo_url})
 
+@login_required
 def submit_profile_update(request):
     profile = Profile.objects.filter(user=request.user)
     profile.update(firstName = request.POST['firstName'])
@@ -110,6 +115,7 @@ def submit_profile_update(request):
             print('An error occurred uploading file to S3')
     return redirect('profile')
 
+@login_required
 def profile_delete(request):
     Profile.objects.filter(user=request.user).delete()
     return redirect('profile')
@@ -129,6 +135,7 @@ def detail(request,user_id):
 def loggedin(request):
     return render(request,'agent/loggedin.html')
 
+@login_required
 def edit(request):
     return render(request,'agent/edit.html') 
 
@@ -174,9 +181,11 @@ def search(request):
         print(listing[1])
     return render(request, 'search.html', {'listing_with_photo': listing_with_photo})
 
+@login_required
 def create_listing(request):
     return render(request, 'listing/create_listing.html')
 
+@login_required
 def submit_listing(request):
     today = date.today()
     date_format = today.strftime("%Y-%m-%d")
@@ -229,14 +238,23 @@ def listing_detail(request, listing_id):
     agent = Profile.objects.get(user_id=listing.realtor_id)
     agent.image = ProfilePhoto.objects.get(profile_id=agent.user_id)
     photo_urls = ListingPhoto.objects.filter(real_estate_id=listing.id)
-    return render(request,'listing/detail.html', {'listing': listing, 'agent': agent, 'photo_urls': photo_urls})
 
+    is_user_realtor = False
+    if request.user.is_authenticated:
+        user = Profile.objects.get(user=request.user)
+        is_user_realtor = True if listing.realtor_id == user.user_id else False 
+    return render(request,'listing/detail.html', {'listing': listing, 'agent': agent, 'photo_urls': photo_urls, 'is_user_realtor': is_user_realtor})
+
+@login_required
 def listing_update(request, listing_id):
     listing = RealEstate.objects.get(id=listing_id)
-
     photo_urls = ListingPhoto.objects.filter(real_estate_id=listing.id)
     agent = Profile.objects.get(user_id=listing.realtor_id)
-    return render(request, 'listing/update_listing.html', {'listing': listing, 'agent': agent, 'photo_urls': photo_urls})
+    if request.user.is_authenticated:
+        user = Profile.objects.get(user_id=request.user)
+        is_user_realtor = True if listing.realtor_id == user.user_id else False 
+    return render(request, 'listing/update_listing.html', {'is_user_realtor': is_user_realtor, 'listing': listing, 'agent': agent, 'photo_urls': photo_urls})
+
 
 def listing_featured(request):
     listings=RealEstate.objects.all()
@@ -249,64 +267,79 @@ def listing_featured(request):
     return render(request, 'listing/featured.html', {'listing_with_photo': listing_with_photo})
     # return render(request,'listing/featured.html',{'listings': listings})
 
+@login_required
 def listing_update_submit(request, listing_id):
-    print('the id is below')
-    print(listing_id)
-    listing = RealEstate.objects.filter(id=listing_id)
-    listing.update(province = request.POST['province'])
-    listing.update(city = request.POST['city'])
-    listing.update(address = request.POST['address'])
-    listing.update(postalCode = request.POST['postalCode'])
-    listing.update(price = request.POST['price'])
-    listing.update(buildingType = request.POST['buildingType'])
-    listing.update(bedrooms = request.POST['bedrooms'])
-    listing.update(bathrooms = request.POST['bathrooms'])
-    listing.update(parking = request.POST['parking'])
-    listing.update(sqft = request.POST['sqft'])
-    listing.update(closingDate = request.POST['closingDate'])
-    listing.update(description = request.POST['description'])
-    listing.update(province = request.POST['province'])
-    photo_urls = request.FILES.getlist('images', None)
-    if photo_urls:
-        for photo_url in photo_urls:
-            # old_keys = ListingPhoto.objects.filter(real_estate = listing_id)
-            # ##check following line if old_key can replace old_keys[i] 
-            # old_key = old_keys[i].url.replace(f"https://{BUCKET}.{S3_BASE_URL}/","")
-            s3 = boto3.client('s3')
-            key = uuid.uuid4().hex[:6] + photo_url.name[photo_url.name.rfind('.'):]
-            # just in case something goes wrong
-            
-            # if old_key != '49fe05.jpg':
-            #     s3.delete_object(Bucket = BUCKET, Key = old_key)
-            try:
-                s3.upload_fileobj(photo_url, BUCKET, key)
-                # build the full url string
-                url = f"https://{BUCKET}.{S3_BASE_URL}/{key}"
-                # we can assign to cat_id or cat (if you have a cat object)
-                photo = ListingPhoto(url=url, real_estate_id = listing_id)
-                photo.save()
-            except:
-                print('An error occurred uploading file to S3')
+    if request.user.is_authenticated:
+        user = Profile.objects.get(user_id=request.user)
+        listing = RealEstate.objects.get(id=listing_id)
+        is_user_realtor = True if listing.realtor_id == user.user_id else False 
+        if is_user_realtor:
+            listing = RealEstate.objects.filter(id=listing_id)
+            listing.update(province = request.POST['province'])
+            listing.update(city = request.POST['city'])
+            listing.update(address = request.POST['address'])
+            listing.update(postalCode = request.POST['postalCode'])
+            listing.update(price = request.POST['price'])
+            listing.update(buildingType = request.POST['buildingType'])
+            listing.update(bedrooms = request.POST['bedrooms'])
+            listing.update(bathrooms = request.POST['bathrooms'])
+            listing.update(parking = request.POST['parking'])
+            listing.update(sqft = request.POST['sqft'])
+            listing.update(closingDate = request.POST['closingDate'])
+            listing.update(description = request.POST['description'])
+            listing.update(province = request.POST['province'])
+            photo_urls = request.FILES.getlist('images', None)
+            if photo_urls:
+                for photo_url in photo_urls:
+                    # old_keys = ListingPhoto.objects.filter(real_estate = listing_id)
+                    # ##check following line if old_key can replace old_keys[i] 
+                    # old_key = old_keys[i].url.replace(f"https://{BUCKET}.{S3_BASE_URL}/","")
+                    s3 = boto3.client('s3')
+                    key = uuid.uuid4().hex[:6] + photo_url.name[photo_url.name.rfind('.'):]
+                    # just in case something goes wrong
+                    
+                    # if old_key != '49fe05.jpg':
+                    #     s3.delete_object(Bucket = BUCKET, Key = old_key)
+                    try:
+                        s3.upload_fileobj(photo_url, BUCKET, key)
+                        # build the full url string
+                        url = f"https://{BUCKET}.{S3_BASE_URL}/{key}"
+                        # we can assign to cat_id or cat (if you have a cat object)
+                        photo = ListingPhoto(url=url, real_estate_id = listing_id)
+                        photo.save()
+                    except:
+                        print('An error occurred uploading file to S3')
     return redirect('listing_detail', listing_id=listing_id)
 
+@login_required
 def listing_delete(request, listing_id):
-    old_keys = ListingPhoto.objects.filter(real_estate = listing_id)
-    for old_key in old_keys:
-        old_key = old_key.url.replace(f"https://{BUCKET}.{S3_BASE_URL}/","")
-        s3 = boto3.client('s3')        
-        if old_key != '49fe05.jpg':
-            s3.delete_object(Bucket = BUCKET, Key = old_key)
-    RealEstate.objects.filter(id=listing_id).delete()
+    if request.user.is_authenticated:
+        user = Profile.objects.get(user_id=request.user)
+        listing = RealEstate.objects.get(id=listing_id)
+        is_user_realtor = True if listing.realtor_id == user.user_id else False 
+        if is_user_realtor:
+            old_keys = ListingPhoto.objects.filter(real_estate = listing_id)
+            for old_key in old_keys:
+                old_key = old_key.url.replace(f"https://{BUCKET}.{S3_BASE_URL}/","")
+                s3 = boto3.client('s3')        
+                if old_key != '49fe05.jpg':
+                    s3.delete_object(Bucket = BUCKET, Key = old_key)
+            RealEstate.objects.filter(id=listing_id).delete()
     return redirect('profile')
 
-
+@login_required
 def delete_photo(request, listing_id, listingphoto_id):
-    old_key = ListingPhoto.objects.get(id= listingphoto_id)
-    print(old_key.url)
-    ListingPhoto.objects.get(id = listingphoto_id)
-    s3 = boto3.client('s3')
-    old_key = old_key.url.replace(f"https://{BUCKET}.{S3_BASE_URL}/","")
-    print(BUCKET, old_key)
-    s3.delete_object(Bucket = BUCKET, Key = old_key)
-    ListingPhoto.objects.get(id= listingphoto_id).delete()
+    if request.user.is_authenticated:
+        user = Profile.objects.get(user_id=request.user)
+        listing = RealEstate.objects.get(id=listing_id)
+        is_user_realtor = True if listing.realtor_id == user.user_id else False 
+        if is_user_realtor:
+            old_key = ListingPhoto.objects.get(id= listingphoto_id)
+            print(old_key.url)
+            ListingPhoto.objects.get(id = listingphoto_id)
+            s3 = boto3.client('s3')
+            old_key = old_key.url.replace(f"https://{BUCKET}.{S3_BASE_URL}/","")
+            print(BUCKET, old_key)
+            s3.delete_object(Bucket = BUCKET, Key = old_key)
+            ListingPhoto.objects.get(id= listingphoto_id).delete()
     return redirect('listing_update', listing_id=listing_id)

@@ -2,3 +2,5 @@
 Stay-Put/main_app/migrations/0001_initial.py
 Stay-Put/main_app/migrations/0005_rename_photo_listingphoto_profilephoto.py
 Stay-Put/main_app/migrations/0006_remove_profile_image.py
+main_app/migrations/0001_initial.py
+Stay_Put/settings.py
