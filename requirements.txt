@@ -36,7 +36,6 @@ pure-eval==0.2.2
 Pygments==2.11.2
 python-dateutil==1.5
 python-dotenv==0.20.0
-pywin32==303
 pyzmq==22.3.0
 requests==2.27.1
 s3transfer==0.5.2
