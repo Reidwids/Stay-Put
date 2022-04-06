@@ -204,9 +204,10 @@
     </div>
   </div>
 </section>
-<a href="{% url 'listing_update' listing.id %}"
-  ><button class="btn mvpButt">Update Listing</button></a
->
+{% if is_user_realtor %}
+<a href="{% url 'listing_update' listing.id %}"><button class="btn mvpButt">Update Listing</button></a>
+{% endif %}
+
 <!-- https://maps.google.com/maps?q= { (address)(ex:2444 Bay street,Toronto,On) }=UTF8&iwloc=&output=embed -->
 
 <div class="mapouter">
