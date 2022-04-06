@@ -7,8 +7,16 @@
 <form method="post" action ="{% url 'login'  %}">
     {% csrf_token %}
     {{form.as_p}}
-    <input type="submit" value="login" class="btn">
-    <input type="hidden" name="text" value="{{next}}">
+    <div class="button_center">
+        <input type="submit" value="Login" class="btn mvpButt searchButt">
+        <input type="hidden" name="text" value="{{next}}">
+    </div>
 </form>
 
 {% endblock %}
+<script>
+    username = document.getElementById('id_username');
+    password = document.getElementById('id_password');
+    username.classList.add('form-control');
+    password.classList.add('form-control')
+</script>

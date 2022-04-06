@@ -84,6 +84,14 @@ nav.fixed-bottom {
     width: 200px;
 }
 
+/* Login */
+#id_username{
+
+}
+
+#id_password{
+  
+}
 /* Search */
 #searchResultsTitle{
     text-align: center;
