@@ -12,7 +12,8 @@
 <form method='post' enctype="multipart/form-data" action="{% url 'submit_listing' %}" class="needs-validation" novalidate>
     {% csrf_token %}
 
-    <!-- Thumbnail 1 -->
+
+    {% comment %} <!-- Thumbnail 1 -->
     <br class="col-md">
         <div class="row mb-4">  
           <div class="col-md-2">
@@ -86,12 +87,23 @@
               />
             </a>
           </div>
-        </div>
+        </div> {% endcomment %}
 
+        
         <div class="row">
             <div class="form-group col-md-4">
                 <label class="form-label"> Images: </label>
-                <input type="file" name="images" multiple class="form-control">
+                <input type="file" name="images" accept="image/*" onchange="loadFile(event)">
+                <img id="output"  width="250px"/>
+                <script>
+                  var loadFile = function(event) {
+                    var output = document.getElementById('output');
+                      output.src = URL.createObjectURL(event.target.files[0]);
+                      output.onload = function() {
+                        URL.revokeObjectURL(output.src) // free memory
+                      }
+                  };
+                </script>
             </div>
         </div>
         <br> 

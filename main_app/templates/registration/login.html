@@ -13,10 +13,15 @@
     </div>
 </form>
 
-{% endblock %}
 <script>
     username = document.getElementById('id_username');
     password = document.getElementById('id_password');
+    username.previousElementSibling.classList.add('form-label');
+    password.previousElementSibling.classList.add('form-label');
     username.classList.add('form-control');
     password.classList.add('form-control')
+    username.parentElement.parentElement.previousElementSibling.classList.add('page_title');
 </script>
+
+
+{% endblock %}
