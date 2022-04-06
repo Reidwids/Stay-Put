@@ -13,40 +13,59 @@
 </header>
 
 {% for listing in listing_with_photo %}
-
+    {% if listing.2.0 == 5 %}
+    <h3>say hi</h3>
+    {% endif %}
 <div class="card col featured-card">
     <div class='row'>
-        <div class="card-body col-md-3">
+        <div class="card-body col-md-5">
             <div class="card-body col-12">
-                <h5 class="card-title text-truncate">{{listing.0.address}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted text-truncate">{{listing.0.city}}, {{listing.0.province}}</h6>
-                <div>
-                    <div class="card-text text-truncate">price : {{listing.0.price}}</div>
-                    <div class="card-text text-truncate">sqft: {{listing.0.sqft}}</div>
-                    <div class="card-text text-truncate">Bedrooms: {{listing.0.bedrooms}}</div>
-                    <div class="card-text text-truncate">Bathrooms: {{listing.0.bathrooms}}</div>
-                </div>
-                <div class='dates-featured'>
-                    <div class="card-text text-truncate">Listing Date: {{listing.0.listingDate}}</div>
-                    <div class="card-text text-truncate">Closing Date: {{listing.0.closingDate}}</div>
-                    <div>photos: {{listing.2.0}}</div>
-                </div>
-                <a class='btn mvpButt' href="/listing/{{listing.0.id}}/detail" target="_blank">More Details</a>
+                <h5 class="card-title">{{listing.0.address}}</h5>
+                <h6 class="card-subtitle mb-2">{{listing.0.city}}, {{listing.0.province}}</h6>
+                    <div class="col-md-6">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-secondary">
+                                Asking:
+                                <span class="float-right">{{listing.0.price}}</span>
+                              </li>
+                            <li class="list-group-item text-secondary">
+                                Square Feet:
+                                <span class="float-right">{{listing.0.sqft}}</span>
+                            </li>
+                            <li class="list-group-item text-secondary">
+                                bedrooms:
+                                <span class="float-right">{{listing.0.bathrooms}}</span>
+                            </li>
+                            <li class="list-group-item text-secondary">
+                                bathrooms: 
+                                    <span class="float-right">{{listing.0.bedrooms}}</span>
+                            </li>
+                            <li class="list-group-item text-secondary">
+                                listing Date:
+                                <span class="float-right">{{listing.0.listingDate}}</span>
+                            </li>
+                            <li class="list-group-item text-secondary">
+                                closing Date:
+                                <span class="float-right">{{listing.0.closingDate}}</span>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                <a class='btn btn-dark' href="/listing/{{listing.0.id}}/detail" target="_blank">More Details</a>
             </div>
         </div>
 
-        <div class="col-md-7">
-                <img src="{{listing.1.1.url}}" class="featured-home-image img-fluid" alt="primary home picture">
+        <div class="col-md-6">
+                <img src="{{listing.1.0.url}}" class="featured-home-image img-fluid" alt="primary home picture">
         </div>
     </div>
-    <br>
-
     <div class="row featured-image-row-additional" >
         {% for link in listing.1 %}
             {% if forloop.counter > 1 %}
-            <div class="col-3">
-                <img src="{{link.url}}" class="featured-home-image-additional img-fluid" alt="additional home picture">
-            </div>
+                <div class="col-3">
+                    <img src="{{link.url}}" class="featured-home-image-additional img-fluid" alt="additional home picture">
+                </div>
             {% endif %}
             
         {% endfor %}
