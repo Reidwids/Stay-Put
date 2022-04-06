@@ -171,9 +171,23 @@ margin: .7rem 0 3rem 0;
     flex-wrap: wrap;
 }
 /* for about */
-header {
+.header-text {
   display: block;
   text-align: center;
+}
+#working-together{
+
+}
+#working-with-you{
+    /* height: 18rem;
+    width:30rem; */
+    border: .2rem solid white;
+    padding:0px;
+    border-radius: 10px;
+}
+.text-box-about{
+    font-size: 1em;
+    justify-content:space-evenly ;
 }
 .about-icon{
     height:1.5rem;
@@ -190,11 +204,11 @@ header {
 }
 .card-headline{
     /* padding:.5rem; */
-    display: flex;
+    display:flex;
     justify-content: space-between;
 }
 .card-about-img{
-    width: 10rem;
+    width: 8rem;
     height: 7rem;
     object-fit:cover;
 }
@@ -204,10 +218,10 @@ header {
 
 }
 .card-about-text{
-    font-size: 1.1rem;
+    font-size: 1em;
 }
 .card-about-text>p{
-    font-size: .8rem;
+    font-size: 2.7em;
 }
 #info {
   display: block;
