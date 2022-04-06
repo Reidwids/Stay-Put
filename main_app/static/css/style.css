@@ -83,10 +83,7 @@ nav.fixed-bottom {
     margin-top: 30px;
     width: 200px;
 }
-/*-- Home, create listing button --*/
-.margin-button{
-margin: .7rem 0 3rem 0;
-}
+
 /* Search */
 #searchResultsTitle{
     text-align: center;
@@ -193,6 +190,14 @@ header > h6 {
   gap: 1rem;
 }
 
+/* Profile Create */
+#profileCreateTitle{
+  margin-top: 30px;
+  text-align: center;
+}
+.profileCreateInfo{
+  text-align: center;
+}
 /* Button styling */
 
 .mvpButt{

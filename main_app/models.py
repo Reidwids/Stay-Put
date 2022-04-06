@@ -46,6 +46,8 @@ class Profile(models.Model):
     email = models.EmailField()
     isAgent = models.BooleanField(default = True)
     isAdmin = models.BooleanField(default = False)
+    blurb = models.CharField(max_length=500)
+
     
     def get_absolute_url(self):
         return reverse('profile', kwargs={'pk': self.user_id})
