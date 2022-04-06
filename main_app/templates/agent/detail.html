@@ -49,9 +49,9 @@
               <h6>Email: {{agent.email}}</h6>
               <h6>Real Estate License: {{agent.licenseNumber}}</h6>
               <hr>
-              <a class = 'btn mvpButt' href="mailto:{{agent.email}}?subject=Real estate inquirey">Email {{agent}}</a>
+              <a class = 'btn mvpButt btn-primary btn-block col-md-12' href="mailto:{{agent.email}}?subject=Real estate inquirey">Email {{agent}}</a>
               <hr>
-              <a class = 'btn mvpButt' href="tel:{{agent.phoneNumber}}">Call {{agent}}</a>
+              <a class = 'btn btn-primary btn-block col-md-12 mvpButt' href="tel:{{agent.phoneNumber}}">Call {{agent}}</a>
             </div>
           </div>
         </div>
@@ -144,7 +144,8 @@
         </div>
       </div>
     </div>
-
+<br>
+<br>
   </section>
 
   {% endblock %}

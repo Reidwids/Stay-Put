@@ -29,10 +29,16 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 def profile(request):
+    
     try:
         profile = Profile.objects.get(user=request.user)
+        listings = RealEstate.objects.filter(realtor_id=profile.user_id)
+        for listing in listings:
+            photo_urls = ListingPhoto.objects.filter(real_estate_id=listing.id)
+            listing.photo_url = photo_urls[0].url
         photo_url = ProfilePhoto.objects.get(profile=request.user.id).url
-        return render(request, 'agent/profile.html', {'profile': profile, 'photo_url': photo_url})
+        
+        return render(request, 'agent/profile.html', {'profile': profile, 'photo_url': photo_url, 'listings': listings})
     except:
         return render(request, 'agent/create_profile.html')
 
