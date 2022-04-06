@@ -47,18 +47,17 @@
           data-bs-ride="carousel"
         >
           <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="{{photo_urls.0.url}}" class="d-block w-100" />
-            </div>
-            <div class="carousel-item">
-              <img src="{{photo_urls.1.url}}" class="d-block w-100" />
-            </div>
-            <div class="carousel-item">
-              <img src="{{photo_urls.2.url}}" class="d-block w-100" />
-            </div>
-            <div class="carousel-item">
-              <img src="{{photo_urls.3.url}}" class="d-block w-100" />
-            </div>
+            {% for photo_url in photo_urls %}
+              {% if photo_url == photo_urls.0 %}
+              <div class="carousel-item active">
+                <img src="{{photo_url.url}}" class="d-block w-100" />
+              </div>
+              {% else %}
+              <div class="carousel-item">
+                <img src="{{photo_url.url}}" class="d-block w-100" />
+              </div>
+              {% endif %} 
+            {% endfor %}
           </div>
           <button
             class="carousel-control-prev"
