@@ -259,25 +259,25 @@ def listing_update_submit(request, listing_id):
     listing.update(closingDate = request.POST['closingDate'])
     listing.update(description = request.POST['description'])
     listing.update(province = request.POST['province'])
-    photo_files = request.FILES.getlist('images', None)
-    if photo_files:
-        for i, photo_file in enumerate(photo_files):
-            old_keys = ListingPhoto.objects.filter(real_estate = listing_id)
-            ##check following line if old_key can replace old_keys[i] 
-            old_key = old_keys[i].url.replace(f"https://{BUCKET}.{S3_BASE_URL}/","")
+    photo_urls = request.FILES.getlist('images', None)
+    if photo_urls:
+        for photo_url in photo_urls:
+            # old_keys = ListingPhoto.objects.filter(real_estate = listing_id)
+            # ##check following line if old_key can replace old_keys[i] 
+            # old_key = old_keys[i].url.replace(f"https://{BUCKET}.{S3_BASE_URL}/","")
             s3 = boto3.client('s3')
-            key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+            key = uuid.uuid4().hex[:6] + photo_url.name[photo_url.name.rfind('.'):]
             # just in case something goes wrong
             
-            if old_key != '49fe05.jpg':
-                s3.delete_object(Bucket = BUCKET, Key = old_key)
+            # if old_key != '49fe05.jpg':
+            #     s3.delete_object(Bucket = BUCKET, Key = old_key)
             try:
-                s3.upload_fileobj(photo_file, BUCKET, key)
+                s3.upload_fileobj(photo_url, BUCKET, key)
                 # build the full url string
                 url = f"https://{BUCKET}.{S3_BASE_URL}/{key}"
                 # we can assign to cat_id or cat (if you have a cat object)
-                profile = ProfilePhoto.objects.filter(profile = request.user.id)
-                profile.update(url=url)
+                photo = ListingPhoto(url=url, real_estate_id = listing_id)
+                photo.save()
             except:
                 print('An error occurred uploading file to S3')
     return redirect('listing_detail', listing_id=listing_id)
