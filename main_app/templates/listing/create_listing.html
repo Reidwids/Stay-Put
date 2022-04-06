@@ -11,87 +11,11 @@
 
 <form method='post' enctype="multipart/form-data" action="{% url 'submit_listing' %}" class="needs-validation" novalidate>
     {% csrf_token %}
-
-    <!-- Thumbnail 1 -->
-    <br class="col-md">
-        <div class="row mb-4">  
-          <div class="col-md-2">
-            <a
-              href="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
-            >
-              <img
-                src="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
-                alt=""
-                class="img-fluid img-thumbnail"
-              />
-            </a>
-          </div>
-          <!-- Thumbnail 2 -->
-          <div class="col-md-2">
-            <a
-              href="http://www.thewowstyle.com/wp-content/uploads/2015/06/interior2.jpg"
-            >
-              <img
-                src="http://www.thewowstyle.com/wp-content/uploads/2015/06/interior2.jpg"
-                alt=""
-                class="img-fluid img-thumbnail"
-              />
-            </a>
-          </div>
-          <!-- Thumbnail 3 -->
-          <div class="col-md-2">
-            <a
-              href="http://www.thewowstyle.com/wp-content/uploads/2015/06/home-interiors-fine-design-4-on-home-interior-designs.jpg"
-            >
-              <img
-                src="http://www.thewowstyle.com/wp-content/uploads/2015/06/home-interiors-fine-design-4-on-home-interior-designs.jpg"
-                alt=""
-                class="img-fluid img-thumbnail"
-              />
-            </a>
-          </div>
-          <!-- Thumbnail 4 -->
-          <div class="col-md-2">
-            <a
-              href="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
-            >
-              <img
-                src="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
-                alt=""
-                class="img-fluid img-thumbnail"
-              />
-            </a>
-          </div>
-          <!-- Thumbnail 5 -->
-          <div class="col-md-2">
-            <a
-              href="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
-            >
-              <img
-                src="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
-                alt=""
-                class="img-fluid img-thumbnail"
-              />
-            </a>
-          </div>
-          <!-- Thumbnail 6 -->
-          <div class="col-md-2">
-            <a
-              href="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
-            >
-              <img
-                src="https://shhoonya.com/wp-content/uploads/2020/01/home-interiors.jpg"
-                alt=""
-                class="img-fluid img-thumbnail"
-              />
-            </a>
-          </div>
-        </div>
-
         <div class="row">
             <div class="form-group col-md-4">
                 <label class="form-label"> Images: </label>
-                <input type="file" name="images" multiple class="form-control">
+                <input id="file-input" type="file" name="images" accept="image/*" onchange="loadFile(event)" multiple class="form-control">
+                <div id="preview"></div>
             </div>
         </div>
         <br> 
@@ -196,12 +120,6 @@
                 <div class="form-group col-md-6">
                     <label class="form-label"> Closing Date: </label>
                     <input type="date" name="closingDate" class="form-control" required/>
-                </div> 
-            </li>
-            <li class="list-group-item text-secondary">
-                <div class="form-group col-md-6">
-                    <label class="form-label"> Agent: </label>
-                    Agent Name Here
                 </div> 
             </li>
           </ul>

@@ -6,90 +6,89 @@
         background-size: cover;
     }
 </style>
-<div id="homePageContainer">
-    <h1 id='home_title'>Welcome to Stay / Put</h1>
-    <p class="home_info">Connect with real estate agents and find your dream property</p>
+<h1 id='home_title'>Welcome to Stay / Put</h1>
+<p class="home_info">Connect with real estate agents and find your dream property</p>
 
-    <h5 id="home_subtitle">Start your search now!</h5>
-    <form id='searchForm' method='post' action="{% url 'search' %}">
-        {% csrf_token %}
-        <div class="row justify-content-center">
-            <div class="form-group col-md-4">
-                <label class="form-label"> Province: </label>
-                <select name="province" class="form-select">
-                    <option selected></option>
-                    <option value="Ontario">Ontario</option>
-                    <option value="Quebec">Quebec</option>
-                    <option value="Prince Edward Island">Prince Edward Island</option>
-                    <option value="Nova Scotia">Nova Scotia</option>
-                    <option value="New Brunswick">New Brunswick</option>
-                    <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
-                    <option value="Winnipeg">Winnipeg</option>
-                    <option value="Saskatchewan">Saskatchewan</option>
-                    <option value="Alberta">Alberta</option>
-                    <option value="British Columbia">British Columbia</option>
-                    <option value="Yukon">Yukon</option>
-                    <option value="Northwest Territories">Northwest Territories</option>
-                    <option value="Nunavut">Nunavut</option>
-                </select>
+<h5 id="home_subtitle">Start your search now!</h5>
+<form id='searchForm' method='post' action="{% url 'search' %}">
+    {% csrf_token %}
+    <div class="row justify-content-center">
+        <div class="form-group col-md-4">
+            <label class="form-label"> Province: </label>
+            <select name="province" class="form-select">
+                <option selected></option>
+                <option value="Ontario">Ontario</option>
+                <option value="Quebec">Quebec</option>
+                <option value="Prince Edward Island">Prince Edward Island</option>
+                <option value="Nova Scotia">Nova Scotia</option>
+                <option value="New Brunswick">New Brunswick</option>
+                <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                <option value="Winnipeg">Winnipeg</option>
+                <option value="Saskatchewan">Saskatchewan</option>
+                <option value="Alberta">Alberta</option>
+                <option value="British Columbia">British Columbia</option>
+                <option value="Yukon">Yukon</option>
+                <option value="Northwest Territories">Northwest Territories</option>
+                <option value="Nunavut">Nunavut</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="form-label"> City: </label>
+            <input type="text" name="city" class="form-control" placeholder="ex. Toronto"/>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="form-group col-md-2">
+            <label class="form-label"> Price: </label>
+            <div class='minmax'>
+                <input type="number" name="min_price" class="form-control" placeholder="Min"/>
+                <input type="number" name="max_price" class="form-control" placeholder="Max"/>
             </div>
-            <div class="form-group col-md-4">
-                <label class="form-label"> City: </label>
-                <input type="text" name="city" class="form-control" placeholder="ex. Toronto"/>
+        </div> 
+        <div class="form-group col-md-2">
+            <label class="form-label"> Building Type: </label>
+            <select name="buildingType" class="form-select">
+                <option selected></option>
+                <option value="C">Condo</option>
+                <option value="T">Townhouse</option>
+                <option value="S">Semi-Detached</option>
+                <option value="H">House</option>   
+            </select>
+        </div>
+        <div class="form-group col-md-1">
+            <label class="form-label"> Bedrooms: </label>
+            <input type="number" name="bedrooms" class="form-control"/>
+        </div>
+        <div class="form-group col-md-1">
+            <label class="form-label"> Bathrooms: </label>
+            <input type="number" name="bathrooms" class="form-control"/>
+        </div>
+        <div class="form-group col-md-1">
+            <label class="form-label"> Parking: </label>
+            <select name="parking" class="form-select">
+                <option selected></option>
+                <option value="Y">Yes</option>
+                <option value="N">No</option>
+            </select>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="form-group col-md-2">
+            <label class="form-label"> Sqft: </label>
+            <div class='minmax'>
+                <input type="number" name="min_sqft" class="form-control" placeholder="Min"/>
+                <input type="number" name="max_sqft" class="form-control" placeholder="Max"/>
             </div>
         </div>
-        <div class="row justify-content-center">
-            <div class="form-group col-md-2">
-                <label class="form-label"> Price: </label>
-                <div class='minmax'>
-                    <input type="number" name="min_price" class="form-control" placeholder="Min"/>
-                    <input type="number" name="max_price" class="form-control" placeholder="Max"/>
-                </div>
-            </div> 
-            <div class="form-group col-md-2">
-                <label class="form-label"> Building Type: </label>
-                <select name="buildingType" class="form-select">
-                    <option selected></option>
-                    <option value="C">Condo</option>
-                    <option value="T">Townhouse</option>
-                    <option value="S">Semi-Detached</option>
-                    <option value="H">House</option>   
-                </select>
-            </div>
-            <div class="form-group col-md-1">
-                <label class="form-label"> Bedrooms: </label>
-                <input type="number" name="bedrooms" class="form-control"/>
-            </div>
-            <div class="form-group col-md-1">
-                <label class="form-label"> Bathrooms: </label>
-                <input type="number" name="bathrooms" class="form-control"/>
-            </div>
-            <div class="form-group col-md-1">
-                <label class="form-label"> Parking: </label>
-                <select name="parking" class="form-select">
-                    <option selected></option>
-                    <option value="Y">Yes</option>
-                    <option value="N">No</option>
-                </select>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="form-group col-md-2">
-                <label class="form-label"> Sqft: </label>
-                <div class='minmax'>
-                    <input type="number" name="min_sqft" class="form-control" placeholder="Min"/>
-                    <input type="number" name="max_sqft" class="form-control" placeholder="Max"/>
-                </div>
-            </div>
-            <div class="form-group col-md-4">
-                <label class="form-label"> Realtor: </label>
-                <input type="text" name="realtor" class="form-control" placeholder="ex. Jane Doe"/>
-            </div> 
-        </div>
-        <div class="button_center">
-            <button type='submit' class="btn mvpButt searchButt" >Search</button>
-        </div>
+        <div class="form-group col-md-4">
+            <label class="form-label"> Realtor: </label>
+            <input type="text" name="realtor" class="form-control" placeholder="ex. Jane Doe"/>
+        </div> 
+    </div>
+    <div class="button_center">
+        <button type='submit' class="btn mvpButt searchButt" >Search</button>
+    </div>
     </form>
-</div>
+
 
 {% endblock %}
