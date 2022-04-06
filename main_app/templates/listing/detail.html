@@ -90,51 +90,23 @@
           <br />
           <!-- Thumbnails -->
 
-          <!-- Thumbnail 1 -->
-          <div class="row mb-5 thumbs">
-            <div class="col-md-2">
-              <a>
-                <img
-                  src="{{photo_urls.0.url}}"
-                  alt=""
-                  class="img-fluid smaller"
-                />
-              </a>
-            </div>
-            <!-- Thumbnail 2 -->
-            <div class="col-md-2">
-              <a>
-                <img
-                  src="{{photo_urls.1.url}}"
-                  alt=""
-                  class="img-fluid smaller"
-                />
-              </a>
-            </div>
-            <!-- Thumbnail 3 -->
-            <div class="col-md-2">
-              <a>
-                <img src="{{photo_urls.2.url}}" alt="" class="img-fluid" />
-              </a>
-            </div>
-            <!-- Thumbnail 4 -->
-            <div class="col-md-2">
-              <a>
-                <img src="{{photo_urls.3.url}}" alt="" class="img-fluid" />
-              </a>
-            </div>
-            <!-- Thumbnail 5 -->
-            <div class="col-md-2">
-              <a>
-                <img src="{{photo_urls.4.url}}" alt="" class="img-fluid" />
-              </a>
-            </div>
-            <!-- Thumbnail 6 -->
-            <div class="col-md-2">
-              <a>
-                <img src="{{photo_urls.5.url}}" alt="" class="img-fluid" />
-              </a>
-            </div>
+        <div
+          id="carouselExampleControls"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            {% for photo_url in photo_urls %}
+              {% if photo_url == photo_urls.0 %}
+              <div class="carousel-item active">
+                <img src="{{photo_url.url}}" class="d-block w-100" />
+              </div>
+              {% else %}
+              <div class="carousel-item">
+                <img src="{{photo_url.url}}" class="d-block w-100" />
+              </div>
+              {% endif %} 
+            {% endfor %}
           </div>
 
           <!-- Fields -->
