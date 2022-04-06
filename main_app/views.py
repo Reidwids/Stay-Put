@@ -240,7 +240,14 @@ def listing_update(request, listing_id):
 
 def listing_featured(request):
     listings=RealEstate.objects.all()
-    return render(request,'listing/featured.html',{'listings': listings})
+    listing_with_photo = []
+    photo_length=[]
+    for listing in listings:
+        photo_length.append(len(ListingPhoto.objects.filter(real_estate=listing.id)))
+        listing_with_photo.append([listing, ListingPhoto.objects.filter(real_estate=listing.id),photo_length])
+    
+    return render(request, 'listing/featured.html', {'listing_with_photo': listing_with_photo})
+    # return render(request,'listing/featured.html',{'listings': listings})
 
 def listing_update_submit(request, listing_id):
     print('the id is below')

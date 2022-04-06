@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <header>
-    <h2> FEATURED LISTINGS</h1> 
-    <p> Lorem ipsum dolor sit amet consectetur.</p>
+    <h2 class='header-text'> FEATURED LISTINGS</h1> 
+    <p class='header-text'>GET OUR HOTTEST PROPERTIES BEFORE THEY'RE GONE!</p>
     <hr>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -12,23 +12,48 @@
     <hr>
 </header>
 
-{% for listing in listings %}
-    <div class="card col-md-6">
-        <img class="card-img-top" src="{{listing.image}}">
-        <div class="card-body">
-            <div class="card-body">
-                <h5 class="card-title text-truncate">{{listing.address}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted text-truncate">{{listing.city}}, {{listing.0.province}}</h6>
+{% for listing in listing_with_photo %}
+
+<div class="card col featured-card">
+    <div class='row'>
+        <div class="card-body col-md-3">
+            <div class="card-body col-12">
+                <h5 class="card-title text-truncate">{{listing.0.address}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted text-truncate">{{listing.0.city}}, {{listing.0.province}}</h6>
                 <div>
-                    <div class="card-text text-truncate">sqft: {{listing.sqft}}</div>
-                    <div class="card-text text-truncate">Bedrooms: {{listing.bedrooms}}</div>
-                    <div class="card-text text-truncate">Bathrooms: {{listing.bathrooms}}</div>
-                    <div class="card-text text-truncate">sqft: {{listing.sqft}}</div>
+                    <div class="card-text text-truncate">price : {{listing.0.price}}</div>
+                    <div class="card-text text-truncate">sqft: {{listing.0.sqft}}</div>
+                    <div class="card-text text-truncate">Bedrooms: {{listing.0.bedrooms}}</div>
+                    <div class="card-text text-truncate">Bathrooms: {{listing.0.bathrooms}}</div>
                 </div>
-                <div class="card-text text-truncate">Listing Date: {{listing.listingDate}}</div>
-                <div class="card-text text-truncate">Closing Date: {{listing.closingDate}}</div>
+                <div class='dates-featured'>
+                    <div class="card-text text-truncate">Listing Date: {{listing.0.listingDate}}</div>
+                    <div class="card-text text-truncate">Closing Date: {{listing.0.closingDate}}</div>
+                    <div>photos: {{listing.2.0}}</div>
+                </div>
+                <a class='btn mvpButt' href="/listing/{{listing.0.id}}/detail" target="_blank">More Details</a>
             </div>
         </div>
-    <div>
+
+        <div class="col-md-7">
+                <img src="{{listing.1.1.url}}" class="featured-home-image img-fluid" alt="primary home picture">
+        </div>
+    </div>
+    <br>
+
+    <div class="row featured-image-row-additional" >
+        {% for link in listing.1 %}
+            {% if forloop.counter > 1 %}
+            <div class="col-3">
+                <img src="{{link.url}}" class="featured-home-image-additional img-fluid" alt="additional home picture">
+            </div>
+            {% endif %}
+            
+        {% endfor %}
+    </div>
+</div>
+<br>
+<br>
+
 {% endfor %}
 {% endblock %}

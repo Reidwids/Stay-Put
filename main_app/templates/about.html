@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <header>
-    <h2> ABOUT STAY/PUT REAL ESTATE</h1> 
-    <p> Lorem ipsum dolor sit amet consectetur.</p>
+    <h2 class='header-text'>STAY/PUT™ REAL ESTATE</h1> 
+    <p class='header-text'> THE BRAND YOU TRUST</p>
     <hr>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -14,14 +14,24 @@
 </header>
 
 <div id='info'>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit mollitia corrupti repellat nam maxime aspernatur, inventore, atque sit facere culpa doloribus pariatur eum possimus accusantium hic amet eveniet nobis quibusdam libero saepe alias beatae, consequatur quos. Ipsum, cumque neque ducimus exercitationem amet hic voluptates rerum error vero nam distinctio sequi?</p>
+    <h3> At Stay / Put™  we put YOU first</h3>
     <hr>
+    <br>
 
-    <div>
-        <h3> WE WORK FOR YOU</h3>
-        <a class='btn btn-primary' href='' > view our featured listings</a>
-    </div>
 
+        <div class='row'>
+            <img class="img-fluid col-sm-6" src="../../static/images/working-with-you-realtor.jpeg" id='working-with-you' alt="realtor-helping-family">
+            <div class='col-sm-6 text-box-about'>
+                <h4 class=''>First class Agents, First class service</h4>
+                <br>
+                <p>We go above and beyond with our attention to detail in finding the perfect home for your needs so you can</p>
+                <p><img id="mainIcon" src="../../static/images/mainimg.png"/>Stay / Put ™</p>
+            </div>
+        </div>
+    <br>
+
+    <hr>
+    <a class='btn btn-primary  ' href='' > view our featured listings</a>
     <hr>
 
     <h3>WE WORK WITH THE BEST</h3>
@@ -31,20 +41,22 @@
 <div class='container' id='about-realtors'>
     <div class="row">
     {% for realtor in realtors %}
-        <div class="col-md-4">
-                <div class="card card-about">
-                    <div class='row'>
-                        <img class="card-img-top col-6" src="{{realtor.profilePhoto.url}}">
+        <div class="col-md-6 about-profile-border">
+                <div class="card card-about shadow">
+                    <div class='row card-headline'>
+                        <img class="card-img-top col-6 card-about-img img-fluid" src="{{realtor.profilePhoto.url}}">
                         <div  class='col-6'>
-                            <h4 class='card-header-tabs'>{{realtor}}</h6>
+                            <h4 class='card-header-tabs '>{{realtor}}</h6>
                             <br>
-                            <h7> Broker with Stay/Put</h7>
+                            <p class='card-about-text'>Real Estate Broker</p>
+                            <p><img id="mainIcon" src="../../static/images/mainimg.png"/>Stay / Put ™</p>
                         </div>
                     </div>
+                    <hr>
                     <div class="card-body card-body-about">
-                        <h5 ><span class="material-icons md-18">phone</span> {{realtor.phoneNumber}}</h6>
-                        <h5 ><span class="material-icons">email</span> {{realtor.email}}</h6>
-                        <a class='stretched-link' href="{% url 'detail' realtor.user_id %}">Contact Me</a>
+                        <h5 class='card-about-text'><span class="material-icons md-18">phone</span> {{realtor.phoneNumber}}</h6>
+                        <h5 class='card-about-text'><span class="material-icons md-18">email</span> {{realtor.email}}</h6>
+                        <a class='stretched-link card-about-text' href="{% url 'detail' realtor.user_id %}">Contact Me</a>
                     </div>
                 </div>
         </div>
