@@ -1,9 +1,5 @@
 {% extends 'base.html' %} {% block content %}
 
-<header>
-  <br>
-  <h2> ABOUT {{agent}}</h1> 
-</header>
 <hr>
   <!-- Breadcrumb -->
   <section id="bc" class="mt-3">
@@ -19,15 +15,37 @@
     </div>
   </section>
 <hr>
+<!-- #################### -->
+
+<div class="card mb-3 container-fluid" >
+  <div class="row no-gutters">
+    <div class="col-md-3 left">
+      <img src="{{agent.image.url}}" class="card-img">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h3 class="card-title">{{agent}}</h3>
+        <h6>Name: {{agent}}</h6>
+        <h6>Phone number: {{agent.phoneNumber}}</h6>
+        <h6>Email: {{agent.email}}</h6>
+        <h6>Real Estate License: {{agent.licenseNumber}}</h6>
+    
+        <a class = 'btn mvpButt btn-primary btn-block col-md-3' href="mailto:{{agent.email}}?subject=Real estate inquirey">Email {{agent}}</a>
+        <hr>
+        <a class = 'btn btn-primary btn-block col-md-3 mvpButt' href="tel:{{agent.phoneNumber}}">Call {{agent}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- #################### -->
 
   <section id="about" class="py-4">
+    <hr>
     <div class="container">
       <div class="row">
-        <div class="col-md-8">
-          <h2>Hi There!</h2>
-          <p class="lead">
-            Let me be your home search hero!
-          </p>
+        <div class="col-md-12">
+          <h2>ABOUT</h2>
           <p class="mt-4">
             I'm cool because I can sell a lot of lorem ipsum dolor sit amet consectetur
             adipisicing elit. Perspiciatis esse officia repudiandae ad saepe ex,
@@ -36,37 +54,18 @@
             libero eveniet harum perferendis laborum molestias quia.
           </p>
         </div>
-        <div class="col-md-4">
-          <div class="card">
-            <img
-              class="card-img-top"
-              src="{{agent.image.url}}"
-              alt="{{agent}}"
-            />
-            <div class="card-body">
-              <h6>Name: {{agent}}</h6>
-              <h6>Phone number: {{agent.phoneNumber}}</h6>
-              <h6>Email: {{agent.email}}</h6>
-              <h6>Real Estate License: {{agent.licenseNumber}}</h6>
-              <hr>
-              <a class = 'btn mvpButt btn-primary btn-block col-md-12' href="mailto:{{agent.email}}?subject=Real estate inquirey">Email {{agent}}</a>
-              <hr>
-              <a class = 'btn btn-primary btn-block col-md-12 mvpButt' href="tel:{{agent.phoneNumber}}">Call {{agent}}</a>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </div>
   </section>
 <hr>
-
 
 <!-- Agent's listings title -->
 
 <div class="row text-center">
   <div class="col-md-12">
     <h5 class="display-6">Browse My Properties</h5>
-    <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+    <p class="lead">We got the best properties in the universe! Yes! Including parallel universes!</p>
   </div>
 </div>
 
