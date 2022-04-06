@@ -298,3 +298,15 @@ def listing_delete(request, listing_id):
             s3.delete_object(Bucket = BUCKET, Key = old_key)
     RealEstate.objects.filter(id=listing_id).delete()
     return redirect('profile')
+
+
+def delete_photo(request, listing_id, listingphoto_id):
+    old_key = ListingPhoto.objects.get(id= listingphoto_id)
+    print(old_key.url)
+    ListingPhoto.objects.get(id = listingphoto_id)
+    s3 = boto3.client('s3')
+    old_key = old_key.url.replace(f"https://{BUCKET}.{S3_BASE_URL}/","")
+    print(BUCKET, old_key)
+    s3.delete_object(Bucket = BUCKET, Key = old_key)
+    ListingPhoto.objects.get(id= listingphoto_id).delete()
+    return redirect('listing_update', listing_id=listing_id)

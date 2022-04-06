@@ -17,6 +17,7 @@
     <br class="col-md">
         <div class="row mb-4">  
           <div class="col-md-2">
+            {% if photo_urls.0 %}
             <a>
               <img
                 src="{{photo_urls.0.url}}"
@@ -24,9 +25,14 @@
                 class="img-fluid img-thumbnail"
               />
             </a>
+            <a href="{% url 'delete_photo' listing.id photo_urls.0.id %}">
+              Remove
+            </a>
+            {% endif %}
           </div>
           <!-- Thumbnail 2 -->
           <div class="col-md-2">
+            {% if photo_urls.1 %}
             <a>
               <img
                 src="{{photo_urls.1.url}}"
@@ -34,9 +40,14 @@
                 class="img-fluid img-thumbnail"
               />
             </a>
+            <a href="{% url 'delete_photo' listing.id photo_urls.1.id %}">
+              Remove
+            </a>
+            {% endif %}
           </div>
           <!-- Thumbnail 3 -->
           <div class="col-md-2">
+            {% if photo_urls.2 %}
             <a>
               <img
                 src="{{photo_urls.2.url}}"
@@ -44,9 +55,14 @@
                 class="img-fluid img-thumbnail"
               />
             </a>
+            <a href="{% url 'delete_photo' listing.id photo_urls.2.id %}">
+              Remove
+            </a>
+            {% endif %}
           </div>
           <!-- Thumbnail 4 -->
           <div class="col-md-2">
+            {% if photo_urls.3 %}
             <a>
               <img
                 src="{{photo_urls.3.url}}"
@@ -54,9 +70,14 @@
                 class="img-fluid img-thumbnail"
               />
             </a>
+            <a href="{% url 'delete_photo' listing.id photo_urls.3.id %}">
+              Remove
+            </a>
+            {% endif %}
           </div>
           <!-- Thumbnail 5 -->
           <div class="col-md-2">
+            {% if photo_urls.4 %}
             <a>
               <img
                 src="{{photo_urls.4.url}}"
@@ -64,9 +85,15 @@
                 class="img-fluid img-thumbnail"
               />
             </a>
+            </a>
+            <a href="{% url 'delete_photo' listing.id photo_urls.4.id %}">
+              Remove
+            </a>
+            {% endif %}
           </div>
           <!-- Thumbnail 6 -->
           <div class="col-md-2">
+            {% if photo_urls.5 %}
             <a>
               <img
                 src="{{photo_urls.5.url}}"
@@ -74,23 +101,19 @@
                 class="img-fluid img-thumbnail"
               />
             </a>
+            </a>
+            <a href="{% url 'delete_photo' listing.id photo_urls.5.id %}">
+              Remove
+            </a>
+            {% endif %}
           </div>
         </div>
 
         <div class="row">
             <div class="form-group col-md-4">
                 <label class="form-label"> Images: </label>
-                <input type="file" name="images" accept="image/*" onchange="loadFile(event)">
-                <img id="output"  width="250px"/>
-                <script>
-                  var loadFile = function(event) {
-                    var output = document.getElementById('output');
-                      output.src = URL.createObjectURL(event.target.files[0]);
-                      output.onload = function() {
-                        URL.revokeObjectURL(output.src) // free memory
-                      }
-                  };
-                </script>
+                <input id="file-input" type="file" name="images" accept="image/*" onchange="loadFile(event)" multiple class="form-control">
+                <div id="preview"></div>
             </div>
         </div>
         <br> 
