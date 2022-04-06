@@ -11,7 +11,22 @@
 <form method="post" action ="{% url 'signup'  %}">
     {% csrf_token %}
     {{form.as_p}}
-    <input type="submit" value="signup" class="btn">
+    <div class="button_center">
+        <input type="submit" value="Sign-Up" class="btn mvpButt searchButt">
+    </div>
 </form>
+
+<script>
+    username = document.getElementById('id_username');
+    password1 = document.getElementById('id_password1');
+    password2 = document.getElementById('id_password2');
+    username.classList.add('form-control');
+    password1.classList.add('form-control');
+    password2.classList.add('form-control');
+    username.previousElementSibling.classList.add('form-label');
+    password1.previousElementSibling.classList.add('form-label');
+    password2.previousElementSibling.classList.add('form-label');
+    username.parentElement.parentElement.previousElementSibling.classList.add('page_title');
+</script>
 
 {% endblock %}

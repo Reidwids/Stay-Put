@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+<div ></div>
+<h1 id='profileCreateTitle'>Create A Profile</h1>
+<p class="profileCreateInfo">Create a profile so users can contact you about your properties </p>
+<p class="profileCreateInfo">Let users know why they should pick you to help them find their next dream home</p>
+
 <form method='post' enctype="multipart/form-data" action="{% url 'profile_submit' %}" class="needs-validation" novalidate>
     {% csrf_token %}
     <div class="row">
@@ -30,7 +35,9 @@
             <input type="email" name="email" class="form-control" placeholder="example@gmail.com" required/>
         </div>
     </div>
-    <input type='submit' class="btn mvpButt"></input>
+    <div class="button_center">
+      <button type='submit' class="btn mvpButt searchButt">Create</button>
+  </div>
 </form>
 
 <script>

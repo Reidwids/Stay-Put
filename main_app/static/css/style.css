@@ -83,12 +83,11 @@ nav.fixed-bottom {
     margin-top: 30px;
     width: 200px;
 }
-/*-- Home, create listing button --*/
-.margin-button{
-margin: .7rem 0 3rem 0;
-}
+
+/* Login */
+
 /* Search */
-#searchResultsTitle{
+#searchResultsTitle, .page_title{
     text-align: center;
     margin: 25px 0
 }
@@ -233,19 +232,30 @@ margin: .7rem 0 3rem 0;
   gap: 1rem;
 }
 
+/* Profile Create */
+#profileCreateTitle{
+  margin-top: 30px;
+  text-align: center;
+}
+.profileCreateInfo{
+  text-align: center;
+}
 /* Featured Listings */
 .featured-home-image{
     max-width: 100%;
 }
+
 .featured-home-image-additional{
     /* min-width: 3rem; */
     /* max-width:100%; */
 }
+
 .featured-image-row-additional{
     /* margin:.5rem; */
     max-width: 95%;
     justify-content:space-between ;
 }
+
 .featured-card{
     border:.5rem solid green;
     border-radius: 10px;

@@ -200,8 +200,8 @@ def submit_listing(request):
     new_listing.save()
     photo_files = request.FILES.getlist('images', None)
 
-    if photo_files:
-        for photo_file in photo_files:
+    for photo_file in photo_files:
+        if photo_file:
             print(photo_file)
             s3 = boto3.client('s3')
             key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]

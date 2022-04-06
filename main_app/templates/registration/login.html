@@ -7,8 +7,21 @@
 <form method="post" action ="{% url 'login'  %}">
     {% csrf_token %}
     {{form.as_p}}
-    <input type="submit" value="login" class="btn">
-    <input type="hidden" name="text" value="{{next}}">
+    <div class="button_center">
+        <input type="submit" value="Login" class="btn mvpButt searchButt">
+        <input type="hidden" name="text" value="{{next}}">
+    </div>
 </form>
+
+<script>
+    username = document.getElementById('id_username');
+    password = document.getElementById('id_password');
+    username.previousElementSibling.classList.add('form-label');
+    password.previousElementSibling.classList.add('form-label');
+    username.classList.add('form-control');
+    password.classList.add('form-control')
+    username.parentElement.parentElement.previousElementSibling.classList.add('page_title');
+</script>
+
 
 {% endblock %}
