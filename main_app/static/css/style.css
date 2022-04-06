@@ -255,6 +255,7 @@ nav.fixed-bottom {
     max-width: 95%;
     justify-content:space-between ;
 }
+
 .featured-card{
     border:.5rem solid green;
     border-radius: 10px;
