@@ -17,9 +17,7 @@
     <br class="col-md">
         <div class="row mb-4">  
           <div class="col-md-2">
-            <a
-              href="{{photo_urls.0.url}}"
-            >
+            <a>
               <img
                 src="{{photo_urls.0.url}}"
                 alt=""
@@ -29,9 +27,7 @@
           </div>
           <!-- Thumbnail 2 -->
           <div class="col-md-2">
-            <a
-              href="{{photo_urls.1.url}}"
-            >
+            <a>
               <img
                 src="{{photo_urls.1.url}}"
                 alt=""
@@ -41,9 +37,7 @@
           </div>
           <!-- Thumbnail 3 -->
           <div class="col-md-2">
-            <a
-              href="{{photo_urls.2.url}}"
-            >
+            <a>
               <img
                 src="{{photo_urls.2.url}}"
                 alt=""
@@ -53,9 +47,7 @@
           </div>
           <!-- Thumbnail 4 -->
           <div class="col-md-2">
-            <a
-              href="{{photo_urls.3.url}}"
-            >
+            <a>
               <img
                 src="{{photo_urls.3.url}}"
                 alt=""
@@ -65,9 +57,7 @@
           </div>
           <!-- Thumbnail 5 -->
           <div class="col-md-2">
-            <a
-              href="{{photo_urls.4.url}}"
-            >
+            <a>
               <img
                 src="{{photo_urls.4.url}}"
                 alt=""
@@ -77,9 +67,7 @@
           </div>
           <!-- Thumbnail 6 -->
           <div class="col-md-2">
-            <a
-              href="{{photo_urls.5.url}}"
-            >
+            <a>
               <img
                 src="{{photo_urls.5.url}}"
                 alt=""
@@ -92,7 +80,17 @@
         <div class="row">
             <div class="form-group col-md-4">
                 <label class="form-label"> Images: </label>
-                <input type="file" name="images" multiple class="form-control">
+                <input type="file" name="images" accept="image/*" onchange="loadFile(event)">
+                <img id="output"  width="250px"/>
+                <script>
+                  var loadFile = function(event) {
+                    var output = document.getElementById('output');
+                      output.src = URL.createObjectURL(event.target.files[0]);
+                      output.onload = function() {
+                        URL.revokeObjectURL(output.src) // free memory
+                      }
+                  };
+                </script>
             </div>
         </div>
         <br> 

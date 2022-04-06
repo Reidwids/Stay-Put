@@ -171,17 +171,57 @@ margin: .7rem 0 3rem 0;
     flex-wrap: wrap;
 }
 /* for about */
-header {
+.header-text {
   display: block;
   text-align: center;
 }
-header > h6 {
-  text-align: left;
-}
+/* #working-together{
 
+} */
+#working-with-you{
+    /* height: 18rem;
+    width:30rem; */
+    border: .2rem solid white;
+    padding:0px;
+    border-radius: 10px;
+}
+.text-box-about{
+    font-size: 1em;
+    justify-content:space-evenly ;
+}
+.about-icon{
+    height:1.5rem;
+    width: 1.5rem;
+}
+.card-about-name{
+    margin:0 auto;
+    right: 3rem;
+}
+.about-profile-border{
+    padding: 1rem;
+    /* display: flex; */
+    justify-content:space-evenly;
+}
+.card-headline{
+    /* padding:.5rem; */
+    display:flex;
+    justify-content: space-between;
+}
+.card-about-img{
+    width: 8rem;
+    height: 7rem;
+    object-fit:cover;
+}
 .card-about {
   min-height: 100%;
+  padding:.5rem;
 
+}
+.card-about-text{
+    font-size: 1em;
+}
+.card-about-text>p{
+    font-size: 2.7em;
 }
 #info {
   display: block;
@@ -191,6 +231,27 @@ header > h6 {
   margin-bottom: 3rem;
   /* padding:1rem; */
   gap: 1rem;
+}
+
+/* Featured Listings */
+.featured-home-image{
+    max-width: 100%;
+}
+.featured-home-image-additional{
+    /* min-width: 3rem; */
+    /* max-width:100%; */
+}
+.featured-image-row-additional{
+    /* margin:.5rem; */
+    max-width: 95%;
+    justify-content:space-between ;
+}
+.featured-card{
+    border:.5rem solid green;
+    border-radius: 10px;
+    padding:.5rem;
+    margin-top: 1rem auto;
+    
 }
 
 /* Button styling */
