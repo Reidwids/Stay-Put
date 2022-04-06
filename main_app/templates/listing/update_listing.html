@@ -112,17 +112,8 @@
         <div class="row">
             <div class="form-group col-md-4">
                 <label class="form-label"> Images: </label>
-                <input type="file" name="images" accept="image/*" onchange="loadFile(event)">
-                <img id="output"  width="250px"/>
-                <script>
-                  var loadFile = function(event) {
-                    var output = document.getElementById('output');
-                      output.src = URL.createObjectURL(event.target.files[0]);
-                      output.onload = function() {
-                        URL.revokeObjectURL(output.src) // free memory
-                      }
-                  };
-                </script>
+                <input id="file-input" type="file" name="images" accept="image/*" onchange="loadFile(event)" multiple class="form-control">
+                <div id="preview"></div>
             </div>
         </div>
         <br> 
