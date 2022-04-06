@@ -175,9 +175,9 @@ margin: .7rem 0 3rem 0;
   display: block;
   text-align: center;
 }
-#working-together{
+/* #working-together{
 
-}
+} */
 #working-with-you{
     /* height: 18rem;
     width:30rem; */
@@ -231,6 +231,27 @@ margin: .7rem 0 3rem 0;
   margin-bottom: 3rem;
   /* padding:1rem; */
   gap: 1rem;
+}
+
+/* Featured Listings */
+.featured-home-image{
+    max-width: 100%;
+}
+.featured-home-image-additional{
+    /* min-width: 3rem; */
+    /* max-width:100%; */
+}
+.featured-image-row-additional{
+    /* margin:.5rem; */
+    max-width: 95%;
+    justify-content:space-between ;
+}
+.featured-card{
+    border:.5rem solid green;
+    border-radius: 10px;
+    padding:.5rem;
+    margin-top: 1rem auto;
+    
 }
 
 /* Button styling */
