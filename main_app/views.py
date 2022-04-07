@@ -22,7 +22,7 @@ def signup(request):
             user = form.save()
             # login the user
             login(request, user)
-            return redirect('/')
+            return redirect('/accounts/profile/')
         else:
             error_message = 'Invalid signup - try again'
     form = UserCreationForm()
@@ -45,8 +45,6 @@ def bookmarks(request):
     for listing in listing_with_photo:
         print(listing[1])
     return render(request, 'bookmarks.html', {'listing_with_photo': listing_with_photo})
-
-    
 
 
 @login_required
@@ -71,7 +69,7 @@ def profile_submit(request):
         licenseNumber = request.POST['licenseNumber'],
         phoneNumber = request.POST['phoneNumber'],
         email = request.POST['email'],
-        isAgent = True,
+        isAgent = False,
         isAdmin = False,
         user = request.user,
         )
@@ -98,6 +96,13 @@ def profile_submit(request):
         photo_url = photo.url
     # return redirect('profile', {'profile': new_profile,  'photo_url': photo_url})
     return render(request, 'agent/profile.html', {'profile': new_profile,  'photo_url': photo_url})
+
+@login_required
+def beanagent(request):
+    profile=Profile.objects.get(user=request.user)
+    profile.isAgent = True
+    profile.save()
+    return redirect('profile')
 
 @login_required
 def profile_update(request):
@@ -159,7 +164,7 @@ def edit(request):
     return render(request,'agent/edit.html') 
 
 def about(request):
-    realtors = Profile.objects.all()
+    realtors = Profile.objects.all().filter(isAgent=True)
     for realtor in realtors:
         realtor.profilePhoto = ProfilePhoto.objects.get(profile_id=realtor.user_id)
     return render(request,'about.html',{'realtors': realtors[:6]})
@@ -202,7 +207,8 @@ def search(request):
 
 @login_required
 def create_listing(request):
-    return render(request, 'listing/create_listing.html')
+    currentUser = Profile.objects.get(user_id=request.user)
+    return render(request, 'listing/create_listing.html', {'currentUser': currentUser})
 
 @login_required
 def submit_listing(request):

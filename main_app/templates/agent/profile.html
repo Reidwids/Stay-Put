@@ -42,9 +42,12 @@
           href="{% url 'profile_update' %}">EDIT PROFILE<span class="material-icons">
             edit
           </span></a>
+        {% if profile.isAgent == False %}
+        <a href="{% url 'beanagent' %}"> Become An Agent </a>
+        {% endif %}
         <hr/>
         <a class="btn btn-primary btn-block col-md-3"
-          href="{% url 'create_listing' %}">list Property <span class="material-icons">post_add </span>
+          href="{% url 'create_listing' %}">List Property <span class="material-icons">post_add </span>
         </a>
       </div>
     </div>
@@ -85,7 +88,7 @@
       {% for listing in listings %}
       <!-- Listing 1 -->
       <div class="col-md-6 col-lg-4 mb-4">
-        <a href="{% url 'listing_update' listing.id %}">
+        <a href="{% url 'listing_detail' listing.id %}">
           <div class="card listing-preview">
             <img
               class="card-img-top"

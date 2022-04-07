@@ -8,6 +8,7 @@ urlpatterns = [
     path('accounts/profile/update/', views.profile_update, name='profile_update'),
     path('accounts/profile/submit_update/', views.submit_profile_update, name='submit_profile_update'),
     path('accounts/profile/delete/', views.profile_delete, name='profile_delete'),
+    path('accounts/profile/beanagent/', views.beanagent, name="beanagent"),
     path('about/',views.about, name='about'),
     path('search/', views.search, name='search'),
     path("agent/<int:user_id>/detail/", views.detail, name='detail'),

@@ -73,7 +73,7 @@ class Profile(models.Model):
     licenseNumber = models.CharField(max_length=12)
     phoneNumber = models.CharField(max_length=12)
     email = models.EmailField()
-    isAgent = models.BooleanField(default = True)
+    isAgent = models.BooleanField(default = False)
     isAdmin = models.BooleanField(default = False)
     blurb = models.CharField(max_length=500)
     bookmarks = models.ManyToManyField(Bookmark)
