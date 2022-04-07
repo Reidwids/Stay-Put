@@ -17,9 +17,9 @@
 </header>
 
 {% for listing in listing_with_photo %}
-<div class=" card col featured-card">
-    <div class='row'>
-        <div class="col-md-3 featured-info">
+<div class=" col featured-card">
+    <div class='row featured-row'>
+        <div class="col-md-3 featured-info-text">
             <h5 class="list-group">{{listing.0.address}}</h5>
             <h6 class="card-subtitle mb-2 list-group">{{listing.0.city}}, {{listing.0.province}}</h6>
                 <ul class="list-group list-group-flush">
@@ -40,11 +40,11 @@
                             <span class="float-right">{{listing.0.bedrooms}}</span>
                     </li>
                     <li class="list-group-item text-secondary">
-                        Listing Date: 
+                        Listing: 
                             <span class="float-right">{{listing.0.listingDate}}</span>
                     </li>
                     <li class="list-group-item text-secondary">
-                        Closing Date: 
+                        Closing: 
                             <span class="float-right">{{listing.0.closingDate}}</span>
                     </li>
                 </ul>
@@ -61,7 +61,7 @@
         <div class='col-md-3 '>
             <div class="gmap_canvas">
                 <iframe
-                  width="275"
+                  width="280"
                   height="380"
                   id="gmap_canva9"
                   src="https://maps.google.com/maps?q={{listing.0.address}},{{listing.0.city}},{{listing.0.province}}=&output=embed"
