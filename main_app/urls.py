@@ -32,4 +32,6 @@ urlpatterns = [
 
     path('listing/<int:listing_id>/detail/add_bookmark/', views.add_bookmark, name='add_bookmark'),
     path('listing/<int:listing_id>/detail/remove_bookmark/', views.remove_bookmark, name='remove_bookmark'),
+
+    path('terms/', views.terms_conditions, name='terms_conditions'),
 ]

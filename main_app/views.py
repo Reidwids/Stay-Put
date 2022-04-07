@@ -405,3 +405,6 @@ def remove_bookmark(request, listing_id):
     user = Profile.objects.get(user_id=request.user)
     user.bookmarks.remove(listing_id)
     return redirect('listing_detail', listing_id=listing_id)
+
+def terms_conditions(request):
+    return render(request,'terms.html')

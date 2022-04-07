@@ -303,30 +303,43 @@ nav.fixed-bottom {
 /* Featured Listings */
 .featured-home-image{
     padding: 0.0rem;
-    width: 80%;
-    height: 100%;
-    /* border: .75rem solid whitesmoke; */
+    width: 100%;
+    height:25rem;
     object-fit:cover;
 }
-
-
 
 .featured-card{
     padding:0rem;
     margin: 0rem;
     color: snow;
+    background-color: whitesmoke;
     text-align: center;
-    margin-bottom:4rem auto;   
+    margin-bottom:4rem auto;
+    vertical-align: middle;   
 }
-
+.featured-row{
+    width: 100%;
+}
+.featured-info-text{
+    padding:0;
+    margin:0;
+    /* width: 100%; */
+    justify-content: center;
+    background-color: slategray;
+}
 .featured-info{
     padding:0;
     margin:0;
     /* width: fit-content; */
     justify-content: center;
-    background-color: darkcyan;
+    vertical-align: middle;  
+    /* background-color: darkcyan; */
 }
 
+/* terms and conditions */
+#terms>h1,h2,h3,h4,a{
+    text-align: center;
+}
 
 /* Button styling */
 
