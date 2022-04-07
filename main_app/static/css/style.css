@@ -226,6 +226,9 @@ nav.fixed-bottom {
   /* padding:1rem; */
   gap: 1rem;
 }
+/* Profile */
+
+
 
 /* Profile Create */
 #profileCreateTitle {
@@ -298,4 +301,14 @@ nav.fixed-bottom {
   background-color: rgba(36, 36, 36, 0.733);
   height: 70px;
   width: 40px;
+}
+
+/* Listing Details */
+#breadcrumb_bookmarked{
+  display: flex;
+  justify-content: space-between;
+}
+#bookmark{
+  width: 30px;
+  height: 35px;
 }

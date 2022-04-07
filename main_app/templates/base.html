@@ -35,6 +35,7 @@
                           <a class='navbar-text'>Hi, {{user.username}}</a>
                           <a class="nav-link" href="{% url 'create_listing' %}">Create Listing</a>
                           <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                          <a class="nav-link" href="{% url 'bookmarks' %}">Bookmarks</a>
                           <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
                           {% else %}
                           <a class="nav-link" href="{% url 'signup' %}">Become An Agent</a>
