@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Profile, RealEstate, ListingPhoto, ProfilePhoto
+from .models import Bookmark, Profile, RealEstate, ListingPhoto, ProfilePhoto
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required 
 from django.contrib.auth import login
@@ -213,6 +213,8 @@ def submit_listing(request):
         description = request.POST['description'],
     )
     new_listing.save()
+    new_bookmark = Bookmark(real_estate_id=new_listing.id)
+    new_bookmark.save()
     photo_files = request.FILES.getlist('images', None)
 
     for photo_file in photo_files:
@@ -244,12 +246,13 @@ def listing_detail(request, listing_id):
     agent = Profile.objects.get(user_id=listing.realtor_id)
     agent.image = ProfilePhoto.objects.get(profile_id=agent.user_id)
     photo_urls = ListingPhoto.objects.filter(real_estate_id=listing.id)
+    bookmark = Bookmark.objects.get(real_estate_id=listing_id)
 
     is_user_realtor = False
     if request.user.is_authenticated:
         user = Profile.objects.get(user=request.user)
         is_user_realtor = True if listing.realtor_id == user.user_id else False 
-    return render(request,'listing/detail.html', {'listing': listing, 'agent': agent, 'photo_urls': photo_urls, 'is_user_realtor': is_user_realtor})
+    return render(request,'listing/detail.html', {'listing': listing, 'agent': agent, 'photo_urls': photo_urls, 'is_user_realtor': is_user_realtor, 'bookmark': bookmark})
 
 @login_required
 def listing_update(request, listing_id):
@@ -349,3 +352,12 @@ def delete_photo(request, listing_id, listingphoto_id):
             s3.delete_object(Bucket = BUCKET, Key = old_key)
             ListingPhoto.objects.get(id= listingphoto_id).delete()
     return redirect('listing_update', listing_id=listing_id)
+
+
+def add_bookmark(request, listing_id, real_estate_id, user_id):
+    Profile.objects.get(id=user_id).bookmarks.add(real_estate_id)
+    return redirect('listing_detail', listing_id=listing_id)
+
+def remove_bookmark(request, listing_id, real_estate_id, user_id):
+    Profile.objects.get(id=user_id).bookmarks.remove(real_estate_id)
+    return redirect('listing_detail', listing_id=listing_id)

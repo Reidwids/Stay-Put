@@ -28,4 +28,9 @@ urlpatterns = [
     path('account/add_bookmark/', views.add_bookmark, name='add_bookmark'),
 
     path('listings/<int:listing_id>/delete_photo/<int:listingphoto_id>/', views.delete_photo, name='delete_photo'),
+
+    # Asscociate a Toy with a Cat (M:M)
+    path('listing/<int:listing_id>/detail/add_bookmark/<int:real_estate_id>', views.add_bookmark, name='add_bookmark'),
+    # Unasscociate a Toy with a Cat (M:M)
+    path('listing/<int:listing_id>/detail/remove_bookmark/<int:real_estate_id>', views.remove_bookmark, name='remove_bookmark'),
 ]
