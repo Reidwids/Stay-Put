@@ -226,9 +226,9 @@ def submit_listing(request):
                 print(photo)
             except:
                 print('An error occurred uploading file to S3')
-    else: 
-        photo = ListingPhoto(url='https://stay-put.s3.ca-central-1.amazonaws.com/49fe05.jpg', real_estate_id = new_listing.id)
-        photo.save()
+        else: 
+            photo = ListingPhoto(url='https://stay-put.s3.ca-central-1.amazonaws.com/49fe05.jpg', real_estate_id = new_listing.id)
+            photo.save()
     return redirect('/accounts/profile/')
     
 def listing_detail(request, listing_id):
