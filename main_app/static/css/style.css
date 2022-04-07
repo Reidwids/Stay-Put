@@ -104,6 +104,10 @@ nav.fixed-bottom {
   text-align: center;
   margin: 25px 0;
 }
+.page_subtitle{
+  text-align: center;
+  margin: 25px 0;
+}
 .minmax {
   display: flex !important;
   flex-direction: row;
@@ -338,8 +342,14 @@ nav.fixed-bottom {
 #breadcrumb_bookmarked{
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
-#bookmark{
+
+.bookmarkImg{
   width: 30px;
   height: 35px;
+}
+
+.breadcrumbPadding{
+  padding-top: 15px;
 }
