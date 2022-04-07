@@ -1,15 +1,18 @@
 {% extends 'base.html' %} {% block content %}
 <header>
+    <hr>
+    <br>
     <h2 class='header-text'> FEATURED LISTINGS</h1> 
     <p class='header-text'>GET OUR HOTTEST PROPERTIES BEFORE THEY'RE GONE!</p>
     <hr>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">featured listings</li>
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">HOME</a></li>
+            <li class="breadcrumb-item active" aria-current="page">FEATURED LISTINGS</li>
         </ol>
-      </nav>
+    </nav>
     <hr>
+
 </header>
 
 {% for listing in listing_with_photo %}

@@ -1,46 +1,56 @@
 {% extends 'base.html' %}
 {% block content %}
 <header>
+    <hr>
+    <br>
     <h2 class='header-text'>STAY/PUT™ REAL ESTATE</h1> 
-    <p class='header-text'> THE BRAND YOU TRUST</p>
+        <p class='header-text lead'> THE BRAND YOU TRUST</p>
     <hr>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
           <li class="breadcrumb-item active" aria-current="page">About</li>
         </ol>
-      </nav>
+    </nav>
     <hr>
+
 </header>
 
 <div id='info'>
-    <h3> At Stay / Put™  we put YOU first</h3>
-    <hr>
-    <br>
-
-
-        <div class='row'>
-            <img class="img-fluid col-sm-6" src="../../static/images/working-with-you-realtor.jpeg" id='working-with-you' alt="realtor-helping-family">
-            <div class='col-sm-6 text-box-about'>
-                <h4 class=''>First class Agents, First class service</h4>
-                <br>
-                <p>We go above and beyond with our attention to detail in finding the perfect home for your needs so you can</p>
-                <p><img id="mainIcon" src="../../static/images/mainimg.png"/>Stay / Put ™</p>
-            </div>
+    <div class='row about-info-row'>
+        <img class="img-fluid col-sm-6 shadow" src="../../static/images/Attention-to-detail.jpeg" id='working-with-you' alt="realtor-helping-family">
+        <div class='col-sm-6' id='text-box-about-1'>
+            <h2 class='lead'><em>First class Agents<br> First class service</h2></em>
+            <br>
+            <h3 class='lead about-lead'>We go above and beyond with our attention to detail in finding the perfect home for your needs so you can Stay / Put ™</h3>
+            <br>
+            <h3><img id="mainIcon" src="../../static/images/mainimg.png"/>Stay / Put ™</h3>
         </div>
-    <br>
-
+    </div>
     <hr>
-    <a class='btn mvpButt  ' href='' > view our featured listings</a>
+    <div class='row about-info-row'>
+        <div class='col-md-6' id='text-box-about-2'>
+            <h2 class="lead"><em>putting you first</em></h2>
+            <br>
+            <br>
+            <h3 class='lead about-lead'>At Stay / Put ™ <br> We take care of everything and always put <em>You</em> first. So you can focus on what really matters.</h3>
+            <br>
+        </div>
+        <img class="img-fluid col-md-6 info-img shadow" src="../../static/images/working-with-you-realtor.jpeg" id='working-with-you' alt="realtor-helping-family">
+    </div>
+    
     <hr>
-
-    <h3>WE WORK WITH THE BEST</h3>
+        <a class='btn mvpButt  ' href='' > view our featured listings</a>
+    <hr>
+        <h3>WE WORK WITH THE BEST</h3>
+    <hr>
 </div>
 
 {% if realtors %}
 <div class='container' id='about-realtors'>
     <div class="row">
     {% for realtor in realtors %}
+        {% if realtor.isAgent %}
         <div class="col-md-6 about-profile-border">
                 <div class="card card-about shadow">
                     <div class='row card-headline'>
@@ -53,17 +63,39 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="card-body card-body-about">
-                        <h5 class='card-about-text'><span class="material-icons md-18">phone</span> {{realtor.phoneNumber}}</h6>
-                        <h5 class='card-about-text'><span class="material-icons md-18">email</span> {{realtor.email}}</h6>
-                        <a class='stretched-link card-about-text' href="{% url 'detail' realtor.user_id %}">Contact Me</a>
+                    <div class="card-body card-body-about row">
+                        <div class='col-6'>
+                            <h5 class='card-about-text'><span class="material-icons md-18">phone</span> {{realtor.phoneNumber}}</h6>
+                                <a class='stretched-link card-about-text' href="{% url 'detail' realtor.user_id %}">Contact Me</a>
+                        </div>
+                        <h5 class='card-about-text col-6'><span class="material-icons md-18">email</span> {{realtor.email}}</h6>  
                     </div>
                 </div>
         </div>
+        {% endif %}
     {% endfor %}
     </div>
 </div>
 {% endif %}
+
+<hr>
+    <div id='footer-links'>
+        <a class='btn mvpButt  ' href="{% url 'signup' %}" ><span class="material-icons">
+            group_add
+            </span> Become An Agent</a>
+        <a class='btn mvpButt  ' href="tel:605-475-6973" ><span class="material-icons">
+            support_agent
+            </span> Support</a>
+        <a class='btn mvpButt  ' href="" ><span class="material-icons">
+            feedback
+            </span> Give Feedback</a>
+        <a class='btn mvpButt  ' href="" ><span class="material-icons">
+            security
+            </span> Privacy Policy</a>
+    </div>
+<hr>
+<br>
+
 
 
 {% endblock %}
