@@ -188,11 +188,9 @@
                 >
               </li>
               <li class="list-group-item text-secondary">
-                <a
-                  href="{% url 'detail' agent.user_id %}"
-                  class="float-right fontsz"
-                  >Realtor: {{agent}}
-                </a>
+                <span class="float-right fontsz"
+                  >Realtor: {{agent.firstName}} {{agent.lastName}}</span
+                >
               </li>
             </ul>
           </div>
@@ -209,21 +207,17 @@
       </div>
       <div class="col-md-3">
         <div class="card mb-3 niacus">
-          <img class="card-img-top" src="{{agent.image.url}}" alt="" />
+          <img class="card-img-top" src="{{agent.image.url}}"/>
           <div class="card-body">
-            <h5 class="card-title">Property Realtor</h5>
-            <h6>
-              Name:
-              <p>{{agent}}</p>
-            </h6>
-            <h6>
-              Phone number:
-              <p>{{agent.phoneNumber}}</p>
-            </h6>
-            <h6>
-              Email:
-              <p>{{agent.email}}</p>
-            </h6>
+            <a class='stretched-link' href="{% url 'agent_profile' agent.user_id %}"></a>
+            <h5 class="card-title text-truncate">Property Realtor</h5>
+            <h6 class="card-subtitle mb-2 text-muted text-truncate">{{agent.firstName}} {{agent.lastName}}</h6>
+            <li class="list-group-item list-spacing">
+              <div class="text-truncate"><span class="material-icons icon-size">phone</span>&nbsp;&nbsp;{{agent.phoneNumber}}</div>
+            </li>
+            <li class="list-group-item list-spacing">
+              <div class="text-truncate"><span class="material-icons icon-size">email</span>&nbsp;&nbsp;{{agent.email}}</div>
+            </li>
           </div>
         </div>
 

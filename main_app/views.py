@@ -51,6 +51,7 @@ def bookmarks(request):
 def profile(request):
     try:
         profile = Profile.objects.get(user=request.user)
+        current_user = Profile.objects.get(user=request.user)
         photo_url = ProfilePhoto.objects.get(profile=request.user.id).url
         listings = RealEstate.objects.filter(realtor_id=profile.user_id)
         listing_with_photo = []
@@ -59,7 +60,7 @@ def profile(request):
             listing.photo_url = photo_urls[0].url
             listing_with_photo.append([listing, ListingPhoto.objects.filter(real_estate=listing.id)[0].url])
             print(listing_with_photo)
-        return render(request, 'agent/profile.html', {'profile': profile, 'photo_url': photo_url, 'listings': listings, 'listing_with_photo': listing_with_photo})
+        return render(request, 'agent/profile.html', {'profile': profile, 'photo_url': photo_url, 'listings': listings, 'listing_with_photo': listing_with_photo, 'current_user': current_user})
     except:
         print("Why is this working")
         return render(request, 'agent/create_profile.html')
@@ -290,6 +291,21 @@ def listing_update(request, listing_id):
         is_user_realtor = True if listing.realtor_id == user.user_id else False 
     return render(request, 'listing/update_listing.html', {'is_user_realtor': is_user_realtor, 'listing': listing, 'agent': agent, 'photo_urls': photo_urls})
 
+def agent_profile(request, agent_id):
+    # try:
+        profile = Profile.objects.get(user_id=agent_id)
+        current_user = Profile.objects.get(user_id=request.user.id)
+        photo_url = ProfilePhoto.objects.get(profile=agent_id).url
+        listings = RealEstate.objects.filter(realtor_id=profile.user_id)
+        listing_with_photo = []
+        for listing in listings:
+            photo_urls = ListingPhoto.objects.filter(real_estate_id=listing.id)
+            listing.photo_url = photo_urls[0].url
+            listing_with_photo.append([listing, ListingPhoto.objects.filter(real_estate=listing.id)[0].url])
+        return render(request, 'agent/profile.html', {'profile': profile, 'photo_url': photo_url, 'listings': listings, 'listing_with_photo': listing_with_photo, 'current_user': current_user})
+    # except:
+    #     print("Why is this working")
+    #     return render(request, 'agent/create_profile.html')
 
 def listing_featured(request):
     listings=RealEstate.objects.all()
