@@ -2,7 +2,13 @@
 
 <!-- ######################### -->
 <br>
-<h2 class='header-text'>MY PROFILE</h1>
+{% if user.is_authenticated %}
+{% if profile.user_id == current_user.user_id %}
+<h2 class='header-text'>My Profile</h2>
+{% else %}
+<h2 class='header-text'>{{profile}}'s Profile</h2>
+{% endif %}
+{% endif %}
 <hr />
 
 <!-- Breadcrumb -->
@@ -13,8 +19,12 @@
         <li class="breadcrumb-item">
           <a href="{% url 'home' %}"> Home</a>
         </li>
+        {% if user.is_authenticated %}
         {% if profile.user_id == current_user.user_id %}
         <li class="breadcrumb-item active">My Profile</li>
+        {% else %}
+        <li class="breadcrumb-item active">{{profile}}'s' Profile</li>
+        {% endif %}
         {% endif %}
       </ol>
     </nav>
@@ -36,8 +46,10 @@
         <!-- <h3 class="card-title">My Profile</h3> -->
         <div id="profileTitleDiv card-title">
           <h2 class="text-truncate">{{profile.firstName}} {{profile.lastName}} 
+            {% if user.is_authenticated %}
             {% if profile.user_id == current_user.user_id %}
             <a href="{% url 'profile_update' %}"><span class="material-icons">edit</span></a>
+            {% endif %}
             {% endif %}
           </h2>
           </div>
