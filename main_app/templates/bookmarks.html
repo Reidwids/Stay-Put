@@ -1,43 +1,57 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="container resultsContainer">
-    <h1 class='page_title'>Your Bookmarks</h1>
-    <div class="row listingsList">
-        {% for listing in listing_with_photo %}
-        <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card listing-preview">
-                <img class="card-img-top" src="{{listing.1}}">
-                <div class="card-img-overlay">
-                    <p class="card-price">${{listing.0.price}}</p>
-                </div>
-                <div class="card-body">
-                    <a class='stretched-link' href="{% url 'listing_detail' listing.0.id %}"></a>
-                    <h5 class="card-title text-truncate">{{listing.0.address}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted text-truncate">{{listing.0.city}}, {{listing.0.province}}</h6>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item text-truncate list-spacing">
-                            <div>{% if 'H' in listing.0.buildingType %}House{% endif %}
-                                {% if 'T' in listing.0.buildingType %}Townhouse{% endif %}
-                                {% if 'S' in listing.0.buildingType %}Semi-Detached{% endif %}
-                                {% if 'C' in listing.0.buildingType %}Condominium{% endif %}
-                            </div>
-                        </li>
-                        <li class="list-group-item text-truncate list-spacing">
-                            <div> {{listing.0.bedrooms}} Bed</div>
-                            <div>{{listing.0.bathrooms}} Bath</div>
-                            <div>{{listing.0.sqft}} Sqft</div>
-                        </li>
-                        <li class="list-group-item text-truncate list-spacing">
-                            <div>Listed: {{listing.0.listingDate}}</div>
-                        </li>
-                        <li class="list-group-item text-truncate list-spacing">
-                            <div>Closing: {{listing.0.closingDate}}</div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+  <h2 class="page_title">BOOKMARKS</h2>
+  <hr>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Bookmarks</li>
+        </ol>
+    </nav>
+    <hr>
+
+  <div class="row listingsList">
+    {% for listing in listing_with_photo %}
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card listing-preview">
+        <img class="card-img-top" src="{{listing.1}}" />
+        <div class="card-img-overlay">
+          <p class="card-price">${{listing.0.price}}</p>
         </div>
-        {% endfor %}
+        <div class="card-body">
+          <a
+            class="stretched-link"
+            href="{% url 'listing_detail' listing.0.id %}"
+          ></a>
+          <h5 class="card-title text-truncate">{{listing.0.address}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted text-truncate">
+            {{listing.0.city}}, {{listing.0.province}}
+          </h6>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item text-truncate list-spacing">
+              <div>
+                {% if 'H' in listing.0.buildingType %}House{% endif %} 
+                {% if 'T' in listing.0.buildingType %}Townhouse{% endif %} 
+                {% if 'S' in listing.0.buildingType %}Semi-Detached{% endif %} 
+                {% if 'C' in listing.0.buildingType %}Condominium{% endif %}
+              </div>
+            </li>
+            <li class="list-group-item text-truncate list-spacing">
+              <div>{{listing.0.bedrooms}} Bed</div>
+              <div>{{listing.0.bathrooms}} Bath</div>
+              <div>{{listing.0.sqft}} Sqft</div>
+            </li>
+            <li class="list-group-item text-truncate list-spacing">
+              <div>Listed: {{listing.0.listingDate}}</div>
+            </li>
+            <li class="list-group-item text-truncate list-spacing">
+              <div>Closing: {{listing.0.closingDate}}</div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
+    {% endfor %}
+  </div>
 </div>
 {% endblock content %}
