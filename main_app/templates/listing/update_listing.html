@@ -9,7 +9,10 @@
     </div>
 </section>
 
+{% if is_user_realtor %}
 <a href="{% url 'listing_delete' listing.id %}"><button class="btn mvpButt">Delete Listing</button></a>
+{% endif %}
+
 <form method='post' enctype="multipart/form-data" action="{% url 'listing_update_submit' listing.id%}" class="needs-validation" novalidate>
     {% csrf_token %}
 

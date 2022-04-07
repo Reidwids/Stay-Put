@@ -26,7 +26,6 @@
     </nav>
   </div>
 </section>
-
 <!-- Listing -->
 <section id="listing" class="py-4">
   <div class="container">
@@ -40,25 +39,23 @@
           class="img-main img-fluid mb-3 bigger"
         /> -->
         <!-- #################### -->
-
         <div
           id="carouselExampleControls"
           class="carousel slide"
           data-bs-ride="carousel"
         >
           <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="{{photo_urls.0.url}}" class="d-block w-100" />
-            </div>
-            <div class="carousel-item">
-              <img src="{{photo_urls.1.url}}" class="d-block w-100" />
-            </div>
-            <div class="carousel-item">
-              <img src="{{photo_urls.2.url}}" class="d-block w-100" />
-            </div>
-            <div class="carousel-item">
-              <img src="{{photo_urls.3.url}}" class="d-block w-100" />
-            </div>
+            {% for photo_url in photo_urls %}
+              {% if photo_url == photo_urls.0 %}
+              <div class="carousel-item active">
+                <img src="{{photo_url.url}}" class="d-block w-100" />
+              </div>
+              {% else %}
+              <div class="carousel-item">
+                <img src="{{photo_url.url}}" class="d-block w-100" />
+              </div>
+              {% endif %} 
+            {% endfor %}
           </div>
           <button
             class="carousel-control-prev"
@@ -82,7 +79,6 @@
         <!-- #################### -->
         <br />
         <!-- Thumbnails -->
-
         <!-- Thumbnail 1 -->
         <div class="row mb-5 thumbs">
           <div class="col-md-2">
@@ -129,7 +125,6 @@
             </a>
           </div>
         </div>
-
         <!-- Fields -->
         <div class="row mb-5">
           <div class="col-md-6">
@@ -175,7 +170,6 @@
             </ul>
           </div>
         </div>
-
         <!-- Description -->
         <div class="row mb-5">
           <div class="col-md-12">{{listing.description}}</div>
@@ -208,7 +202,6 @@
   ><button class="btn mvpButt">Update Listing</button></a
 >
 <!-- https://maps.google.com/maps?q= { (address)(ex:2444 Bay street,Toronto,On) }=UTF8&iwloc=&output=embed -->
-
 <div class="mapouter">
   <div class="gmap_canvas">
     <iframe
@@ -240,5 +233,4 @@
     </style>
   </div>
 </div>
-
 {% endblock %}
