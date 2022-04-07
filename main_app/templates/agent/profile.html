@@ -38,6 +38,10 @@
         <hr>
         <h6>About Me</h6>
         <p class="card-text">{{profile.blurb}}</p>
+
+        {% if profile.isAgent == False %}
+        <a href="{% url 'beanagent' %}"> Become An Agent </a>
+        {% endif %}
       </div>
     </div>
   </div>
