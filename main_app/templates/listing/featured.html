@@ -13,66 +13,80 @@
 </header>
 
 {% for listing in listing_with_photo %}
-    {% if listing.2.0 == 5 %}
-    <h3>say hi</h3>
-    {% endif %}
-<div class="card col featured-card">
+<div class=" card col featured-card">
     <div class='row'>
-        <div class="card-body col-md-5">
-            <div class="card-body col-12">
-                <h5 class="card-title">{{listing.0.address}}</h5>
-                <h6 class="card-subtitle mb-2">{{listing.0.city}}, {{listing.0.province}}</h6>
-                    <div class="col-md-6">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item text-secondary">
-                                Asking:
-                                <span class="float-right">{{listing.0.price}}</span>
-                              </li>
-                            <li class="list-group-item text-secondary">
-                                Square Feet:
-                                <span class="float-right">{{listing.0.sqft}}</span>
-                            </li>
-                            <li class="list-group-item text-secondary">
-                                bedrooms:
-                                <span class="float-right">{{listing.0.bathrooms}}</span>
-                            </li>
-                            <li class="list-group-item text-secondary">
-                                bathrooms: 
-                                    <span class="float-right">{{listing.0.bedrooms}}</span>
-                            </li>
-                            <li class="list-group-item text-secondary">
-                                listing Date:
-                                <span class="float-right">{{listing.0.listingDate}}</span>
-                            </li>
-                            <li class="list-group-item text-secondary">
-                                closing Date:
-                                <span class="float-right">{{listing.0.closingDate}}</span>
-                            </li>
-                        </ul>
-                    </div>
-
-
-                <a class='btn btn-dark' href="/listing/{{listing.0.id}}/detail" target="_blank">More Details</a>
-            </div>
+        <div class="col-md-3 featured-info">
+            <h5 class="list-group">{{listing.0.address}}</h5>
+            <h6 class="card-subtitle mb-2 list-group">{{listing.0.city}}, {{listing.0.province}}</h6>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-secondary">
+                        Asking:
+                        <span class="float-right">{{listing.0.price}}</span>
+                        </li>
+                    <li class="list-group-item text-secondary">
+                        Square Feet:
+                        <span class="float-right">{{listing.0.sqft}}</span>
+                    </li>
+                    <li class="list-group-item text-secondary">
+                        bedrooms:
+                        <span class="float-right">{{listing.0.bathrooms}}</span>
+                    </li>
+                    <li class="list-group-item text-secondary">
+                        bathrooms: 
+                            <span class="float-right">{{listing.0.bedrooms}}</span>
+                    </li>
+                    <li class="list-group-item text-secondary">
+                        Listing Date: 
+                            <span class="float-right">{{listing.0.listingDate}}</span>
+                    </li>
+                    <li class="list-group-item text-secondary">
+                        Closing Date: 
+                            <span class="float-right">{{listing.0.closingDate}}</span>
+                    </li>
+                </ul>
+            <br>
+            <p><img id="mainIcon" src="../../static/images/mainimg.png"/>Stay / Put ™</p>
+            <a class='btn btn-light more-details-butt' href="/listing/{{listing.0.id}}/detail" target="_blank">More Details</a>
+            <br>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 featured-info">
                 <img src="{{listing.1.0.url}}" class="featured-home-image img-fluid" alt="primary home picture">
         </div>
-    </div>
-    <div class="row featured-image-row-additional" >
-        {% for link in listing.1 %}
-            {% if forloop.counter > 1 %}
-                <div class="col-3">
-                    <img src="{{link.url}}" class="featured-home-image-additional img-fluid" alt="additional home picture">
-                </div>
-            {% endif %}
-            
-        {% endfor %}
+
+        <div class='col-md-3 '>
+            <div class="gmap_canvas">
+                <iframe
+                  width="275"
+                  height="380"
+                  id="gmap_canva9"
+                  src="https://maps.google.com/maps?q={{listing.0.address}},{{listing.0.city}},{{listing.0.province}}=&output=embed"
+                  frameborder="0"
+                  scrolling="no"
+                  marginheight="0"
+                  marginwidth="0"
+                ></iframe
+                ><br /><style>
+                  .mapouter {
+                    position: relative;
+                    text-align: right;
+                    height: 100%;
+                    width: 100%;
+                  }
+                </style>
+                <style>
+                  .gmap_canvas {
+                    overflow:auto;
+                    background: none !important;
+                    height: 100%;
+                    width: 100%;
+                  }
+                </style>
+              </div>
+        </div>
     </div>
 </div>
 <br>
 <br>
-
 {% endfor %}
 {% endblock %}
