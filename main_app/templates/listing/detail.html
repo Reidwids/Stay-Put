@@ -23,6 +23,7 @@
         <li class="breadcrumb-item active">Listings</li>
         <li class="breadcrumb-item active">{{listing.address}}</li>
       </ol>
+      {% if user.is_authenticated%}
      
       {% if listing.id in userbookmarks %}
 
@@ -38,6 +39,7 @@
       src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Ic_bookmark_outline_48px.svg/96px-Ic_bookmark_outline_48px.svg.png?20141023110503" alt="">
       </a>
 
+      {% endif %}
       {% endif %}
     </nav>
   </div>
