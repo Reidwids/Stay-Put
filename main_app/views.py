@@ -100,7 +100,7 @@ def profile_submit(request):
         photo.save()
         photo_url = photo.url
     # return redirect('profile', {'profile': new_profile,  'photo_url': photo_url})
-    return render(request, 'agent/profile.html', {'profile': new_profile,  'photo_url': photo_url})
+    return redirect("/accounts/profile/")
 
 @login_required
 def beanagent(request):
