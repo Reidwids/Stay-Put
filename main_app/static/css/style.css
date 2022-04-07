@@ -227,8 +227,13 @@ nav.fixed-bottom {
   gap: 1rem;
 }
 /* Profile */
-
-
+#profileTitleDiv{
+  display: flex;
+  justify-content: space-between;
+}
+.profileCard{
+  padding: 0!important;
+}
 
 /* Profile Create */
 #profileCreateTitle {
@@ -239,14 +244,18 @@ nav.fixed-bottom {
   text-align: center;
 }
 .profile-img{
-    height: 100%;
+    height: 320px;
     object-fit:cover;
-    border-radius: 10px;
+    border-radius: 3px;
+    margin-left: 0;
 }
 .icon-size{
     font-size:1.3rem;
 }
-
+.profilePropertiesTitle{
+  margin-bottom: 30px;
+  text-align: center;
+}
 /* Featured Listings */
 .featured-home-image{
     padding: 0.0rem;
