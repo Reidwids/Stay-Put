@@ -13,7 +13,9 @@
         <li class="breadcrumb-item">
           <a href="{% url 'home' %}"> Home</a>
         </li>
+        {% if profile.user_id == current_user.user_id %}
         <li class="breadcrumb-item active">My Profile</li>
+        {% endif %}
       </ol>
     </nav>
   </div>
@@ -33,12 +35,16 @@
       <div class="card-body">
         <!-- <h3 class="card-title">My Profile</h3> -->
         <div id="profileTitleDiv card-title">
-          <h2 class="text-truncate">{{profile.firstName}} {{profile.lastName}} <a href="{% url 'profile_update' %}"><span class="material-icons">edit</span></a></h2>
-        </div>
+          <h2 class="text-truncate">{{profile.firstName}} {{profile.lastName}} 
+            {% if profile.user_id == current_user.user_id %}
+            <a href="{% url 'profile_update' %}"><span class="material-icons">edit</span></a>
+            {% endif %}
+          </h2>
+          </div>
         <hr>
-        <h6><span class="material-icons icon-size">phone</span>&nbsp;&nbsp;{{profile.phoneNumber}}</h6>
-        <h6><span class="material-icons icon-size">email</span>&nbsp;&nbsp;{{profile.email}}</h6>
-        <h6><span class="material-icons icon-size">fact_check</span>&nbsp;&nbsp;License # {{profile.licenseNumber}}</h6>
+        <h6 class="text-truncate"><span class="material-icons icon-size">phone</span>&nbsp;&nbsp;{{profile.phoneNumber}}</h6>
+        <h6 class="text-truncate"><span class="material-icons icon-size">email</span>&nbsp;&nbsp;{{profile.email}}</h6>
+        <h6 class="text-truncate"><span class="material-icons icon-size">fact_check</span>&nbsp;&nbsp;License # {{profile.licenseNumber}}</h6>
         <hr>
         <h6>About Me</h6>
         <p class="card-text">{{profile.blurb}}</p>

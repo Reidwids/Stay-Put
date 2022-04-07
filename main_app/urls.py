@@ -26,6 +26,7 @@ urlpatterns = [
     path("agent/edit/", views.edit, name='edit'),
 
     path('account/bookmarks/', views.bookmarks, name='bookmarks'),
+    path('accounts/<int:agent_id>/agent/', views.agent_profile, name='agent_profile'),
 
     path('listings/<int:listing_id>/delete_photo/<int:listingphoto_id>/', views.delete_photo, name='delete_photo'),
 
