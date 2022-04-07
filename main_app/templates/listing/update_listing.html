@@ -2,15 +2,33 @@
 {% block content %}
 
 <!-- ########################## -->
+<br>
+<h2 class='header-text'>UPDATE LISTING</h1> 
+
+  <hr>
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'home' %}"> Home</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="{% url 'profile' %}"> Profile</a>
+        </li>
+        <li class="breadcrumb-item active">Create Listing</li>
+      </ol>
+    </nav>
+  </div>
+  <hr>
 <!-- Listing -->
-<section id="listing" class="py-4">
+<!-- <section id="listing" class="py-4">
     <div class="container">
       <a href="{% url 'home' %}" class="btn btn-light mb-4">Back To Listings</a>   
     </div>
-</section>
+</section> -->
 
 {% if is_user_realtor %}
-<a href="{% url 'listing_delete' listing.id %}"><button class="btn mvpButt">Delete Listing</button></a>
+<a href="{% url 'listing_delete' listing.id %}"><button class="btn mvpButt btn-primary btn-block margin-button col-md-2">Delete Listing</button></a>
 {% endif %}
 
 <form method='post' enctype="multipart/form-data" action="{% url 'listing_update_submit' listing.id%}" class="needs-validation" novalidate>
@@ -29,8 +47,7 @@
               />
             </a>
             <a href="{% url 'delete_photo' listing.id photo_urls.0.id %}">
-              Remove
-            </a>
+Delete            </a>
             {% endif %}
           </div>
           <!-- Thumbnail 2 -->
@@ -44,8 +61,7 @@
               />
             </a>
             <a href="{% url 'delete_photo' listing.id photo_urls.1.id %}">
-              Remove
-            </a>
+Delete            </a>
             {% endif %}
           </div>
           <!-- Thumbnail 3 -->
@@ -59,7 +75,7 @@
               />
             </a>
             <a href="{% url 'delete_photo' listing.id photo_urls.2.id %}">
-              Remove
+Delete
             </a>
             {% endif %}
           </div>
@@ -74,7 +90,7 @@
               />
             </a>
             <a href="{% url 'delete_photo' listing.id photo_urls.3.id %}">
-              Remove
+Delete
             </a>
             {% endif %}
           </div>
@@ -90,7 +106,7 @@
             </a>
             </a>
             <a href="{% url 'delete_photo' listing.id photo_urls.4.id %}">
-              Remove
+Delete
             </a>
             {% endif %}
           </div>
@@ -106,7 +122,7 @@
             </a>
             </a>
             <a href="{% url 'delete_photo' listing.id photo_urls.5.id %}">
-              Remove
+              Delete
             </a>
             {% endif %}
           </div>
@@ -161,9 +177,9 @@
      <!-- Fields -->
      <label class="form-label"> Property Details: </label>
 
-     <div class="row mb-5">
+     <div class="row mb-4">
         <div class="col-md-6">
-          <ul class="list-group list-group-flush">
+          <ul class="list-group list-group-flush niacus">
             <li class="list-group-item text-secondary">
                 <div class="form-group col-md-6">
                     <label class="form-label"> Price: </label>
@@ -190,13 +206,14 @@
                         <option {% if 'Y' in listing.parking %}selected{% endif %} value="Y">Yes</option>
                         <option {% if 'N' in listing.parking %}selected{% endif %} value="N">No</option>
                     </select>
+                    <br>
                 </div>
             </li>
           </ul>
         </div>
 
         <div class="col-md-6">
-          <ul class="list-group list-group-flush">
+          <ul class="list-group list-group-flush niacus">
             <li class="list-group-item text-secondary">
                 <div class="form-group col-md-6">
                     <label class="form-label"> Sqft: </label>
@@ -222,18 +239,25 @@
             </li>
             <li class="list-group-item text-secondary">
                 <div class="form-group col-md-6">
-                    <label class="form-label"> Agent: </label>
-                    {{agent}}
+                    <label class="form-label">Agent:</label>
+                    <h4>{{agent}}</h4>
                 </div> 
+                <br>
             </li>
           </ul>
         </div>
       </div>
-      <input type='submit' class="btn mvpButt"></input>  
       <div class="form-group col-md-12">
             <label class="form-label"> Description: </label>
             <textarea type="textarea" name="description" rows="6" class="form-control" required/>{{listing.description}}</textarea>
         </div>
+        <div>
+          <br>
+          <br>
+      <input type='submit' class="btn mvpButt btn-primary btn-block margin-button col-md-2"></input>  
+    </div>
+        <br>
+        <br>
         
 </form>
 <script>

@@ -30,7 +30,7 @@
 <!-- Listing -->
 <section id="listing" class="py-4">
   <div class="container">
-    <a href="{% url 'home' %}" class="btn btn-light mb-4">Back To Listings</a>
+    <a href="{% url 'home' %}" class="btn btn-light mb-4">Back To Search</a>
     <div class="row">
       <div class="col-md-9">
         <!-- Home Main Image -->
@@ -78,8 +78,14 @@
         <!-- #################### -->
         <br />
         <!-- Thumbnails -->
+        <!-- #################### -->
+        <!-- #################### -->
+
+        <!-- #################### -->
+        <!-- #################### -->
+
         <!-- Thumbnail 1 -->
-        <div class="row mb-5 thumbs">
+        <div class="row mb-4 thumbs">
           <div class="col-md-2">
             <a>
               <img
@@ -207,13 +213,7 @@
             </h6>
           </div>
         </div>
-        <div class="button_center">
-          <a href="{% url 'listing_update' listing.id %}"
-            ><button class="btn btn-primary btn-block mvpButt btn-lg">
-              Update Listing
-            </button></a
-          >
-        </div>
+
         <br />
         <div class="mapouter col-md-3">
           <div class="gmap_canvas">
@@ -236,6 +236,14 @@
               }
             </style>
           </div>
+        </div>
+        <br />
+        <div class="button_center">
+          <a href="{% url 'listing_update' listing.id %}"
+            ><button class="btn btn-primary btn-block mvpButt btn-lg">
+              Update Listing
+            </button></a
+          >
         </div>
       </div>
     </div>
