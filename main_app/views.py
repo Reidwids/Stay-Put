@@ -29,6 +29,12 @@ def signup(request):
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
+@login_required
+def bookmarks(request):
+    pass
+
+def add_bookmark(request, listing_id):
+    pass
 
 @login_required
 def profile(request):
