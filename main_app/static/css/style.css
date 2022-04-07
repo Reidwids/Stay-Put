@@ -82,6 +82,19 @@ nav.fixed-bottom {
   margin-top: 30px;
   width: 200px;
 }
+.updateButtons{
+  margin-bottom: 20px;
+}
+.deleteButt{
+  background-color: rgb(255, 129, 129);
+  text-decoration: none;
+}
+.deleteButt:hover{
+  background-color: rgb(219, 108, 108)!important;
+}
+.deLink{
+  text-decoration: none;
+}
 
 /* Login */
 
