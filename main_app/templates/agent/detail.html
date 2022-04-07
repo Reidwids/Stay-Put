@@ -9,7 +9,7 @@
           <li class="breadcrumb-item">
             <a href="{% url 'home' %}"> Home</a>
           </li>
-          <li class="breadcrumb-item active">Agent ID</li>
+          <li class="breadcrumb-item active">Realtors / {{agent}}</li>
         </ol>
       </nav>
     </div>
@@ -25,7 +25,6 @@
     <div class="col-md-8">
       <div class="card-body">
         <h3 class="card-title">{{agent}}</h3>
-        <h6>Name: {{agent}}</h6>
         <h6>Phone number: {{agent.phoneNumber}}</h6>
         <h6>Email: {{agent.email}}</h6>
         <h6>Real Estate License: {{agent.licenseNumber}}</h6>
@@ -64,7 +63,7 @@
 
 <div class="row text-center">
   <div class="col-md-12">
-    <h5 class="display-6">Browse My Properties</h5>
+    <h5 class="display-6">Browse Properties</h5>
     <p class="lead">We got the best properties in the universe! Yes! Including parallel universes!</p>
   </div>
 </div>
@@ -80,12 +79,12 @@
         <!-- ############################ -->
   {% for listing in listings %}
         <!-- Listing 1 -->
-        <div class="col-md-6 col-lg-4 mb-4">
+        <div class="col-md-6 col-lg-4 mb-3">
           <div class="card listing-preview">
             <img class="card-img-top" src="{{ listing.photo_url }}" style="width:100%;height:300px;">
             <div class="card-img-overlay">
               <h5>
-                <span class="p-2 bg-primary text-white">${{listing.price}}</span>
+                <span class="card-price">${{listing.price}}</span>
               </h5>
             </div>
             <div class="card-body">
@@ -121,27 +120,7 @@
 
       </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <ul class="pagination">
-            <li class="page-item disabled">
-              <a class="page-link" href="#">&laquo;</a>
-            </li>
-            <li class="page-item active">
-              <a class="page-link" href="#">1</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">2</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">3</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">&raquo;</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      
     </div>
 <br>
 <br>

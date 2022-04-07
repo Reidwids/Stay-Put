@@ -263,7 +263,6 @@ def submit_listing(request):
     
     
 def listing_detail(request, listing_id):
-    currentUser = Profile.objects.get(user=request.user)
     listing = RealEstate.objects.get(id=listing_id)
     listing.buildingType = listing.get_buildingType_display()
     listing.parking = listing.get_parking_display()
@@ -271,13 +270,15 @@ def listing_detail(request, listing_id):
     agent.image = ProfilePhoto.objects.get(profile_id=agent.user_id)
     photo_urls = ListingPhoto.objects.filter(real_estate_id=listing.id)
     bookmark = Bookmark.objects.get(real_estate_id=listing_id)
-    userbookmarks=currentUser.bookmarks.values_list('real_estate_id', flat=True)
-    print(userbookmarks)
+    
     
     is_user_realtor = False
     if request.user.is_authenticated:
+        currentUser = Profile.objects.get(user=request.user)
+        userbookmarks=currentUser.bookmarks.values_list('real_estate_id', flat=True)
         is_user_realtor = True if agent.user_id == currentUser.user_id else False
-    return render(request,'listing/detail.html', {'listing': listing, 'agent': agent, 'photo_urls': photo_urls, 'is_user_realtor': is_user_realtor, 'bookmark': bookmark, "userbookmarks": userbookmarks})
+        return render(request,'listing/detail.html', {'listing': listing, 'agent': agent, 'photo_urls': photo_urls, 'is_user_realtor': is_user_realtor, 'bookmark': bookmark, "userbookmarks": userbookmarks})
+    return render(request,'listing/detail.html', {'listing': listing, 'agent': agent, 'photo_urls': photo_urls, 'is_user_realtor': is_user_realtor})
 
 @login_required
 def listing_update(request, listing_id):
