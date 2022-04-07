@@ -24,5 +24,8 @@ urlpatterns = [
     path("agent/loggedin/", views.loggedin, name='loggedin'),
     path("agent/edit/", views.edit, name='edit'),
 
+    path('account/bookmarks/', views.bookmarks, name='bookmarks'),
+    path('account/add_bookmark/', views.add_bookmark, name='add_bookmark'),
+
     path('listings/<int:listing_id>/delete_photo/<int:listingphoto_id>/', views.delete_photo, name='delete_photo'),
 ]
