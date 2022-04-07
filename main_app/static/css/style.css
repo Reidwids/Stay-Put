@@ -332,6 +332,11 @@ nav.fixed-bottom {
     /* background-color: darkcyan; */
 }
 
+/* terms and conditions */
+#terms>h1,h2,h3,h4,a{
+    text-align: center;
+}
+
 /* Button styling */
 
 .mvpButt {
