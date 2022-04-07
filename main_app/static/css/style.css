@@ -5,7 +5,7 @@
 
 /*-- Base --*/
 body {
-  background-color: rgb(166, 232, 248);
+  background-color: rgb(146, 205, 219);
   display: flex;
   min-height: 100vh;
   flex-direction: column;
