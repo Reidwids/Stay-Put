@@ -53,12 +53,15 @@ def profile(request):
         profile = Profile.objects.get(user=request.user)
         photo_url = ProfilePhoto.objects.get(profile=request.user.id).url
         listings = RealEstate.objects.filter(realtor_id=profile.user_id)
+        listing_with_photo = []
         for listing in listings:
             photo_urls = ListingPhoto.objects.filter(real_estate_id=listing.id)
             listing.photo_url = photo_urls[0].url
-        
-        return render(request, 'agent/profile.html', {'profile': profile, 'photo_url': photo_url, 'listings': listings})
+            listing_with_photo.append([listing, ListingPhoto.objects.filter(real_estate=listing.id)[0].url])
+            print(listing_with_photo)
+        return render(request, 'agent/profile.html', {'profile': profile, 'photo_url': photo_url, 'listings': listings, 'listing_with_photo': listing_with_photo})
     except:
+        print("Why is this working")
         return render(request, 'agent/create_profile.html')
 
 @login_required
@@ -69,6 +72,7 @@ def profile_submit(request):
         licenseNumber = request.POST['licenseNumber'],
         phoneNumber = request.POST['phoneNumber'],
         email = request.POST['email'],
+        blurb = request.POST['blurb'],
         isAgent = False,
         isAdmin = False,
         user = request.user,
@@ -118,6 +122,7 @@ def submit_profile_update(request):
     profile.update(licenseNumber = request.POST['licenseNumber'])
     profile.update(phoneNumber = request.POST['phoneNumber'])
     profile.update(email = request.POST['email'])
+    profile.update(blurb = request.POST['blurb'])
     photo_file = request.FILES.get('image', None)
     old_key = ProfilePhoto.objects.get(profile = request.user.id).url
     old_key = old_key.replace(f"https://{BUCKET}.{S3_BASE_URL}/","")
@@ -201,8 +206,6 @@ def search(request):
     listing_with_photo = []
     for listing in listings:
         listing_with_photo.append([listing, ListingPhoto.objects.filter(real_estate=listing.id)[0].url])
-    for listing in listing_with_photo:
-        print(listing[1])
     return render(request, 'search.html', {'listing_with_photo': listing_with_photo})
 
 @login_required
