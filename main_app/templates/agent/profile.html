@@ -22,25 +22,27 @@
 
 <div class="card mb-3 container-fluid">
   <div class="row no-gutters">
-    <div class="col-md-3">
-      <img src="{{photo_url}}" class="card-img" />
+    <div class="col-md-4">
+      <img src="{{photo_url}}" class="card-img profile-img" />
     </div>
     <div class="col-md-8">
       <div class="card-body">
         <!-- <h3 class="card-title">My Profile</h3> -->
         <h5>My Name: {{profile.firstName}}</h5>
         <h5>My Last Name: {{profile.lastName}}</h5>
-        <h6>My License Number: {{profile.licenseNumber}}</h6>
-        <h6>My Phone Number: {{profile.phoneNumber}}</h6>
-        <h6>My Email: {{profile.email}}</h6>
-        <a
-          class="btn mvpButt btn-primary btn-block col-md-3"
-          href="{% url 'profile_update' %}"
-          >Edit Profile</a
-        >
+        <h6>License <span class="material-icons icon-size">
+          fact_check
+          </span>: {{profile.licenseNumber}}</h6>
+        <h6> Phone <span class="material-icons icon-size">phone</span> : {{profile.phoneNumber}}</h6>
+        <h6>Email <span class="material-icons icon-size">email</span> : {{profile.email}}</h6>
+        <hr>
+        <a class="btn mvpButt btn-primary btn-block col-md-3"
+          href="{% url 'profile_update' %}">EDIT PROFILE<span class="material-icons">
+            edit
+          </span></a>
         <hr/>
         <a class="btn btn-primary btn-block col-md-3"
-          href="{% url 'create_listing' %}">Add New Property
+          href="{% url 'create_listing' %}">list Property <span class="material-icons">post_add </span>
         </a>
       </div>
     </div>

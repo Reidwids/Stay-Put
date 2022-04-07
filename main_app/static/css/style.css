@@ -235,6 +235,15 @@ nav.fixed-bottom {
 .profileCreateInfo {
   text-align: center;
 }
+.profile-img{
+    height: 100%;
+    object-fit:cover;
+    border-radius: 10px;
+}
+.icon-size{
+    font-size:1.3rem;
+}
+
 /* Featured Listings */
 .featured-home-image{
     padding: 0.0rem;
