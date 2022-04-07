@@ -252,11 +252,12 @@
         </div>
         <br />
         <div class="button_center">
+          {% if is_user_realtor == True %}
           <a href="{% url 'listing_update' listing.id %}"
             ><button class="btn btn-primary btn-block mvpButt btn-lg">
               Update Listing
-            </button></a
-          >
+            </button></a>
+            {% endif %}
         </div>
       </div>
     </div>
