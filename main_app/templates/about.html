@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 <header>
-    <hr>
     <br>
     <h2 class='header-text'>STAY/PUT™ REAL ESTATE</h1> 
         <p class='header-text lead'> THE BRAND YOU TRUST</p>
@@ -40,7 +39,7 @@
     </div>
     
     <hr>
-        <a class='btn mvpButt  ' href='' > view our featured listings</a>
+        <a class='btn mvpButt  ' href="{% url 'listing_featured' %}" > view our featured listings</a>
     <hr>
         <h3>WE WORK WITH THE BEST</h3>
     <hr>
@@ -51,7 +50,7 @@
     <div class="row">
     {% for realtor in realtors %}
         {% if realtor.isAgent %}
-        <div class="col-md-6 about-profile-border">
+        <div class="col-md-4 about-profile-border">
                 <div class="card card-about shadow">
                     <div class='row card-headline'>
                         <img class="card-img-top col-6 card-about-img img-fluid" src="{{realtor.profilePhoto.url}}">
