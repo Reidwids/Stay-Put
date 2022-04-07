@@ -167,20 +167,20 @@
             <li class="list-group-item text-secondary">
                 <div class="form-group col-md-6">
                     <label class="form-label"> Price: </label>
-                    <input type="number" name="price" value="{{listing.price}}" class="form-control" required/>
+                    <input type="number" name="price" value="{{listing.price}}" min="0" class="form-control" required/>
                 </div> 
               <!-- <span class="float-right">$490,000</span> -->
             </li>
             <li class="list-group-item text-secondary">
                 <div class="form-group col-md-6">
                     <label class="form-label"> Bedrooms: </label>
-                    <input type="number" name="bedrooms" value="{{listing.bedrooms}}" class="form-control" required/>
+                    <input type="number" name="bedrooms" value="{{listing.bedrooms}}" min="0" class="form-control" required/>
                 </div>
             </li>
             <li class="list-group-item text-secondary">
                 <div class="form-group col-md-6">
                     <label class="form-label"> Bathrooms: </label>
-                    <input type="number" name="bathrooms" value="{{listing.bathrooms}}" class="form-control" required/>
+                    <input type="number" name="bathrooms" value="{{listing.bathrooms}}" min="0" class="form-control" required/>
                 </div>
             </li>
             <li class="list-group-item text-secondary">
@@ -200,7 +200,7 @@
             <li class="list-group-item text-secondary">
                 <div class="form-group col-md-6">
                     <label class="form-label"> Sqft: </label>
-                    <input type="number" name="sqft" value="{{listing.sqft}}" class="form-control" required/>
+                    <input type="number" name="sqft" value="{{listing.sqft}}" min="0" class="form-control" required/>
                 </div>
             </li>
             <li class="list-group-item text-secondary">

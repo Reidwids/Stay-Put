@@ -41,8 +41,8 @@
         <div class="form-group col-md-2">
             <label class="form-label"> Price: </label>
             <div class='minmax'>
-                <input type="number" name="min_price" class="form-control" placeholder="Min"/>
-                <input type="number" name="max_price" class="form-control" placeholder="Max"/>
+                <input type="number" name="min_price" class="form-control" min="0" placeholder="Min"/>
+                <input type="number" name="max_price" class="form-control" min="0" placeholder="Max"/>
             </div>
         </div> 
         <div class="form-group col-md-2">
@@ -57,11 +57,11 @@
         </div>
         <div class="form-group col-md-1">
             <label class="form-label"> Bedrooms: </label>
-            <input type="number" name="bedrooms" class="form-control"/>
+            <input type="number" name="bedrooms" min="0" class="form-control"/>
         </div>
         <div class="form-group col-md-1">
             <label class="form-label"> Bathrooms: </label>
-            <input type="number" name="bathrooms" class="form-control"/>
+            <input type="number" name="bathrooms" min="0" class="form-control"/>
         </div>
         <div class="form-group col-md-1">
             <label class="form-label"> Parking: </label>
@@ -76,8 +76,8 @@
         <div class="form-group col-md-2">
             <label class="form-label"> Sqft: </label>
             <div class='minmax'>
-                <input type="number" name="min_sqft" class="form-control" placeholder="Min"/>
-                <input type="number" name="max_sqft" class="form-control" placeholder="Max"/>
+                <input type="number" name="min_sqft" min="0" class="form-control" placeholder="Min"/>
+                <input type="number" name="max_sqft" min="0" class="form-control" placeholder="Max"/>
             </div>
         </div>
         <div class="form-group col-md-4">
