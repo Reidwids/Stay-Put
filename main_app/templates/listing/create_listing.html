@@ -20,12 +20,6 @@
     </div>
   </section>
 <hr>
-<!-- Listing -->
-<section id="listing" class="py-3">
-    <div class="container">
-      <a href="{% url 'home' %}" class="btn btn-light mb-4">Back To Search</a>   
-    </div>
-</section>
 
 {% if currentUser.isAgent == True %}
 <form method='post' enctype="multipart/form-data" action="{% url 'submit_listing' %}" class="needs-validation" novalidate>
@@ -152,7 +146,9 @@
             <textarea type="textarea" name="description" rows="6" class="form-control niacus" placeholder="Max 2500 chars" required/></textarea>
         </div>
         <br>
-    <input type='submit' class="btn mvpButt btn-primary btn-block margin-button col-md-2"></input>
+        <div class="button_center">
+          <input type='submit' class="btn mvpButt searchButton"></input>
+        </div>
 </form>
 
 {% else %}
