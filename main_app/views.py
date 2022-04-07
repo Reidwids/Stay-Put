@@ -31,10 +31,23 @@ def signup(request):
 
 @login_required
 def bookmarks(request):
-    pass
+    profile = Profile.objects.get(user=request.user)
+    bookmarks = Bookmark.objects.filter(real_estate_id__in = profile.bookmarks.all().values_list('real_estate_id'))
+    print(bookmarks)
+    alllistings = RealEstate.objects.all()
+    listings = []
+    for bookmark in bookmarks:
+        listing = alllistings.get(id=bookmark.real_estate_id)
+        listings.append(listing)
+    listing_with_photo = []
+    for listing in listings:
+        listing_with_photo.append([listing, ListingPhoto.objects.filter(real_estate=listing.id)[0].url])
+    for listing in listing_with_photo:
+        print(listing[1])
+    return render(request, 'bookmarks.html', {'listing_with_photo': listing_with_photo})
 
-def add_bookmark(request, listing_id):
-    pass
+    
+
 
 @login_required
 def profile(request):
@@ -129,7 +142,7 @@ def profile_delete(request):
 def user_delete(request):
     pass
     
-def detail(request,user_id):
+def detail(request, user_id):
     agent=Profile.objects.get(user_id=user_id)
     agent.image = ProfilePhoto.objects.get(profile_id=agent.user_id)
     listings = RealEstate.objects.filter(realtor_id=agent.user_id)
@@ -239,7 +252,9 @@ def submit_listing(request):
             photo.save()
     return redirect('/accounts/profile/')
     
+    
 def listing_detail(request, listing_id):
+    currentUser = Profile.objects.get(user=request.user)
     listing = RealEstate.objects.get(id=listing_id)
     listing.buildingType = listing.get_buildingType_display()
     listing.parking = listing.get_parking_display()
@@ -247,12 +262,13 @@ def listing_detail(request, listing_id):
     agent.image = ProfilePhoto.objects.get(profile_id=agent.user_id)
     photo_urls = ListingPhoto.objects.filter(real_estate_id=listing.id)
     bookmark = Bookmark.objects.get(real_estate_id=listing_id)
-
+    userbookmarks=currentUser.bookmarks.values_list('real_estate_id', flat=True)
+    print(userbookmarks)
+    
     is_user_realtor = False
     if request.user.is_authenticated:
-        user = Profile.objects.get(user=request.user)
-        is_user_realtor = True if listing.realtor_id == user.user_id else False 
-    return render(request,'listing/detail.html', {'listing': listing, 'agent': agent, 'photo_urls': photo_urls, 'is_user_realtor': is_user_realtor, 'bookmark': bookmark})
+        is_user_realtor = True if agent.user_id == currentUser.user_id else False
+    return render(request,'listing/detail.html', {'listing': listing, 'agent': agent, 'photo_urls': photo_urls, 'is_user_realtor': is_user_realtor, 'bookmark': bookmark, "userbookmarks": userbookmarks})
 
 @login_required
 def listing_update(request, listing_id):
@@ -354,10 +370,12 @@ def delete_photo(request, listing_id, listingphoto_id):
     return redirect('listing_update', listing_id=listing_id)
 
 
-def add_bookmark(request, listing_id, real_estate_id, user_id):
-    Profile.objects.get(id=user_id).bookmarks.add(real_estate_id)
+def add_bookmark(request, listing_id):
+    user = Profile.objects.get(user_id=request.user)
+    user.bookmarks.add(listing_id)
     return redirect('listing_detail', listing_id=listing_id)
 
-def remove_bookmark(request, listing_id, real_estate_id, user_id):
-    Profile.objects.get(id=user_id).bookmarks.remove(real_estate_id)
+def remove_bookmark(request, listing_id):
+    user = Profile.objects.get(user_id=request.user)
+    user.bookmarks.remove(listing_id)
     return redirect('listing_detail', listing_id=listing_id)

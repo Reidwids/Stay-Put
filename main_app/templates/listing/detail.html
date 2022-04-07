@@ -23,15 +23,22 @@
         <li class="breadcrumb-item active">Listings</li>
         <li class="breadcrumb-item active">{{listing.address}}</li>
       </ol>
-      <form method='POST' action="{% url 'add_bookmark' listing.id %}">
-      {% comment %} {% if is_bookmarked %} {% endcomment %}
-        <input type='hidden' name='listing.id' value={{ listing.id }}>
-        <input type='image' id='bookmark' name='submit' src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Ic_bookmark_outline_48px.svg/96px-Ic_bookmark_outline_48px.svg.png?20141023110503" alt="">
-      
-      {% comment %} {% else %} {% endcomment %}
-      {% comment %} <img class='bookmark' src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Ic_bookmark_48px.svg/96px-Ic_bookmark_48px.svg.png?20141023110451" alt=""> {% endcomment %}
-      {% comment %} {% endif %} {% endcomment %}
-      </form>
+     
+      {% if listing.id in userbookmarks %}
+
+      <a href="{% url "remove_bookmark" listing.id %}">
+      <img class='bookmark' 
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Ic_bookmark_48px.svg/96px-Ic_bookmark_48px.svg.png?20141023110451" alt="">
+      </a>
+
+      {% else %}
+
+      <a href="{% url "add_bookmark" listing.id %}">
+      <img class='bookmark' 
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Ic_bookmark_outline_48px.svg/96px-Ic_bookmark_outline_48px.svg.png?20141023110503" alt="">
+      </a>
+
+      {% endif %}
     </nav>
   </div>
 </section>
@@ -210,9 +217,13 @@
     </div>
   </div>
 </section>
+
+{% if is_user_realtor == True %}
 <a href="{% url 'listing_update' listing.id %}"
   ><button class="btn mvpButt">Update Listing</button></a
 >
+{% endif %}
+
 <!-- https://maps.google.com/maps?q= { (address)(ex:2444 Bay street,Toronto,On) }=UTF8&iwloc=&output=embed -->
 <div class="mapouter">
   <div class="gmap_canvas">
