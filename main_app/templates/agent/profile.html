@@ -22,119 +22,83 @@
 
 <!-- #################### -->
 
-<div class="card mb-3 container-fluid niacus">
-  <div class="row no-gutters">
-    <div class="col-md-3">
-      <img src="{{photo_url}}" class="card-img" />
+
+<div class="card mb-3 container-fluid profileCard niacus no-gutters">
+  <div class="row">
+    <div class="col-md-4">
+      <img src="{{photo_url}}" class="card-img profile-img"/>
+
     </div>
     <div class="col-md-8">
       <div class="card-body">
         <!-- <h3 class="card-title">My Profile</h3> -->
-        <h5>My Name: {{profile.firstName}}</h5>
-        <h5>My Last Name: {{profile.lastName}}</h5>
-        <h6>My License Number: {{profile.licenseNumber}}</h6>
-        <h6>My Phone Number: {{profile.phoneNumber}}</h6>
-        <h6>My Email: {{profile.email}}</h6>
-        <a
-          class="btn mvpButt btn-primary btn-block col-md-3"
-          href="{% url 'profile_update' %}"
-          >Edit Profile</a
-        >
-        <hr />
-        <a
-          class="btn btn-primary btn-block col-md-3"
-          href="{% url 'create_listing' %}"
-          >Add New Property</a
-        >
+        <div id="profileTitleDiv card-title">
+          <h2 class="text-truncate">{{profile.firstName}} {{profile.lastName}} <a href="{% url 'profile_update' %}"><span class="material-icons">edit</span></a></h2>
+        </div>
+        <hr>
+        <h6><span class="material-icons icon-size">phone</span>&nbsp;&nbsp;{{profile.phoneNumber}}</h6>
+        <h6><span class="material-icons icon-size">email</span>&nbsp;&nbsp;{{profile.email}}</h6>
+        <h6><span class="material-icons icon-size">fact_check</span>&nbsp;&nbsp;License # {{profile.licenseNumber}}</h6>
+        <hr>
+        <h6>About Me</h6>
+        <p class="card-text">{{profile.blurb}}</p>
+
+        {% if profile.isAgent == False %}
+        <a href="{% url 'beanagent' %}"> Become An Agent </a>
+        {% endif %}
       </div>
     </div>
   </div>
 </div>
 
-<section id="about" class="py-4">
-  <hr />
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h2>ABOUT</h2>
-        <p class="mt-4">
-          I'm cool because I can sell a lot of lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Perspiciatis esse officia repudiandae ad
-          saepe ex, amet neque quod accusamus rem quia magnam magni dolorum
-          facilis ullam minima perferendis? Exercitationem at quaerat commodi id
-          libero eveniet harum perferendis laborum molestias quia.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-<hr />
 <!-- #################### -->
 <!-- Agent's listings title -->
-
-<div class="row text-center">
-  <div class="col-md-12">
-    <h5 class="display-6">My Properties</h5>
-  </div>
-</div>
-
+<h5 class="display-6 profilePropertiesTitle">My Properties</h5>
 <!-- Listings -->
-<section id="listings" class="py-4">
-  <div class="container">
-    <div class="row">
-      {% for listing in listings %}
-      <!-- Listing 1 -->
+<div class="container resultsContainer">
+  <div class="row listingsList">
+      {% for listing in listing_with_photo %}
       <div class="col-md-6 col-lg-4 mb-4">
-        <a href="{% url 'listing_update' listing.id %}">
-          <div class="card listing-preview">
-            <img
-              class="card-img-top"
-              src="{{ listing.photo_url }}"
-              style="width: 100%; height: 300px"
-            />
+        <div class="card listing-preview">
+            <img class="card-img-top" src="{{listing.1}}">
             <div class="card-img-overlay">
-              <h5>
-                <span class="p-2 bg-primary text-white"
-                  >ID: {{ listing.id }}</span
-                >
-              </h5>
+                <p class="card-price">${{listing.0.price}}</p>
             </div>
             <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">{{listing.address}}</h4>
-                <p>
-                  {{listing.city}}, {{listing.province}}, {{listing.postalCode}}
-                </p>
-              </div>
+                <a class='stretched-link' href="{% url 'listing_detail' listing.0.id %}"></a>
+                <h5 class="card-title text-truncate">{{listing.0.address}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted text-truncate">{{listing.0.city}}, {{listing.0.province}}</h6>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-truncate list-spacing">
+                        <div>{% if 'H' in listing.0.buildingType %}House{% endif %}
+                            {% if 'T' in listing.0.buildingType %}Townhouse{% endif %}
+                            {% if 'S' in listing.0.buildingType %}Semi-Detached{% endif %}
+                            {% if 'C' in listing.0.buildingType %}Condominium{% endif %}
+                        </div>
+                    </li>
+                    <li class="list-group-item text-truncate list-spacing">
+                        <div> {{listing.0.bedrooms}} Bed</div>
+                        <div>{{listing.0.bathrooms}} Bath</div>
+                        <div>{{listing.0.sqft}} Sqft</div>
+                    </li>
+                    <li class="list-group-item text-truncate list-spacing">
+                        <div>Listed: {{listing.0.listingDate}}</div>
+                    </li>
+                    <li class="list-group-item text-truncate list-spacing">
+                        <div>Closing: {{listing.0.closingDate}}</div>
+                    </li>
+                </ul>
             </div>
-          </div>
-        </a>
-      </div>
+        </div>
+  </div>
       {% endfor %}
-    </div>
+</div>
+
 
     
     <br />
     <br />
   </div>
 </section>
-
-<!-- ######################### -->
-<!-- ######################### -->
-
-<!-- ##### Freezing original back end code ###### -->
-<!-- <h1>Your Profile</h1>
-
-<p>FirstName: {{profile.firstName}}</p>
-<p>LastName: {{profile.lastName}}</p>
-<p>LicenseNumber: {{profile.licenseNumber}}</p>
-<p>PhoneNumber: {{profile.phoneNumber}}</p>
-<p>Email: {{profile.email}}</p>
-<img width="100px" height="100px" src="{{photo_url}}" />
-
-<a href="{% url 'profile_update' %}"> Update Your Profile</a> -->
-
-<!-- ######################### -->
-<!-- ######################### -->
 
 {% endblock %}

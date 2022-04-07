@@ -6,7 +6,7 @@
 
 /*-- Base --*/
 body {
-  background-color: rgb(166, 232, 248);
+  background-color: rgb(146, 205, 219);
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -83,6 +83,19 @@ nav.fixed-bottom {
 .searchButt {
   margin-top: 30px;
   width: 200px;
+}
+.updateButtons{
+  margin-bottom: 20px;
+}
+.deleteButt{
+  background-color: rgb(255, 129, 129);
+  text-decoration: none;
+}
+.deleteButt:hover{
+  background-color: rgb(219, 108, 108)!important;
+}
+.deLink{
+  text-decoration: none;
 }
 
 /* Login */
@@ -228,6 +241,14 @@ nav.fixed-bottom {
   /* padding:1rem; */
   gap: 1rem;
 }
+/* Profile */
+#profileTitleDiv{
+  display: flex;
+  justify-content: space-between;
+}
+.profileCard{
+  padding: 0!important;
+}
 
 /* Profile Create */
 #profileCreateTitle {
@@ -235,6 +256,19 @@ nav.fixed-bottom {
   text-align: center;
 }
 .profileCreateInfo {
+  text-align: center;
+}
+.profile-img{
+    height: 320px;
+    object-fit:cover;
+    border-radius: 3px;
+    margin-left: 0;
+}
+.icon-size{
+    font-size:1.3rem;
+}
+.profilePropertiesTitle{
+  margin-bottom: 30px;
   text-align: center;
 }
 /* Featured Listings */
@@ -309,3 +343,14 @@ nav.fixed-bottom {
 .fontsz {
   font-size: 22px;
 }
+
+/* Listing Details */
+#breadcrumb_bookmarked{
+  display: flex;
+  justify-content: space-between;
+}
+#bookmark{
+  width: 30px;
+  height: 35px;
+}
+

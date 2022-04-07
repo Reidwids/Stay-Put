@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Profile, RealEstate, ListingPhoto, ProfilePhoto
+from .models import Bookmark, Profile, RealEstate, ListingPhoto, ProfilePhoto
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required 
 from django.contrib.auth import login
@@ -22,12 +22,29 @@ def signup(request):
             user = form.save()
             # login the user
             login(request, user)
-            return redirect('/')
+            return redirect('/accounts/profile/')
         else:
             error_message = 'Invalid signup - try again'
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
+@login_required
+def bookmarks(request):
+    profile = Profile.objects.get(user=request.user)
+    bookmarks = Bookmark.objects.filter(real_estate_id__in = profile.bookmarks.all().values_list('real_estate_id'))
+    print(bookmarks)
+    alllistings = RealEstate.objects.all()
+    listings = []
+    for bookmark in bookmarks:
+        listing = alllistings.get(id=bookmark.real_estate_id)
+        listings.append(listing)
+    listing_with_photo = []
+    for listing in listings:
+        listing_with_photo.append([listing, ListingPhoto.objects.filter(real_estate=listing.id)[0].url])
+    for listing in listing_with_photo:
+        print(listing[1])
+    return render(request, 'bookmarks.html', {'listing_with_photo': listing_with_photo})
 
 
 @login_required
@@ -36,12 +53,15 @@ def profile(request):
         profile = Profile.objects.get(user=request.user)
         photo_url = ProfilePhoto.objects.get(profile=request.user.id).url
         listings = RealEstate.objects.filter(realtor_id=profile.user_id)
+        listing_with_photo = []
         for listing in listings:
             photo_urls = ListingPhoto.objects.filter(real_estate_id=listing.id)
             listing.photo_url = photo_urls[0].url
-        
-        return render(request, 'agent/profile.html', {'profile': profile, 'photo_url': photo_url, 'listings': listings})
+            listing_with_photo.append([listing, ListingPhoto.objects.filter(real_estate=listing.id)[0].url])
+            print(listing_with_photo)
+        return render(request, 'agent/profile.html', {'profile': profile, 'photo_url': photo_url, 'listings': listings, 'listing_with_photo': listing_with_photo})
     except:
+        print("Why is this working")
         return render(request, 'agent/create_profile.html')
 
 @login_required
@@ -52,7 +72,8 @@ def profile_submit(request):
         licenseNumber = request.POST['licenseNumber'],
         phoneNumber = request.POST['phoneNumber'],
         email = request.POST['email'],
-        isAgent = True,
+        blurb = request.POST['blurb'],
+        isAgent = False,
         isAdmin = False,
         user = request.user,
         )
@@ -81,6 +102,13 @@ def profile_submit(request):
     return render(request, 'agent/profile.html', {'profile': new_profile,  'photo_url': photo_url})
 
 @login_required
+def beanagent(request):
+    profile=Profile.objects.get(user=request.user)
+    profile.isAgent = True
+    profile.save()
+    return redirect('profile')
+
+@login_required
 def profile_update(request):
     profile = Profile.objects.get(user=request.user)
     photo_url = ProfilePhoto.objects.get(profile=request.user.id).url
@@ -94,6 +122,7 @@ def submit_profile_update(request):
     profile.update(licenseNumber = request.POST['licenseNumber'])
     profile.update(phoneNumber = request.POST['phoneNumber'])
     profile.update(email = request.POST['email'])
+    profile.update(blurb = request.POST['blurb'])
     photo_file = request.FILES.get('image', None)
     old_key = ProfilePhoto.objects.get(profile = request.user.id).url
     old_key = old_key.replace(f"https://{BUCKET}.{S3_BASE_URL}/","")
@@ -123,7 +152,7 @@ def profile_delete(request):
 def user_delete(request):
     pass
     
-def detail(request,user_id):
+def detail(request, user_id):
     agent=Profile.objects.get(user_id=user_id)
     agent.image = ProfilePhoto.objects.get(profile_id=agent.user_id)
     listings = RealEstate.objects.filter(realtor_id=agent.user_id)
@@ -140,7 +169,7 @@ def edit(request):
     return render(request,'agent/edit.html') 
 
 def about(request):
-    realtors = Profile.objects.all()
+    realtors = Profile.objects.all().filter(isAgent=True)
     for realtor in realtors:
         realtor.profilePhoto = ProfilePhoto.objects.get(profile_id=realtor.user_id)
     return render(request,'about.html',{'realtors': realtors[:6]})
@@ -177,13 +206,12 @@ def search(request):
     listing_with_photo = []
     for listing in listings:
         listing_with_photo.append([listing, ListingPhoto.objects.filter(real_estate=listing.id)[0].url])
-    for listing in listing_with_photo:
-        print(listing[1])
     return render(request, 'search.html', {'listing_with_photo': listing_with_photo})
 
 @login_required
 def create_listing(request):
-    return render(request, 'listing/create_listing.html')
+    currentUser = Profile.objects.get(user_id=request.user)
+    return render(request, 'listing/create_listing.html', {'currentUser': currentUser})
 
 @login_required
 def submit_listing(request):
@@ -207,6 +235,8 @@ def submit_listing(request):
         description = request.POST['description'],
     )
     new_listing.save()
+    new_bookmark = Bookmark(real_estate_id=new_listing.id)
+    new_bookmark.save()
     photo_files = request.FILES.getlist('images', None)
 
     for photo_file in photo_files:
@@ -226,24 +256,28 @@ def submit_listing(request):
                 print(photo)
             except:
                 print('An error occurred uploading file to S3')
-    else: 
-        photo = ListingPhoto(url='https://stay-put.s3.ca-central-1.amazonaws.com/49fe05.jpg', real_estate_id = new_listing.id)
-        photo.save()
+        else: 
+            photo = ListingPhoto(url='https://stay-put.s3.ca-central-1.amazonaws.com/49fe05.jpg', real_estate_id = new_listing.id)
+            photo.save()
     return redirect('/accounts/profile/')
     
+    
 def listing_detail(request, listing_id):
+    currentUser = Profile.objects.get(user=request.user)
     listing = RealEstate.objects.get(id=listing_id)
     listing.buildingType = listing.get_buildingType_display()
     listing.parking = listing.get_parking_display()
     agent = Profile.objects.get(user_id=listing.realtor_id)
     agent.image = ProfilePhoto.objects.get(profile_id=agent.user_id)
     photo_urls = ListingPhoto.objects.filter(real_estate_id=listing.id)
-
+    bookmark = Bookmark.objects.get(real_estate_id=listing_id)
+    userbookmarks=currentUser.bookmarks.values_list('real_estate_id', flat=True)
+    print(userbookmarks)
+    
     is_user_realtor = False
     if request.user.is_authenticated:
-        user = Profile.objects.get(user=request.user)
-        is_user_realtor = True if listing.realtor_id == user.user_id else False 
-    return render(request,'listing/detail.html', {'listing': listing, 'agent': agent, 'photo_urls': photo_urls, 'is_user_realtor': is_user_realtor})
+        is_user_realtor = True if agent.user_id == currentUser.user_id else False
+    return render(request,'listing/detail.html', {'listing': listing, 'agent': agent, 'photo_urls': photo_urls, 'is_user_realtor': is_user_realtor, 'bookmark': bookmark, "userbookmarks": userbookmarks})
 
 @login_required
 def listing_update(request, listing_id):
@@ -343,3 +377,14 @@ def delete_photo(request, listing_id, listingphoto_id):
             s3.delete_object(Bucket = BUCKET, Key = old_key)
             ListingPhoto.objects.get(id= listingphoto_id).delete()
     return redirect('listing_update', listing_id=listing_id)
+
+
+def add_bookmark(request, listing_id):
+    user = Profile.objects.get(user_id=request.user)
+    user.bookmarks.add(listing_id)
+    return redirect('listing_detail', listing_id=listing_id)
+
+def remove_bookmark(request, listing_id):
+    user = Profile.objects.get(user_id=request.user)
+    user.bookmarks.remove(listing_id)
+    return redirect('listing_detail', listing_id=listing_id)
