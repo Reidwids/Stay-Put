@@ -2,9 +2,11 @@
 {% block content %}
 
 <br>
+
 <header>
-  <h2> Edit Profile</h1> 
+  <h1 id='profileCreateTitle'>Update Profile</h1> 
 </header>
+
 <hr>
   <!-- Breadcrumb -->
   <section id="bc" class="mt-3">
@@ -17,62 +19,67 @@
           <li class="breadcrumb-item">
             <a href="{% url 'profile' %}"> Profile</a>
           </li>
-          <li class="breadcrumb-item active">Edit Profile</li>
+          <li class="breadcrumb-item active">Update Profile</li>
         </ol>
       </nav>
     </div>
   </section>
 <hr>
 <br>
-<div class="col-md-4">
-  <div class="card">
-    <img
-      class="card-img-top"
-      src="{{photo_url}}"
-    />
 
+<div class="row justify-content-center">
+  <div class="col-md-4">
+    <div class="card">
+      <img class="card-img-top" src="{{photo_url}}"/>
+    </div>
   </div>
 </div>
+
 <form method='post' enctype="multipart/form-data" action="{% url 'submit_profile_update' %}" class="needs-validation" novalidate>
     {% csrf_token %}
-        <div class="form-group col-md-4">
-            <!-- <label class="form-label"> Change Picture: </label> -->
-            <input type="file" name="image" class="form-control btn btn-primary btn-block">
+        <div class="row justify-content-center">
+          <div class="form-group col-md-4">
+              <input type="file" name="image" class="form-control btn btn-primary btn-block">
+          </div>
         </div>
-        
-        <div class="form-group col-md-4">
-            <label class="form-label"> First Name: </label>
-            <input type="text" name="firstName" class="form-control" value='{{profile.firstName}}' required/>
-        </div>
-        <div class="form-group col-md-4">
-            <label class="form-label"> Last Name: </label>
-            <input type="text" name="lastName" class="form-control" value='{{profile.lastName}}' required/>
-        </div>
-        <div class="form-group col-md-4">
-            <label class="form-label"> License Number: </label>
-            <input type="text" name="licenseNumber" class="form-control" value='{{profile.licenseNumber}}' required/>
-        </div>
-   
-    
-        <div class="form-group col-md-4">
-            <label class="form-label"> Phone Number: </label>
-            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phoneNumber" value='{{profile.phoneNumber}}' class="form-control"  required/>
-        </div>
-        <div class="form-group col-md-4">
-            <label class="form-label"> Email Address: </label>
-            <input type="email" name="email" class="form-control" value='{{profile.email}}' required/>
-        </div>
-    
-    <br>
-    <input type='submit' class="btn btn-primary btn-block mvpButt col-md-4"></input>
-    <br>
+        <div class="row justify-content-center">
+          <div class="form-group col-md-3">
+              <label class="form-label"> First Name: </label>
+              <input type="text" name="firstName" class="form-control" value="{{profile.firstName}}" required/>
+          </div>
+          <div class="form-group col-md-3">
+              <label class="form-label"> Last Name: </label>
+              <input type="text" name="lastName" class="form-control" value="{{profile.lastName}}" required/>
+          </div>
+          <div class="form-group col-md-3">
+              <label class="form-label"> License Number: </label>
+              <input type="text" name="licenseNumber" class="form-control" value="{{profile.licenseNumber}}" required/>
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-6">
+              <label class="form-label"> Phone Number: </label>
+              <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phoneNumber" class="form-control" value="{{profile.phoneNumber}}" required/>
+          </div>
+          <div class="form-group col-md-6">
+              <label class="form-label"> Email Address: </label>
+              <input type="email" name="email" class="form-control" value="{{profile.email}}" required/>
+          </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label class="form-label"> Description: </label>
+          <textarea name="blurb" rows="4" class="form-control" required />{{profile.blurb}}</textarea>
+      </div>
+      </div>
+      <div class="button_center updateButtons">
+        <button type='submit' class="btn mvpButt searchButt">Update Profile</button>
+    </div>
 </form>
-<br>
-<a href="{% url 'profile_delete' %}"><button class="btn mvpButt btn-primary btn-block col-md-4">Delete Profile</button></a>
-<br>
-<br>
-<br>
-<br>
+
+<div class="button_center updateButtons">
+  <a href="{% url 'profile_delete' %}" class="deLink"><button class="btn mvpButt searchButt button_center deleteButt">Delete Profile</button></a>
+</div>
 
 
 

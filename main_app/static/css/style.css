@@ -1,4 +1,5 @@
-/* Variables */
+/* @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap'); */
+
 * {
   --main-butt: rgb(159, 218, 233);
 }
@@ -9,6 +10,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  font-family: 'Nunito', sans-serif;
 }
 
 main {
@@ -81,6 +83,19 @@ nav.fixed-bottom {
 .searchButt {
   margin-top: 30px;
   width: 200px;
+}
+.updateButtons{
+  margin-bottom: 20px;
+}
+.deleteButt{
+  background-color: rgb(255, 129, 129);
+  text-decoration: none;
+}
+.deleteButt:hover{
+  background-color: rgb(219, 108, 108)!important;
+}
+.deLink{
+  text-decoration: none;
 }
 
 /* Login */
@@ -252,8 +267,13 @@ nav.fixed-bottom {
 }
 
 /* Profile */
-
-
+#profileTitleDiv{
+  display: flex;
+  justify-content: space-between;
+}
+.profileCard{
+  padding: 0!important;
+}
 
 /* Profile Create */
 #profileCreateTitle {
@@ -264,14 +284,18 @@ nav.fixed-bottom {
   text-align: center;
 }
 .profile-img{
-    height: 100%;
+    height: 320px;
     object-fit:cover;
-    border-radius: 10px;
+    border-radius: 3px;
+    margin-left: 0;
 }
 .icon-size{
     font-size:1.3rem;
 }
-
+.profilePropertiesTitle{
+  margin-bottom: 30px;
+  text-align: center;
+}
 /* Featured Listings */
 .featured-home-image{
     padding: 0.0rem;
@@ -326,6 +350,15 @@ nav.fixed-bottom {
   width: 40px;
 }
 
+.niacus {
+  border: 1px solid rgb(216, 216, 216);
+  border-radius: 5px;
+}
+
+.fontsz {
+  font-size: 22px;
+}
+
 /* Listing Details */
 #breadcrumb_bookmarked{
   display: flex;
@@ -335,3 +368,4 @@ nav.fixed-bottom {
   width: 30px;
   height: 35px;
 }
+
