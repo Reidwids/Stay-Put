@@ -51,26 +51,21 @@
     <div class="row">
     {% for realtor in realtors %}
         {% if realtor.isAgent %}
-        <div class="col-md-6 about-profile-border">
-                <div class="card card-about shadow">
-                    <div class='row card-headline'>
-                        <img class="card-img-top col-6 card-about-img img-fluid" src="{{realtor.profilePhoto.url}}">
-                        <div  class='col-6'>
-                            <h4 class='card-header-tabs '>{{realtor}}</h6>
-                            <br>
-                            <p class='card-about-text'>Real Estate Broker</p>
-                            <p><img id="mainIcon" src="../../static/images/mainimg.png"/>Stay / Put ™</p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="card-body card-body-about row">
-                        <div class='col-6'>
-                            <h5 class='card-about-text'><span class="material-icons md-18">phone</span> {{realtor.phoneNumber}}</h6>
-                                <a class='stretched-link card-about-text' href="{% url 'detail' realtor.user_id %}">Contact Me</a>
-                        </div>
-                        <h5 class='card-about-text col-6'><span class="material-icons md-18">email</span> {{realtor.email}}</h6>  
-                    </div>
-                </div>
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card mb-3 niacus">
+              <img class="card-img-top" src="{{realtor.profilePhoto.url}}"/>
+              <div class="card-body">
+                    <a class='stretched-link' href="{% url 'agent_profile' realtor.user_id %}"></a>
+                    <h5 class="card-title text-truncate">Property Realtor</h5>
+                    <h6 class="card-subtitle mb-2 text-muted text-truncate">{{realtor.firstName}} {{realtor.lastName}}</h6>
+                    <li class="list-group-item list-spacing">
+                        <div class="text-truncate"><span class="material-icons icon-size">phone</span>&nbsp;&nbsp;{{realtor.phoneNumber}}</div>
+                    </li>
+                    <li class="list-group-item list-spacing">
+                        <div class="text-truncate"><span class="material-icons icon-size">email</span>&nbsp;&nbsp;{{realtor.email}}</div>
+                    </li>
+              </div>
+            </div>
         </div>
         {% endif %}
     {% endfor %}
