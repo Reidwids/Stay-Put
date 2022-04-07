@@ -1,50 +1,42 @@
 {% extends 'base.html' %} {% block content %}
-<br />
-<div class="container">
-  <div class="row text-center">
-    <div class="col-md-12">
-      <h1 class="display-6">{{listing.address}}</h1>
-      <p class="lead">
-        {{listing.city}}, {{listing.province}}, {{listing.postalCode}}
-      </p>
-    </div>
-  </div>
-</div>
-<hr />
 
+<h1 class="page_title">{{listing.address}}</h1>
+<p class="page_subtitle lead">
+  {{listing.city}}, {{listing.province}}, {{listing.postalCode}}
+<hr>
 <!-- Breadcrumb -->
 <section id="bc" class="mt-3">
-  <div class="container">
-    <nav id="breadcrumb_bookmarked">
-      <ol class="breadcrumb">
+  <nav aria-label="breadcrumb" id="breadcrumb_bookmarked">
+    <div id="breadcrumbCont">
+      <ol class="breadcrumb breadcrumbPadding">
         <li class="breadcrumb-item">
           <a href="{% url 'home' %}">Home</a>
         </li>
         <li class="breadcrumb-item active">Listings</li>
         <li class="breadcrumb-item active">{{listing.address}}</li>
       </ol>
-      {% if user.is_authenticated%}
-     
-      {% if listing.id in userbookmarks %}
+    </div>
+    {% if user.is_authenticated%}
+    {% if listing.id in userbookmarks %}
 
-      <a href="{% url "remove_bookmark" listing.id %}">
-      <img class='bookmark' 
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Ic_bookmark_48px.svg/96px-Ic_bookmark_48px.svg.png?20141023110451" alt="">
-      </a>
 
-      {% else %}
+    <a class="bookmark" href="{% url "remove_bookmark" listing.id %}">
+        <img class='bookmarkImg' 
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Ic_bookmark_48px.svg/96px-Ic_bookmark_48px.svg.png?20141023110451" alt="">
+    </a>
 
-      <a href="{% url "add_bookmark" listing.id %}">
-      <img class='bookmark' 
+    {% else %}
+
+    <a class="bookmark" href="{% url "add_bookmark" listing.id %}">
+      <img class='bookmarkImg' 
       src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Ic_bookmark_outline_48px.svg/96px-Ic_bookmark_outline_48px.svg.png?20141023110503" alt="">
-      </a>
-
-      {% endif %}
-      {% endif %}
-    </nav>
-  </div>
+    </a>
+    {% endif %}
+    {% endif %}
+  </nav>
 </section>
-<hr />
+<hr>
+
 <!-- Listing -->
 
 
