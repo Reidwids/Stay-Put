@@ -10,7 +10,7 @@
 <br>
 
 ## Technologies Used
-This project uses Python, Django, HTML, CSS, JavaScript, Bootstrap5, and the google maps API.
+This project uses Python, Django, HTML, CSS, JavaScript, Bootstrap5, PostgreSQL, and the google maps API.
 
 ## Getting Started  
 To check out the app, <a href="https://stay-put.herokuapp.com/" target="_blank">click here!</a>
