@@ -19,4 +19,5 @@ To check out the app, <a href="https://stay-put.herokuapp.com/" target="_blank">
 - Integrate the google maps api into our search function, giving the user results based on a local radius
 - Send emails to the realtor from the webpage itself
 - Allow agents to pay to have their listings "featured"
+- Have a search result sort that can sort by price, closing date, etc.
 
