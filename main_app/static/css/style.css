@@ -322,17 +322,14 @@ nav.fixed-bottom {
 .featured-info-text {
   padding: 0;
   margin: 0;
-  /* width: 100%; */
   justify-content: center;
   background-color: slategray;
 }
 .featured-info {
   padding: 0;
   margin: 0;
-  /* width: fit-content; */
   justify-content: center;
   vertical-align: middle;
-  /* background-color: darkcyan; */
 }
 
 /* terms and conditions */
