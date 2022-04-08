@@ -222,6 +222,9 @@ nav.fixed-bottom {
   /* display: flex; */
   justify-content: space-evenly;
 }
+.profileButton{
+  margin-bottom: 15px;
+}
 .card-headline {
   /* padding:.5rem; */
   display: flex;

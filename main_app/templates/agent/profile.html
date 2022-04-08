@@ -54,15 +54,15 @@
         <hr>
         <h6>About Me</h6>
         <p class="card-text">{{profile.blurb}}</p>
-
-        {% if profile.isAgent == False %}
-        <a href="{% url 'beanagent' %}"><button class="btn mvpButt searchButton">Become An Agent</button></a>
-        {% endif %}
       </div>
     </div>
   </div>
 </div>
-
+{% if profile.isAgent == False %}
+  <div class="button_center profileButton">
+    <a href="{% url 'beanagent' %}"><button class="btn mvpButt searchButton">Become An Agent</button></a>
+  </div>
+{% endif %}
 <!-- #################### -->
 <!-- Agent's listings title -->
 <h5 class="display-6 profilePropertiesTitle">My Properties</h5>

@@ -33,7 +33,6 @@ def signup(request):
 def bookmarks(request):
     profile = Profile.objects.get(user=request.user)
     bookmarks = Bookmark.objects.filter(real_estate_id__in = profile.bookmarks.all().values_list('real_estate_id'))
-    print(bookmarks)
     alllistings = RealEstate.objects.all()
     listings = []
     for bookmark in bookmarks:
@@ -42,8 +41,6 @@ def bookmarks(request):
     listing_with_photo = []
     for listing in listings:
         listing_with_photo.append([listing, ListingPhoto.objects.filter(real_estate=listing.id)[0].url])
-    for listing in listing_with_photo:
-        print(listing[1])
     return render(request, 'bookmarks.html', {'listing_with_photo': listing_with_photo})
 
 
@@ -59,10 +56,8 @@ def profile(request):
             photo_urls = ListingPhoto.objects.filter(real_estate_id=listing.id)
             listing.photo_url = photo_urls[0].url
             listing_with_photo.append([listing, ListingPhoto.objects.filter(real_estate=listing.id)[0].url])
-            print(listing_with_photo)
         return render(request, 'agent/profile.html', {'profile': profile, 'photo_url': photo_url, 'listings': listings, 'listing_with_photo': listing_with_photo, 'current_user': current_user})
     except:
-        print("Why is this working")
         return render(request, 'agent/create_profile.html')
 
 @login_required
@@ -242,7 +237,6 @@ def submit_listing(request):
 
     for photo_file in photo_files:
         if photo_file:
-            print(photo_file)
             s3 = boto3.client('s3')
             key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
             # just in case something goes wrong
@@ -250,11 +244,9 @@ def submit_listing(request):
                 s3.upload_fileobj(photo_file, BUCKET, key)
                 # build the full url string
                 url = f"https://{BUCKET}.{S3_BASE_URL}/{key}"
-                print(url)
                 # we can assign to cat_id or cat (if you have a cat object)
                 photo = ListingPhoto(url=url, real_estate_id = new_listing.id)
                 photo.save()
-                print(photo)
             except:
                 print('An error occurred uploading file to S3')
         else: 
@@ -307,7 +299,6 @@ def agent_profile(request, agent_id):
         elif not request.user.is_authenticated:
             return render(request, 'agent/profile.html', {'profile': profile, 'photo_url': photo_url, 'listings': listings, 'listing_with_photo': listing_with_photo})
     except:
-        print("Why is this working")
         return render(request, 'agent/create_profile.html')
 
 def listing_featured(request):
@@ -389,11 +380,9 @@ def delete_photo(request, listing_id, listingphoto_id):
         is_user_realtor = True if listing.realtor_id == user.user_id else False 
         if is_user_realtor:
             old_key = ListingPhoto.objects.get(id= listingphoto_id)
-            print(old_key.url)
             ListingPhoto.objects.get(id = listingphoto_id)
             s3 = boto3.client('s3')
             old_key = old_key.url.replace(f"https://{BUCKET}.{S3_BASE_URL}/","")
-            print(BUCKET, old_key)
             s3.delete_object(Bucket = BUCKET, Key = old_key)
             ListingPhoto.objects.get(id= listingphoto_id).delete()
     return redirect('listing_update', listing_id=listing_id)
