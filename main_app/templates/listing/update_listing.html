@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<br>
 <!-- ########################## -->
-<h2 class='header-text'>UPDATE LISTING</h1> 
+<h2 class='header-text'>Update Listing</h1> 
 
   <hr>
   <div class="container">
@@ -27,7 +27,9 @@
 </section> -->
 
 {% if is_user_realtor %}
-<a href="{% url 'listing_delete' listing.id %}"><button class="btn mvpButt btn-primary btn-block margin-button col-md-2">Delete Listing</button></a>
+<div class="button_center">
+  <a href="{% url 'listing_delete' listing.id %}"><button class="btn mvpButt searchButt deleteButt">Delete Listing</button></a>
+</div>
 {% endif %}
 
 <form method='post' enctype="multipart/form-data" action="{% url 'listing_update_submit' listing.id%}" class="needs-validation" novalidate>
@@ -239,7 +241,7 @@ Delete
             <li class="list-group-item text-secondary">
                 <div class="form-group col-md-6">
                     <label class="form-label">Agent:</label>
-                    <h4>{{agent}}</h4>
+                    <h6>{{agent}}</h6>
                 </div> 
                 <br>
             </li>
