@@ -1,5 +1,4 @@
 # Stay / Put
----
 ## Intro
 
 **Stay / Put** lets renters and buyers quickly connect with realtors to discuss properties for rent/sale! Create a profile, browse as a user, or become an agent and list properties for other users to see.
