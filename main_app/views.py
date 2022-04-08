@@ -96,7 +96,7 @@ def profile_submit(request):
         except:
             print('An error occurred uploading file to S3')
     else: 
-        photo = ProfilePhoto(url='https://stay-put.s3.ca-central-1.amazonaws.com/af7588.jpg', profile_id = new_profile.user_id)
+        photo = ProfilePhoto(url='https://stay-put.s3.ca-central-1.amazonaws.com/profile-placeholder.jpg', profile_id = new_profile.user_id)
         photo.save()
         photo_url = photo.url
     # return redirect('profile', {'profile': new_profile,  'photo_url': photo_url})
@@ -258,7 +258,7 @@ def submit_listing(request):
             except:
                 print('An error occurred uploading file to S3')
         else: 
-            photo = ListingPhoto(url='https://stay-put.s3.ca-central-1.amazonaws.com/49fe05.jpg', real_estate_id = new_listing.id)
+            photo = ListingPhoto(url='https://stay-put.s3.ca-central-1.amazonaws.com/propertyPlaceholder.jpg', real_estate_id = new_listing.id)
             photo.save()
     return redirect('/accounts/profile/')
     
