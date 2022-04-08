@@ -20,12 +20,6 @@
     </div>
   </section>
 <hr>
-<!-- Listing -->
-<section id="listing" class="py-4">
-    <div class="container">
-      <a href="{% url 'home' %}" class="btn btn-light mb-4">Back To Listings</a>   
-    </div>
-</section>
 
 {% if currentUser.isAgent == True %}
 <form method='post' enctype="multipart/form-data" action="{% url 'submit_listing' %}" class="needs-validation" novalidate>
@@ -152,11 +146,13 @@
             <textarea type="textarea" name="description" rows="6" class="form-control niacus" placeholder="Max 2500 chars" required/></textarea>
         </div>
         <br>
-    <input type='submit' class="btn mvpButt btn-primary btn-block margin-button col-md-2"></input>
+        <div class="button_center">
+          <input type='submit' class="btn mvpButt searchButton"></input>
+        </div>
 </form>
 
 {% else %}
-<p>go to your <a href="/accounts/profile/"> profile page </a>to become an agent!</p>
+<p style="text-align:center;">If you would like to post listings, visit your<a href="/accounts/profile/"> profile page </a>to become an agent!</p>
 {% endif%}
 
 <br>

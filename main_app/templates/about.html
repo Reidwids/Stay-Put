@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 <header>
-    <hr>
     <br>
-    <h2 class='header-text'>STAY/PUT™ REAL ESTATE</h1> 
-        <p class='header-text lead'> THE BRAND YOU TRUST</p>
+    <h2 class='header-text'>Stay/Put™ Real Estate</h1> 
+        <p class='header-text lead'> The Brand You Trust</p>
     <hr>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -20,9 +19,9 @@
     <div class='row about-info-row'>
         <img class="img-fluid col-sm-6 shadow" src="../../static/images/Attention-to-detail.jpeg" id='working-with-you' alt="realtor-helping-family">
         <div class='col-sm-6' id='text-box-about-1'>
-            <h2 class='lead'><em>First class Agents<br> First class service</h2></em>
+            <h2 class='lead'><em>~ First class agents ~<br>~ First class service ~</h2></em>
             <br>
-            <h3 class='lead about-lead'>We go above and beyond with our attention to detail in finding the perfect home for your needs so you can Stay / Put ™</h3>
+            <h3 class='lead about-lead'>We go above and beyond with our attention to detail in finding the perfect home for your needs, so you can Stay / Put</h3>
             <br>
             <h3><img id="mainIcon" src="../../static/images/mainimg.png"/>Stay / Put ™</h3>
         </div>
@@ -30,16 +29,16 @@
     <hr>
     <div class='row about-info-row'>
         <div class='col-md-6' id='text-box-about-2'>
-            <h2 class="lead"><em>putting you first</em></h2>
+            <h2 class="lead"><em>~ Putting you first ~</em></h2>
             <br>
             <br>
-            <h3 class='lead about-lead'>At Stay / Put ™ <br> We take care of everything and always put <em>You</em> first. So you can focus on what really matters.</h3>
+            <h3 class='lead about-lead'>At Stay / Put<br> We take care of everything, and always put <em>you</em> first - So you can focus on what really matters.</h3>
             <br>
         </div>
         <img class="img-fluid col-md-6 info-img shadow" src="../../static/images/working-with-you-realtor.jpeg" id='working-with-you' alt="realtor-helping-family">
     </div>
     <hr>
-        <a class='btn mvpButt  ' href="{url 'featured'}" > view our featured listings</a>
+        <a class='btn mvpButt  ' href="{% url 'listing_featured' %}" > View featured listings</a>
     <hr>
         <h3>WE WORK WITH THE BEST</h3>
     <hr>

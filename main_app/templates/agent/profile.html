@@ -2,7 +2,11 @@
 
 <!-- ######################### -->
 <br>
-<h2 class='header-text'>MY PROFILE</h1>
+{% if user.is_authenticated and profile.user_id == current_user.user_id %}
+<h2 class='header-text'>My Profile</h2>
+{% else %}
+<h2 class='header-text'>{{profile}}'s Profile</h2>
+{% endif %}
 <hr />
 
 <!-- Breadcrumb -->
@@ -13,8 +17,10 @@
         <li class="breadcrumb-item">
           <a href="{% url 'home' %}"> Home</a>
         </li>
-        {% if profile.user_id == current_user.user_id %}
+        {% if user.is_authenticated and profile.user_id == current_user.user_id %}
         <li class="breadcrumb-item active">My Profile</li>
+        {% else %}
+        <li class="breadcrumb-item active">{{profile}}'s Profile</li>
         {% endif %}
       </ol>
     </nav>
@@ -36,7 +42,7 @@
         <!-- <h3 class="card-title">My Profile</h3> -->
         <div id="profileTitleDiv card-title">
           <h2 class="text-truncate">{{profile.firstName}} {{profile.lastName}} 
-            {% if profile.user_id == current_user.user_id %}
+            {% if user.is_authenticated and profile.user_id == current_user.user_id %}
             <a href="{% url 'profile_update' %}"><span class="material-icons">edit</span></a>
             {% endif %}
           </h2>
@@ -50,7 +56,7 @@
         <p class="card-text">{{profile.blurb}}</p>
 
         {% if profile.isAgent == False %}
-        <a href="{% url 'beanagent' %}"> Become An Agent </a>
+        <a href="{% url 'beanagent' %}"><button class="btn mvpButt searchButton">Become An Agent</button></a>
         {% endif %}
       </div>
     </div>

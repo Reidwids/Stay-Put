@@ -1,15 +1,13 @@
 {% extends 'base.html' %} {% block content %}
-<br>
 <header>
-    <hr>
     <br>
-    <h2 class='header-text'> FEATURED LISTINGS</h1> 
+    <h2 class='header-text'> Featured Listings</h1> 
     <p class='header-text'>GET OUR HOTTEST PROPERTIES BEFORE THEY'RE GONE!</p>
     <hr>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'home' %}">HOME</a></li>
-            <li class="breadcrumb-item active" aria-current="page">FEATURED LISTINGS</li>
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Featured Listings</li>
         </ol>
     </nav>
     <hr>
@@ -32,11 +30,11 @@
                         <span class="float-right">{{listing.0.sqft}}</span>
                     </li>
                     <li class="list-group-item text-secondary">
-                        bedrooms:
+                        Bedrooms:
                         <span class="float-right">{{listing.0.bathrooms}}</span>
                     </li>
                     <li class="list-group-item text-secondary">
-                        bathrooms: 
+                        Bathrooms: 
                             <span class="float-right">{{listing.0.bedrooms}}</span>
                     </li>
                     <li class="list-group-item text-secondary">

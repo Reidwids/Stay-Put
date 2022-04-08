@@ -388,6 +388,16 @@ a {
   height: 35px;
 }
 
-.breadcrumbPadding {
+.breadcrumbPadding{
   padding-top: 15px;
+}
+
+.carousel-item{
+  width: 100%;
+  max-height: 40rem;
+  object-fit: cover;
+  border-radius: 3px;
+}
+.d-block{
+  border-radius: 3px;
 }

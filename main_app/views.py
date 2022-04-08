@@ -96,11 +96,11 @@ def profile_submit(request):
         except:
             print('An error occurred uploading file to S3')
     else: 
-        photo = ProfilePhoto(url='https://stay-put.s3.ca-central-1.amazonaws.com/af7588.jpg', profile_id = new_profile.user_id)
+        photo = ProfilePhoto(url='https://stay-put.s3.ca-central-1.amazonaws.com/profile-placeholder.jpg', profile_id = new_profile.user_id)
         photo.save()
         photo_url = photo.url
     # return redirect('profile', {'profile': new_profile,  'photo_url': photo_url})
-    return render(request, 'agent/profile.html', {'profile': new_profile,  'photo_url': photo_url})
+    return redirect("/accounts/profile/")
 
 @login_required
 def beanagent(request):
@@ -258,7 +258,7 @@ def submit_listing(request):
             except:
                 print('An error occurred uploading file to S3')
         else: 
-            photo = ListingPhoto(url='https://stay-put.s3.ca-central-1.amazonaws.com/49fe05.jpg', real_estate_id = new_listing.id)
+            photo = ListingPhoto(url='https://stay-put.s3.ca-central-1.amazonaws.com/propertyPlaceholder.jpg', real_estate_id = new_listing.id)
             photo.save()
     return redirect('/accounts/profile/')
     
@@ -292,9 +292,8 @@ def listing_update(request, listing_id):
     return render(request, 'listing/update_listing.html', {'is_user_realtor': is_user_realtor, 'listing': listing, 'agent': agent, 'photo_urls': photo_urls})
 
 def agent_profile(request, agent_id):
-    # try:
+    try:
         profile = Profile.objects.get(user_id=agent_id)
-        current_user = Profile.objects.get(user_id=request.user.id)
         photo_url = ProfilePhoto.objects.get(profile=agent_id).url
         listings = RealEstate.objects.filter(realtor_id=profile.user_id)
         listing_with_photo = []
@@ -302,10 +301,14 @@ def agent_profile(request, agent_id):
             photo_urls = ListingPhoto.objects.filter(real_estate_id=listing.id)
             listing.photo_url = photo_urls[0].url
             listing_with_photo.append([listing, ListingPhoto.objects.filter(real_estate=listing.id)[0].url])
-        return render(request, 'agent/profile.html', {'profile': profile, 'photo_url': photo_url, 'listings': listings, 'listing_with_photo': listing_with_photo, 'current_user': current_user})
-    # except:
-    #     print("Why is this working")
-    #     return render(request, 'agent/create_profile.html')
+        if request.user.is_authenticated:
+            current_user = Profile.objects.get(user_id=request.user.id)
+            return render(request, 'agent/profile.html', {'profile': profile, 'photo_url': photo_url, 'listings': listings, 'listing_with_photo': listing_with_photo, 'current_user': current_user})
+        elif not request.user.is_authenticated:
+            return render(request, 'agent/profile.html', {'profile': profile, 'photo_url': photo_url, 'listings': listings, 'listing_with_photo': listing_with_photo})
+    except:
+        print("Why is this working")
+        return render(request, 'agent/create_profile.html')
 
 def listing_featured(request):
     listings=RealEstate.objects.all()
