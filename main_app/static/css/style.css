@@ -10,7 +10,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
 main {
@@ -84,17 +84,17 @@ nav.fixed-bottom {
   margin-top: 30px;
   width: 200px;
 }
-.updateButtons{
+.updateButtons {
   margin-bottom: 20px;
 }
-.deleteButt{
+.deleteButt {
   background-color: rgb(255, 129, 129);
   text-decoration: none;
 }
-.deleteButt:hover{
-  background-color: rgb(219, 108, 108)!important;
+.deleteButt:hover {
+  background-color: rgb(219, 108, 108) !important;
 }
-.deLink{
+.deLink {
   text-decoration: none;
 }
 
@@ -106,7 +106,7 @@ nav.fixed-bottom {
   text-align: center;
   margin: 25px 0;
 }
-.page_subtitle{
+.page_subtitle {
   text-align: center;
   margin: 25px 0;
 }
@@ -152,7 +152,7 @@ nav.fixed-bottom {
 }
 /* Makes the triangle */
 .card-price:before {
-  content: '';
+  content: "";
   position: absolute;
   display: block;
   left: -19px;
@@ -165,7 +165,7 @@ nav.fixed-bottom {
 
 /* Makes the circle */
 .card-price:after {
-  content: '';
+  content: "";
   background-color: white;
   border-radius: 50%;
   width: 4px;
@@ -194,11 +194,11 @@ nav.fixed-bottom {
   text-align: center;
 }
 
-.about-lead{
-    font-size: 2rem;
+.about-lead {
+  font-size: 2rem;
 }
-.info-img{
-    float: right;
+.info-img {
+  float: right;
 }
 #working-with-you {
   border: 0.2rem solid white;
@@ -249,37 +249,36 @@ nav.fixed-bottom {
   display: block;
   text-align: center;
 }
-.about-info-row{
-    margin:3rem auto;
+.about-info-row {
+  margin: 3rem auto;
 }
 
 @media (min-width: 992px) {
-    #text-box-about-1{
-        padding-left:5rem;
-    }
-    #text-box-about-2{
-        padding-right:5rem;
-    }
+  #text-box-about-1 {
+    padding-left: 5rem;
+  }
+  #text-box-about-2 {
+    padding-right: 5rem;
+  }
 }
-
 
 #about-realtors {
   margin-bottom: 3rem;
   /* padding:1rem; */
   gap: 1rem;
 }
-#footer-links{
-    display: flex;
-    justify-content: space-evenly;
+#footer-links {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 /* Profile */
-#profileTitleDiv{
+#profileTitleDiv {
   display: flex;
   justify-content: space-between;
 }
-.profileCard{
-  padding: 0!important;
+.profileCard {
+  padding: 0 !important;
 }
 
 /* Profile Create */
@@ -290,57 +289,60 @@ nav.fixed-bottom {
 .profileCreateInfo {
   text-align: center;
 }
-.profile-img{
-    height: 320px;
-    object-fit:cover;
-    border-radius: 3px;
-    margin-left: 0;
+.profile-img {
+  height: 320px;
+  object-fit: cover;
+  border-radius: 3px;
+  margin-left: 0;
 }
-.icon-size{
-    font-size:1.3rem;
+.icon-size {
+  font-size: 1.3rem;
 }
-.profilePropertiesTitle{
+.profilePropertiesTitle {
   margin-bottom: 30px;
   text-align: center;
 }
 /* Featured Listings */
-.featured-home-image{
-    padding: 0.0rem;
-    width: 100%;
-    height:25rem;
-    object-fit:cover;
+.featured-home-image {
+  padding: 0rem;
+  width: 100%;
+  height: 25rem;
+  object-fit: cover;
 }
 
-.featured-card{
-    padding:0rem;
-    margin: 0rem;
-    color: snow;
-    background-color: whitesmoke;
-    text-align: center;
-    margin-bottom:4rem auto;
-    vertical-align: middle;   
+.featured-card {
+  padding: 0rem;
+  margin: 0rem;
+  color: snow;
+  background-color: whitesmoke;
+  text-align: center;
+  margin-bottom: 4rem auto;
+  vertical-align: middle;
 }
-.featured-row{
-    width: 100%;
+.featured-row {
+  width: 100%;
 }
-.featured-info-text{
-    padding:0;
-    margin:0;
-    /* width: 100%; */
-    justify-content: center;
-    background-color: slategray;
+.featured-info-text {
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+  background-color: slategray;
 }
-.featured-info{
-    padding:0;
-    margin:0;
-    /* width: fit-content; */
-    justify-content: center;
-    vertical-align: middle;  
-    /* background-color: darkcyan; */
+.featured-info {
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+  vertical-align: middle;
 }
 
 /* terms and conditions */
-
+#terms > h1,
+h2,
+h3,
+h4,
+a {
+  text-align: center;
+}
 
 /* Button styling */
 
@@ -352,8 +354,8 @@ nav.fixed-bottom {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.more-details-butt{
-    margin-bottom: .5rem;
+.more-details-butt {
+  margin-bottom: 0.5rem;
 }
 
 .carousel-control-prev-icon {
@@ -378,13 +380,13 @@ nav.fixed-bottom {
 }
 
 /* Listing Details */
-#breadcrumb_bookmarked{
+#breadcrumb_bookmarked {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.bookmarkImg{
+.bookmarkImg {
   width: 30px;
   height: 35px;
 }
